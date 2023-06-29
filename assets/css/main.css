@@ -2676,6 +2676,10 @@ input, select, textarea {
 			transform: scale(1.05);
 		}
 
+img.border-radius {
+  border-radius: 20px;
+}
+
 /* Actions */
 
 	ul.actions {
@@ -3786,8 +3790,14 @@ input, select, textarea {
 				margin-top: -2rem;
 			}
 
-			#main > .post header.major > h1, #main > .post header.major h2 {
+			#main > .post header.major > h1 {
 				font-size: 4rem;
+				line-height: 1.1;
+				margin: 0 0 2rem 0;
+			}
+
+			#main > .post header.major h2 {
+				font-size: 2.40rem;
 				line-height: 1.1;
 				margin: 0 0 2rem 0;
 			}

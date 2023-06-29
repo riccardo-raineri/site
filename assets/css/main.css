@@ -2680,6 +2680,14 @@ img.border-radius {
   border-radius: 20px;
 }
 
+img.profile-img {
+	width: 200px;
+	height: 200px;
+	border-radius: 20px;
+	align-content: center;
+	position: relative;
+	
+}
 /* Actions */
 
 	ul.actions {
@@ -3797,7 +3805,7 @@ img.border-radius {
 			}
 
 			#main > .post header.major h2 {
-				font-size: 2.40rem;
+				font-size: 2.30rem;
 				line-height: 1.1;
 				margin: 0 0 2rem 0;
 			}

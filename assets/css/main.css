@@ -74,6 +74,8 @@ input, select, textarea {
 
 /* Basic */
 
+div.content { width: 800px }
+
 	@-ms-viewport {
 		width: device-width;
 	}

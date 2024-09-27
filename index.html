@@ -350,27 +350,9 @@
 							</section>
 							<section>
 								<i class="fas fa-phone-alt"></i>
-								<p><a href="#">+39 3934360417</a></p>
+								<p><a>+39 3934360</a></p><tel>417</tel>
 							</section>
-							<section><script>
-    $(function(){
-      let phoneNotShown = true;
-      const phoneNumber = $('#phoneNumber').text().trim();
-      const hiddenPhoneNumber = phoneNumber.slice(0,-4) + '****';
-
-      $('#phoneNumber').text(hiddenPhoneNumber).attr('href', '#');
-
-      $('#phoneNumber').click(function(e) {
-        if(phoneNotShown) {
-          e.preventDefault();
-          $(this).text(3934360).attr('href', 'tel:' + 417);
-          phoneNotShown = false;
-        } else {
-          return true;
-        }
-      });
-    });
-</script></section>
+							
 							<section>
 								<i class="fas fa-at"></i>
 								<p><a href="#">riccardoraineri1997@gmail.com</a></p>

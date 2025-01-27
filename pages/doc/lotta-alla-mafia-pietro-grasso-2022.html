@@ -11,6 +11,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+		<!-- Sezioni condivise tra le pagine -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+		integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
 	<body class="is-preload">
 
@@ -25,12 +29,12 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-						<li><a href="../index.html">ALL MY WORKS</a></li>
-							<li><a href="../drone.html">DRONE</a></li>
-							<li class="active"><a href="../docs.html">DOCS</a></li>
-							<li><a href="../spot.html">SPOT</a></li>
-							<li><a href="../more.html">MORE</a></li>
-							<li><a href="../contatti.html">CONTATTI</a></li>
+						<li><a href="../../index.html">ALL MY WORKS</a></li>
+							<li><a href="../../drone.html">DRONE</a></li>
+							<li class="active"><a href="../../docs.html">DOCS</a></li>
+							<li><a href="../../spot.html">SPOT</a></li>
+							<li><a href="../../more.html">MORE</a></li>
+							<li><a href="../../contatti.html">CONTATTI</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="https://www.instagram.com/riccardo_raineri/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
@@ -57,17 +61,16 @@
 								<p>A trent’anni dalle stragi di Capaci e via D’Amelio in cui persero la vita Giovanni Falcone e Paolo Borsellino, abbiamo voluto ripercorrere le storie parallele della mafia e della lotta alla mafia, raccontate in prima persona da Pietro Grasso — protagonista del maxiprocesso, ex procuratore nazionale antimafia e Presidente del Senato, ma anche collega e caro amico dei due magistrati.</p>
 								<p>l documentario intreccia la storia di vita del Presidente Grasso con quella del Paese, e svela gli uomini dietro gli eroi, le loro paure, le sofferenze più intime, le rinunce della vita sotto scorta e i rapporti con la famiglia, passando per gli eventi più tragici che hanno segnato la nostra storia più recente.</p>
 								<p>Il documentario — realizzato tra aprile e maggio 2022, tra Roma e Palermo — è ora disponibile su Chili, canale VD News, in streaming gratuito.</p>
-								<h3><a href="https://vdnews.tv/special/-trenta-anni-lotta-mafia-pietro-grasso"> Articolo completo su VDNews.tv</h3></a>
+								<h3><a href="https://vdnews.tv/special/-trenta-anni-lotta-mafia-pietro-grasso"> Articolo completo su VDNews.tv</a></h3>
 							</section>
 
 					</div>
 
+				<!-- Footer -->
+					<footer id="footer"></footer>
 
 				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; RICCARDO RAINERI</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
-
+					<div id="copyright"></div>
 			</div>
 
 		<!-- Scripts -->
@@ -78,6 +81,9 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
-
+<script type="text/javascript">
+	$('#footer').load('footer.html');
+	$('#copyright').load('copyright.html');
+</script>
 	</body>
 </html>

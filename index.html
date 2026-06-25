@@ -1,397 +1,550 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	https://html5up.net/massively
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Riccardo Raineri</title>
-		 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<!-- Sezioni condivise tra le pagine -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Riccardo Raineri — Drone, Camera, Montaggio, Fotografia</title>
+<meta name="description" content="Riccardo Raineri — Videomaker, operatore drone e camera, video editor e fotografo. Bologna, Italia.">
+<meta property="og:title" content="Riccardo Raineri — Videomaker · Drone · Editor · Fotografo">
+<meta property="og:description" content="Storie raccontate dall'alto e da vicino, fotogramma dopo fotogramma.">
+<meta property="og:image" content="https://riccardo-raineri.github.io/site/images/drone/lago_di_caccamo.jpg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Foglio di Stile Esterno Globale -->
+<link rel="stylesheet" href="style.css">	
 	</head>
-	<body class="is-preload">
-		<!-- Wrapper 
-		<!--	<div id="wrapper" class="fade-in"> -->
-				 <!--		<img src="images/024119780032_SQUARE.jpg" class="profile-img" alt="Questo sono io"/> -->
+<body>
+
+<!-- ============ NAVBAR (CON TIMECODE E EFFETTO REC) ============ -->
+<nav class="nav" id="mainNav">
+  <div class="nav__brand">Riccardo Raineri</div>
+  <div class="nav__links">
+    <a href="#lavori" class="translate" data-it="Lavori" data-en="Works">Lavori</a>
+    <a href="#servizi" class="translate" data-it="Chi sono" data-en="About Me">Chi sono</a>
+    <a href="#contatti" class="translate" data-it="Contatti" data-en="Contact">Contatti</a>
+  </div>
+	
+  <!-- Selettore Lingua + Timecode -->
+	<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
+  <div class="nav__rec">
+    <span class="rec-dot" aria-hidden="true"></span>
+    <span>REC</span>
+    <span class="nav__tc" id="timecode">00:00:00:00</span>
+  </div>
+	</div>
+	
+	<button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu__close" id="closeMenu">CHIUDI ✕</button>
+  <a href="#lavori" class="translate" data-it="Lavori" data-en="Works">Lavori</a>
+  <a href="#chisono" class="translate" data-it="Chi sono" data-en="About Me">Chi sono</a>
+  <a href="#contatti" class="translate" data-it="Contatti" data-en="Contact">Contatti</a>
+</div>
+
+<!-- ============ HERO PRINCIPALE (STILE MIRINO FOTOCAMERA) ============ -->
+<header class="hero">
+  <!-- Barre orizzontali stile interfaccia video -->
+  <div class="hero__bars hero__bars--top"></div>
+  <div class="hero__bars hero__bars--bottom">
+    <span>F2.8 | ISO 400</span>
+    <span>4K 25 FPS | 16:9</span>
+  </div>
+  
+  <!-- Angoli del mirino -->
+  <div class="hero__frame">
+    <div class="hero__corner hero__corner--tl" id="c1"></div>
+    <div class="hero__corner hero__corner--tr" id="c2"></div>
+    <div class="hero__corner hero__corner--bl" id="c3"></div>
+    <div class="hero__corner hero__corner--br" id="c4"></div>
+  </div>
+
+  <div class="hero__media">
+    <!-- Sostituisci questo placeholder con un tuo fermo immagine o copertina del reel -->
+    <img src="IMG/Spot/Elegance_In_Motion/panda_1.jpg" alt="Riccardo Raineri Cinematography">
+    <div class="hero__scrim"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__eyebrow" id="hEyebrow"><span class="dot">●</span>
+		<span class="translate" data-it="Drone · Camera · Montaggio · Fotografia — Bologna, Italia." data-en="Drone · Camera · Editing · Photography — Bologna, Italy.">Drone · Camera · Montaggio · Fotografia — Bologna, Italia.</span>
+			</div>
+    <h1 class="hero__title" id="hTitle">Riccardo<br>Raineri</h1>
+    <p class="hero__sub translate" id="hSub"
+	   data-it="Storie raccontate dall'alto e da vicino, fotogramma dopo fotogramma."
+	   data-en="Stories told from above and up close, frame by frame.">Storie raccontate dall'alto e da vicino, fotogramma dopo fotogramma.</p>
+    
+	  <div class="hero__cta" id="hCta">
+      <a href="#lavori" class="btn btn--solid translate" data-it="Guarda i Progetti" data-en="See My Projects">Guarda i Progetti</a>
+      <a href="#contatti" class="btn btn--ghost translate" data-it="Lavoriamo Insieme" data-en="Let's Work Together">Lavoriamo Insieme</a>
+    </div>
+  </div>
+
+  <div class="hero__scrollcue">
+    <span>SCROLL</span>
+    <div class="line"></div>
+  </div>
+</header>
+
+<!-- ============ SEZIONE PORTFOLIO GRID (16:9 ORIZZONTALE) ============ -->
+<section id="lavori" class="works section-pad hairline">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Progetti Selezionati" data-en="Selected Projects">Progetti Selezionati</span></div>
+        <h2 class="translate" data-it="Lavori Recenti" data-en="Recent Works">Lavori Recenti</h2>
+      </div>
+      <!-- Filtri di Categoria -->
+      <div class="filters" id="filters">
+        <button class="filter-btn is-active translate" data-filter="all" data-it="Tutti" data-en="All">Tutti</button>
+        <button class="filter-btn" data-filter="drone">Drone</button>
+        <button class="filter-btn translate" data-filter="doc" data-it="Documentario" data-en="Documentary">Documentario</button>
+        <button class="filter-btn" data-filter="spot">Spot</button>
+        <button class="filter-btn translate" data-filter="foto" data-it="Foto" data-en="Photos">Foto</button>
+        <button class="filter-btn translate" data-filter="altro" data-it="Altro" data-en="Other">Altro</button>
+      </div>
+    </div>
+
+    <div class="works__grid">
+ 
+<!-- LOST IN BO -->
+		<a href="lost-in-bo.html" class="work-card reveal reveal-d1" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/lost_in_bo.png" alt="Lost in Bo" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Lost in Bo</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </a>
+	
+<!-- FOREIGN AIR -->
+		<a href="foreign-air.html" class="work-card reveal reveal-d1" data-cat="altro">
+        <div class="work-card__media">
+          <img src="IMG/Altro/foreignair.png" alt="Foreign Air" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Foreign Air</h3>
+          <div class="work-card__meta">
+            <span class="tag">Music</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </a>
 		
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Riccardo<br />
-						Raineri</h1>
-						<p>Drone operator • Camera operator • Video editor<br />
-						</p>
-						<ul class="actions">
-							<li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+<!-- FICUZZA -->
+      <a href="drone/ficuzza.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/ficuzza.jpg" alt="Ficuzza" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Ficuzza</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- SAN MARTINO DELLE SCALE -->
+      <a href="drone/san-martino.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/san_martino.jpg" alt="San Martino delle Scale" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">San Martino delle Scale</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </a>
 
-				<!-- Header
-					<header id="header">
-						<a href="index.html" class="logo">Massively</a>
-					</header>
-				-->
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">ALL MY WORKS</a></li>
-							<li><a href="drone.html">DRONE</a></li>
-							<li><a href="docs.html">DOCS</a></li>
-							<li><a href="spot.html">SPOT</a></li>
-							<li><a href="more.html">MORE</a></li>
-							<li><a href="contatti.html">CONTATTI</a></li>
-					<!--		<li><a href="elements.html">Elements Reference</a></li> -->
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.instagram.com/riccardo_raineri/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://www.youtube.com/channel/UCz3IhiVuvm8QqZdVxKuliXg" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
-							<li><a href="https://www.behance.net/riccardoraineri" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
-							<li><a href="https://www.linkedin.com/in/riccardoraineri/" class="icon brands fa-linkedin-in"><span class="label">Linked-In</span></a></li>
-							<li><a href="https://linktr.ee/riccardo_raineri" class="fas fa-tree"><span class="label"></span></a></li>
-						</ul>
-					</nav>
+<!-- BECOMING -->
+      <a href="becoming-editfest24.html" class="work-card reveal reveal-d2" data-cat="altro">
+        <div class="work-card__media">
+          <img src="IMG/Altro/becoming.jpeg" alt="Becoming - Editfest24" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Becoming · Editfest24</h3>
+          <div class="work-card__meta">
+            <span class="tag">Editing</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- ELEGANCE IN MOTION -->
+      <a href="elegance-in-motion.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/Elegance_In_Motion/panda_2.jpg" alt="Elegance In Motion" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Elegance In Motion</h3>
+          <div class="work-card__meta">
+            <span class="tag">SPOT</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- LAGO DI CACCAMO -->
+      <a href="drone/lago-caccamo.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/lago_di_caccamo.jpg" alt="Lago di Caccamo" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Lago di Caccamo</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </a>
+		
+ <!-- PASSATOPRESENTE -->
+      <a href="passatopresente.html" class="work-card reveal reveal-d2" data-cat="foto">
+        <div class="work-card__media">
+          <img src="IMG/Foto/PASSATOPRESENTE_EXT_1.jpg" alt="PASSATOPRESENTE" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">PASSATOPRESENTE</h3>
+          <div class="work-card__meta">
+            <span class="tag">Foto</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </a>
+			
+<!-- FRATTURE -->
+      <a href="fratture.html" class="work-card reveal reveal-d2" data-cat="foto">
+        <div class="work-card__media">
+          <img src="IMG/Foto/FRATTURE_BOOK_EXT_1.jpg" alt="FRATTURE" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">FRATTURE</h3>
+          <div class="work-card__meta">
+            <span class="tag">Foto</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- BLUFI -->
+      <a href="drone/blufi.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/blufi.jpg" alt="Blufi" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Blufi</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- LAGO DI PIANA -->
+      <a href="drone/lago-piana.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/lago_di_piana.jpg" alt="Lago di Piana degli Albanesi" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Lago di Piana degli Albanesi</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </a>
+		
+		
+<!-- MACARI -->
+      <a href="drone/macari.html" class="work-card reveal reveal-d2" data-cat="drone">
+        <div class="work-card__media">
+          <img src="IMG/Drone/macari.jpg" alt="Macari" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Macari</h3>
+          <div class="work-card__meta">
+            <span class="tag">Drone</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </a>
+		
+		
+<!-- NEW BOOK CLUB -->
+      <a href="new-book-club.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/new-book-club.jpg" alt="New Book Club" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">New Book Club</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+		
 
-				<!-- Main -->
-					<div id="main">
+<!-- RAFAEL HERMAN-->
+      <a href="rafael-herman.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/rafael-herman.jpg" alt="Rafael Herman" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">RAFAEL HERMAN: A Dialect of Light in the Dark</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
 
-						<!-- Featured Post 
-							<article class="post featured">
-								<header class="major">
-									<span class="date">April 25, 2017</span>
-									<h2><a href="#">And this is a<br />
-									massive headline</a></h2>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article>
--->
-						<!-- Posts -->
-							<section class="posts">
-								<!-- 
-								<article>
-									<header>
-										<span class="date">2025 - DRONE</span>
-										<h2><a href="pages\drone\erice-2025.html">ERICE</a><br /></h2>
-									</header>
-									<a href="pages\drone\erice-2025.html" class="image fit"><img class="border-radius" src="images/drone/erice.jpg" alt="ERICE"/></a>
-								</article>
-								 -->
-								
-								<article>
-									<header>
-										<span class="date">2026 - SPOT</span>
-										<h2><a href="pages\lost-in-bo.html">LOST IN BO</a><br /></h2>
-									</header>
-									<a href="pages\lost-in-bo.html" class="image fit"><img class="border-radius" src="images/lost_in_bo.png" alt="LOST IN BO"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2025 - MUSIC</span>
-										<h2><a href="pages\foreign-air.html">FOREIGN AIR</a><br /></h2>
-									</header>
-									<a href="pages\foreign-air.html" class="image fit"><img class="border-radius" src="images/foreignair.png" alt="FOREIGN AIR"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2025 - DRONE</span>
-										<h2><a href="pages\drone\ficuzza.html">FICUZZA</a><br /></h2>
-									</header>
-									<a href="pages\drone\ficuzza.html" class="image fit"><img class="border-radius" src="images/drone/ficuzza.jpg" alt="FICUZZA"/></a>
-								</article>
-								
-								
-								<article>
-									<header>
-										<span class="date">2025 - DRONE</span>
-										<h2><a href="pages\drone\san-martino.html">SAN MARTINO DELLE SCALE</a><br /></h2>
-									</header>
-									<a href="pages\drone\san-martino.html" class="image fit"><img class="border-radius" src="images/drone/san_martino.jpg" alt="SAN MARTINO DELLE SCALE"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2024 - TRAILER EDITFEST24</span>
-										<h2><a href="pages\becoming-editfest24.html">BECOMING</a><br /></h2>
-									</header>
-									<a href="pages\becoming-editfest24.html" class="image fit"><img class="border-radius" src="images/becoming.jpeg" alt="BECOMING"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2024 - SPOT</span>
-										<h2><a href="pages\elegance-in-motion.html">ELEGANCE IN MOTION</a><br /></h2>
-									</header>
-									<a href="pages\elegance-in-motion.html" class="image fit"><img class="border-radius" src="images/spot_fiat/panda_2.jpg" alt="ELEGANCE IN MOTION"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2024 - DRONE</span>
-										<h2><a href="pages\drone\lago-di-caccamo.html">LAGO DI CACCAMO</a><br /></h2>
-									</header>
-									<a href="pages\drone\lago-di-caccamo.html" class="image fit"><img class="border-radius" src="images/drone/lago_di_caccamo.jpg" alt="LAGO DI CACCAMO"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2023 - PHOTO</span>
-										<h2><a href="pages\passatopresente.html">PASSATOPRESENTE</a><br /></h2>
-									</header>
-									<a href="pages\passatopresente.html" class="image fit"><img class="border-radius" src="images/photo/PASSATOPRESENTE_EXT_1.jpg" alt="PASSATOPRESENTE"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2023 - PHOTO</span>
-										<h2><a href="pages\fratture.html">FRATTURE</a><br /></h2>
-									</header>
-									<a href="pages\fratture.html" class="image fit"><img class="border-radius" src="images/photo/FRATTURE_BOOK_EXT_1.jpg" alt="FRATTURE"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2023 - DRONE</span>
-										<h2><a href="pages\drone\blufi.html">BLUFI</a><br /></h2>
-									</header>
-									<a href="pages\drone\blufi.html" class="image fit"><img class="border-radius" src="images/drone/blufi.jpg" alt="BLUFI"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2023 - DRONE</span>
-										<h2><a href="pages\drone\lago-di-piana.html">LAGO DI PIANA</a><br /></h2>
-									</header>
-									<a href="pages\drone\lago-di-piana.html" class="image fit"><img class="border-radius" src="images/drone/lago_di_piana.jpg" alt="LAGO DI PIANA"/></a>
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2023 - DRONE</span>
-										<h2><a href="pages\drone\macari.html">MACARI</a><br /></h2>
-									</header>
-									<a href="pages\drone\macari.html" class="image fit"><img class="border-radius" src="images/drone/macari.jpg" alt="MACARI"/></a>
-									<!--<p>Testo</p>
-									<ul class="actions special">
-										<li><a href="pages\drone\macari.html" class="button">Video</a></li>
-									</ul>-->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2022 - SPOT</span>
-										<h2><a href="pages\new-book-club.html">New Book Club<br />Writing Community</a></h2>
-									</header>
-									<a href="pages/new-book-club.html" class="image fit"><img class="border-radius" src="images/new-book-club.jpg" alt="New Book Club"/></a>
-									<!--<p>Testo</p>
-									<ul class="actions special">
-										<li><a href="pages\drone\macari.html" class="button">Video</a></li>
-									</ul>-->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2022 - WHITEWALL SPOT</span>
-										<h2><a href="pages\rafael-herman.html">RAFAEL HERMAN: A Dialect of Light in the Dark</a><br /></h2>
-									</header>
-									<a href="pages\rafael-herman.html" class="image fit"><img class="border-radius" src="images/rafael-herman.jpg" alt="Rafael Herman"/></a>
-									<!--<p>Testo</p>
-									<ul class="actions special">
-										<li><a href="pages\drone\macari.html" class="button">Video</a></li>
-									</ul>-->
-								</article>
-								
-								<article>
-								<header>
-										<span class="date">2022 - DOC VDNews.tv</span>
-										<h2><a href="pages/doc/lotta-alla-mafia-pietro-grasso.html">I TRENT'ANNI DI LOTTA ALLA MAFIA DI PIETRO GRASSO</a><br /></h2>
-									</header>
-									<a href="pages/doc/lotta-alla-mafia-pietro-grasso.html" class="image fit"><img class="border-radius" src="images/doc/pietro_grasso_vdnews.jpg" alt="I TRENT'ANNI DI LOTTA ALLA MAFIA DI PIETRO GRASSO"/></a>
-								<!--<p>Testo</p>
-									<ul class="actions special">
-										<li><a href="pages/doc/lotta-alla-mafia-pietro-grasso.html" class="button">Apri</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2022 - DOC VDNews.tv</span>
-										<h2><a href="pages/doc/in-memoria-di-mio-fratello-giuseppe-impastato.html">IN MEMORIA DI MIO FRATELLO GIUSEPPE IMPASTATO</a><br /></h2>
-									</header>
-									<a href="pages/doc/in-memoria-di-mio-fratello-giuseppe-impastato.html" class="image fit"><img class="border-radius" src="images/doc/impastato_vdnews.jpg" alt="MACARI"/></a>
-									<!--<p>Testo</p>
-									<ul class="actions special">
-										<li><a href="pages\drone\macari.html" class="button">Apri</a></li>
-									</ul>-->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2022 - DOC VDNews.tv</span>
-										<h2><a href="pages/doc/la-vita-nelle-baracche-di-messina.html">La vita nelle baracche di Messina</a></h2>
-									</header>
-									<a href="pages/doc/la-vita-nelle-baracche-di-messina.html" class="image fit"><img class="border-radius" src="images/doc/vita-nelle-baracche-messina-vdnews.jpg" alt="La vita nelle baracche di Messina" /></a>
-									<!-- <p>Negli ultimi mesi è iniziata la demolizione dei quartieri di baracche a Messina: erano in totale 86, ospitavano 2100 famiglie, per un totale di 6500 abitanti.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-									
-								<article>
-									<header>
-										<span class="date">2022 - SPOT</span>
-										<h2><a href="pages/the-new-era-of-art.html">THE NEW ERA OF ART<br />N° 21</a></h2>
-									</header>
-									<a href="pages/the-new-era-of-art.html" class="image fit"><img src="images/the_new_era_of_art.jpg" alt="SPINA" class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-									
-								<article>
-									<header>
-										<span class="date">2022 - SPOT</span>
-										<h2><a href="pages/spina.html">SPINA</a></h2>
-									</header>
-									<a href="pages/spina.html" class="image fit"><img src="images/spina.jpg" alt="SPINA" class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-									
-								<article>
-									<header>
-										<span class="date">2021 - SPOT</span>
-										<h2><a href="pages/decor-house-zerbini.html">Decor House Zerbini</a></h2>
-									</header>
-									<a href="pages/decor-house-zerbini.html" class="image fit"><img src="images/decor-house-zerbini.jpg" alt="Decor House Zerbini" class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2021 - FEDERFARMA</span>
-										<h2><a href="pages/federfarma.html">PREMIO CORAGGIO<br />EMANUELA LOI</a></h2>
-									</header>
-									<a href="pages/federfarma.html" class="image fit"><img src="images/federfarma.jpg" alt="Federfarma" class="border-radius" /></a>
-									<!-- <p>Testo</p>  
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2021 - DOC National Geographic</span>
-										<h2><a href="pages/LTOR.html">LOST TREASURES OF ANCIENT ROME</a></h2>
-									</header>
-									<a href="pages/LTOR.html" class="image fit"><img src="images/doc/LTOR.jpg" alt="LTOR" class="border-radius" /></a>
-									<!-- <p>Testo</p>  
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2021 - SPOT</span>
-										<h2><a href="pages/museo-delle-marionette.html">Museo delle Marionette</a></h2>
-									</header>
-									<a href="pages/museo-delle-marionette.html" class="image fit"><img src="images/Museo_Marionette_MuseumAtNightChallenge.jpg" alt="Museo delle Marionette" class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2021 - FASHION VIDEO</span>
-										<h2><a href="pages/aryene.html">ARYENE</a></h2>
-									</header>
-									<a href="pages/aryene.html" class="image fit"><img src="images/Aryene_2.jpg" alt="ARYENE" class="border-radius" /></a>
-									<!-- <p>Testo</p>  
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2021 - SPOT</span>
-										<h2><a href="pages/tesla.html">TESLA</a></h2>
-									</header>
-									<a href="pages/tesla.html" class="image fit"><img src="images/Tesla_2.jpg" alt="TESLA"  class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul> -->
-								</article>
-								
-								<article>
-									<header>
-										<span class="date">2020 - FAN-MADE TRAILER</span>
-										<h2><a href="pages/no-country-for-old-men-fanmad-trailer.html">NO COUNTRY FOR OLD MEN<br /></a></h2>
-									</header>
-									<a href="pages/no-country-for-old-men-fanmad-trailer.html" class="image fit"><img src="images/No_Country_For_Old_Men_2.jpg" alt="No Country for Old Men"  class="border-radius" /></a>
-									<!-- <p>Testo</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Apri</a></li>
-									</ul>  -->
-								</article>
-							</section>
+<!-- LOTTA ALLA MAFIA PIETRO GRASSO-->
+      <a href="lotta-alla-mafia-pietro-grasso.html" class="work-card reveal reveal-d2" data-cat="doc">
+        <div class="work-card__media">
+          <img src="IMG/Doc/pietro_grasso_vdnews.jpg" alt="Pietro Grasso" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">I trent'anni di lotta alla mafia di Pietro Grasso</h3>
+          <div class="work-card__meta">
+            <span class="tag">Doc</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- IN MEMORIA DI GIUSEPPE IMPASTATO-->
+      <a href="in-memoria-di-mio-fratello-giuseppe-impastato.html" class="work-card reveal reveal-d2" data-cat="doc">
+        <div class="work-card__media">
+          <img src="IMG/Doc/impastato_vdnews.jpg" alt="Giovanni Impastato" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">In memoria di mio fratello Giuseppe Impastato</h3>
+          <div class="work-card__meta">
+            <span class="tag">Doc</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+		
+<!-- LA VITA NELLE BARACCHE DI MESSINA-->
+      <a href="la-vita-nelle-baracche-di-messina.html" class="work-card reveal reveal-d2" data-cat="doc">
+        <div class="work-card__media">
+          <img src="IMG/Doc/vita-nelle-baracche-messina-vdnews.jpg" alt="Baracche di Messina" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">La vita nelle baracche di Messina</h3>
+          <div class="work-card__meta">
+            <span class="tag">Doc</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+	
+		
+<!-- THE NEW ERA OF ART -->
+      <a href="the-new-era-of-art.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/the_new_era_of_art.jpg" alt="The New Era of Art" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">The New Era of Art N° 21</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+		
+		
+      <!-- SPINA -->
+      <a href="spina.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/spina.jpg" alt="Spina" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Spina</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </a>
+		
 
-						<!-- Footer
-							<footer>
-								<div class="pagination">
-									<a href="#" class="previous">Prev</a>
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-					  </footer>  -->
+<!-- DECOR HOUSE -->
+      <a href="decor-house-zerbini.html" class="work-card reveal reveal-d2" data-cat="spot">
+        <div class="work-card__media">
+          <img src="IMG/Spot/decor-house-zerbini.jpg" alt="Decor House" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Decor House Zerbini</h3>
+          <div class="work-card__meta">
+            <span class="tag">Spot</span>
+            <span>2021</span>
+          </div>
+        </div>
+      </a>
+	
+<!-- Lost Treasures of Ancient Rome -->
+      <a href="LTOR.html" class="work-card reveal reveal-d2" data-cat="doc">
+        <div class="work-card__media">
+          <img src="IMG/Doc/LTOR.jpg" alt="Lost Treasures of Ancient Rome" loading="lazy">
+          <div class="work-card__scrim"></div>
+        </div>
+        <div class="work-card__info">
+          <h3 class="work-card__title">Lost Treasures of Ancient Rome</h3>
+          <div class="work-card__meta">
+            <span class="tag">Doc</span>
+            <span>2021</span>
+          </div>
+        </div>
+      </a>	
+		
+		
+	<!-- PROGETTO -->
+    
+    </div>
 
-			  </div>
+    <div class="works__more reveal">
+      <a href="https://www.youtube.com/channel/UCz3IhiVuvm8QqZdVxKuliXg" target="_blank" rel="noopener" class="translate" data-it="Il mio canale YouTube ↗" data-en="My YouTube Channel ↗">Il mio canale YouTube ↗</a>
+    </div>
+  </div>
+</section>
 
-				<!-- Footer -->
-					<footer id="footer"></footer>
+<!-- ============ SEZIONE INTRO / FILOSOFIA ============ -->
+<section id="servizi" class="intro section-pad hairline">
+  <div class="wrap intro__grid reveal">
+    <div class="intro__sidebar">
+      <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Profilo" data-en="Profile">Profilo</span></div>
+		<h2 class="intro__heading translate" data-it="Con la camera, con il drone, al banco di montaggio — e con l'occhio fermo della fotografia." data-en="With the camera, with the drone, at the editing desk — and with the steady eye of photography.">Con la camera, con il drone, al banco di montaggio — e con l'occhio fermo della fotografia.</h2>
+    </div>
+    <div>
+      <div class="intro__text" style="margin-top: 24px;">
+        <p class="translate"
+		   data-it="Sono un videomaker, operatore di camera e drone, video editor e fotografo con base a &lt;strong&gt;Bologna&lt;/strong&gt;. Lavoro tra documentari, spot, video musicali e riprese aeree. Il punto di partenza è sempre lo stesso: &lt;strong&gt;capire cosa deve restare a chi guarda, prima ancora di accendere la camera.&lt;/strong&gt;"
+		   data-en="I am a videomaker, drone and camera operator, video editor, and photographer based in &lt;strong&gt;Bologna&lt;/strong&gt;. I work across documentaries, commercials, music videos, and aerial filming. The starting point is always the same: &lt;strong&gt;understanding what needs to resonate with the viewer, even before turning on the camera.&lt;/strong&gt;">Sono un videomaker, operatore di camera e drone, video editor e fotografo con base a <strong>Bologna</strong>. Lavoro tra documentari, spot, video musicali e riprese aeree. Il punto di partenza è always lo stesso: <strong>capire cosa deve restare a chi guarda, prima ancora di accendere la camera.</strong></p>
+      </div>
+    </div>
+  </div>
+	</section>
+	
+	
+<!-- ============ SEZIONE SERVIZI / COMPETENZE ============ -->
+<section class="servizi section-pad hairline">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Competenze" data-en="Skills">Competenze</span></div>
+      <h2 class="translate" data-it="Cosa faccio" data-en="What I Do">Cosa faccio</h2>
+    </div>
 
-				<!-- Copyright -->
-					<div id="copyright"></div>
+    <div class="servizi__grid reveal">
+      <div class="servizi__card">
+        <span class="servizi__tag">01 / AERIAL</span>
+        <h3 class="servizi__title translate" data-it="Riprese aeree" data-en="Aerial Filming">Riprese aeree</h3>
+        <p class="servizi__desc translate" data-it="Riprese cinematiche dall'alto e autorizzato al volo grazie alla certificazione ENAC nella categoria OPEN A1/A3." data-en="Cinematic aerial filming, fully authorized for flight via ENAC certification in the OPEN A1/A3 category.">Riprese cinematiche dall'alto e autorizzato al volo grazie alla certificazione ENAC nella categoria OPEN A1/A3.</p>
+      </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-<script type="text/javascript">
-		$('#footer').load('footer.html');
-		$('#copyright').load('copyright.html');
-</script>
-	</body>
+      <div class="servizi__card">
+        <span class="servizi__tag">02 / CAMERA</span>
+        <h3 class="servizi__title translate" data-it="Operatore di Camera" data-en="Camera Operator">Operatore diCamera</h3>
+        <p class="servizi__desc translate" data-it="Riprese camera a mano per documentari, eventi, set e produzioni." data-en="Handheld and stabilized camera work for documentaries, events, sets, and productions.">Riprese camera a mano per documentari, eventi, set e produzioni.</p>
+      </div>
+
+      <div class="servizi__card">
+        <span class="servizi__tag">03 / POST-PROD</span>
+        <h3 class="servizi__title translate" data-it="Montaggio<br>&amp; Color Correction" data-en="Video Editing<br>&amp; Color Grading">Montaggio<br>&amp; Color Correction</h3>
+        <p class="servizi__desc translate" data-it="Editing video e Color Correction tramite l'uso di programmi professionali come Da Vinci Resolve." data-en="Video editing and Color Correction using industry-standard software like DaVinci Resolve.">Editing video e Color Correction tramite l'uso di programmi professionali come Da Vinci Resolve.</p>
+      </div>
+
+      <div class="servizi__card">
+        <span class="servizi__tag">04 / SOCIAL</span>
+        <h3 class="servizi__title translate" data-it="Social Content<br>Advertising" data-en="Social Content<br>Advertising">Social Content<br>Advertising</h3>
+        <p class="servizi__desc translate" data-it="Adattamento e ottimizzazione dei contenuti video per campagne adv nei formati verticali (9:16) per uso social." data-en="Adapting and optimizing video assets for advertising campaigns in vertical formats (9:16) tailored for social media.">Adattamento e ottimizzazione dei contenuti video per campagne adv nei formati verticali (9:16) per uso social.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEZIONE CONTATTI & CALL TO ACTION ============ -->
+<section id="contatti" class="contatti section-pad hairline">
+  <div class="wrap contatti__inner reveal">
+    <div class="eyebrow"><span class="dot">●</span> Info</div>
+    <h2 class="contatti__heading translate" data-it="Hai un progetto in mente?" data-en="Have a project in mind?">Hai un progetto in mente?</h2>
+    <p class="contatti__sub translate" data-it="Contattami!" data-en="Get in touch!">Contattami!</p>
+    <a href="mailto:info@riccardoraineri.com" class="contatti__email">info@riccardoraineri.com</a>
+  </div>
+</section>
+
+	
+<!-- Marquee Scorrevole Simulato -->
+<div class="marquee reveal reveal-d3">
+  <div class="marquee__track" id="marqueeTrack">
+    <!-- Blocco base di parole (verrà duplicato da JS per il loop) -->
+	  <span class="marquee__item"><span class="translate" data-it="Operatore Drone" data-en="Drone Operator">Operatore Drone</span> <span class="sep">/</span></span>
+    <span class="marquee__item"><span class="translate" data-it="Operatore Camera" data-en="Camera Operator">Operatore Camera</span> <span class="sep">/</span></span>
+    <span class="marquee__item"><span class="translate" data-it="Montaggio Video" data-en="Video Editing">Montaggio Video</span> <span class="sep">/</span></span>
+    <span class="marquee__item"><span class="translate" data-it="Color Correction" data-en="Color Correction">Color Correction</span> <span class="sep">/</span></span>
+  </div>
+</div>
+
+<!-- ============ FOOTER GLOBALE ============ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__loc translate" data-it="Bologna, Italia" data-en="Bologna, Italy">Bologna, Italia</div>
+    <div class="footer__social">
+      <a href="https://www.instagram.com/riccardo_raineri/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCz3IhiVuvm8QqZdVxKuliXg" target="_blank" rel="noopener">YouTube</a>
+		<a href="https://www.behance.net/riccardoraineri" target="_blank" rel="noopener">Behance</a>
+		<a href="https://www.linkedin.com/in/riccardoraineri/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer__copy">© 2026 Riccardo Raineri</div>
+  </div>
+</footer>
+
+	<!-- ============ COMPORTAMENTI INTERATTIVI (JAVASCRIPT) ============ -->
+<script type="text/javascript" src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nome Progetto — Riccardo Raineri</title>
+<meta name="description" content="Dettagli del progetto e retroscena — Riccardo Raineri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css"> 
+</head>
+<body class="project-page">
+
+<nav class="nav is-scrolled">
+  <a href="index.html" class="nav__brand">Riccardo Raineri</a>
+  <a href="index.html#lavori" class="nav__back">← Torna al Portfolio</a>
+  <div class="nav__rec">
+    <span class="rec-dot" aria-hidden="true"></span>
+    <span>REC</span>
+    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  </div>
+</nav>
+
+<header class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot">●</span> Case Study</div>
+    <div class="project-meta-grid">
+      <h1 class="project-title">Lost in Bo</h1> <div class="project-details">
+        <div>
+          <span>Categoria</span>
+          <p class="tag">Spot / Drone</p>
+        </div>
+        <div>
+          <span>Anno</span>
+          <p>2026</p>
+        </div>
+        <div>
+          <span>Ruolo</span>
+          <p>Regia / Drone / Edit</p>
+        </div>
+        <div>
+          <span>Cliente</span>
+          <p>Bologna Tourism</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="project-media-main">
+  <div class="wrap">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="project-story reveal">
+  <div class="wrap story-grid">
+    <div class="story-sidebar">
+      <h3>Il Progetto &amp;<br>la Visione</h3>
+    </div>
+    <div class="story-text">
+      <p>Inserisci qui la spiegazione testuale del lavoro. Puoi raccontare i dettagli tecnici, le sfide registiche affrontate a terra o in volo con il drone e le scelte fatte in fase di montaggio video.</p>
+      <p>Il punto di partenza è sempre lo stesso: <strong>trasmettere l'essenza del brand</strong> traducendo le immagini in un racconto dinamico e di forte impatto visivo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="project-gallery reveal">
+  <div class="wrap">
+    <div class="eyebrow">Dietro le quinte / Still Frame</div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://riccardo-raineri.github.io/site/images/lost_in_bo.png" alt="Still Frame 1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://riccardo-raineri.github.io/site/images/drone/macari.jpg" alt="Still Frame 2" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="project-footer">
+  <div class="wrap">
+    <a href="prossimo-progetto.html" class="next-btn">Prossimo Progetto →</a>
+    <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Timecode a 24fps
+(function(){
+  var el = document.getElementById('timecode');
+  var start = performance.now();
+  function pad(n){ return n.toString().padStart(2,'0'); }
+  function tick(){
+    var elapsed = performance.now() - start;
+    var totalFrames = Math.floor(elapsed / 1000 * 24);
+    var ff = totalFrames % 24;
+    var totalSec = Math.floor(totalFrames / 24);
+    var ss = totalSec % 60;
+    var mm = Math.floor(totalSec / 60) % 60;
+    var hh = Math.floor(totalSec / 3600);
+    el.textContent = pad(hh)+':'+pad(mm)+':'+pad(ss)+':'+pad(ff);
+  }
+  setInterval(tick, 1000/24);
+})();
+
+// Scroll Reveal animazioni ad apparizione
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12 });
+  items.forEach(function(item){ observer.observe(item); });
+})();
+</script>
+</body>
+</html>

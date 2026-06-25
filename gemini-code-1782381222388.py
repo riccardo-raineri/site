@@ -1,13 +1,10 @@
-<!DOCTYPE html>
+index_content = """<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Riccardo Raineri — Drone, Camera, Montaggio, Fotografia</title>
-<meta name="description" content="Riccardo Raineri — videomaker, operatore drone e camera, video editor e fotografo. Bologna, Italia.">
-<meta property="og:title" content="Riccardo Raineri — Videomaker · Drone · Editor · Fotografo">
-<meta property="og:description" content="Storie raccontate dall'alto e da vicino, fotogramma dopo fotogramma.">
-<meta property="og:image" content="https://riccardo-raineri.github.io/site/images/drone/lago_di_caccamo.jpg">
+<title>Riccardo Raineri — Regista, Montatore Video &amp; Drone Operator</title>
+<meta name="description" content="Portfolio di Riccardo Raineri, specializzato in produzione video cinematografica, regia, post-produzione e riprese aeree con drone.">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +17,18 @@
 <body>
 
 <!-- ============ NAVBAR (CON TIMECODE E EFFETTO REC) ============ -->
-<nav class="nav" id="nav">
-  <a href="#top" class="nav__brand">Riccardo Raineri</a>
-  <ul class="nav__links">
-    <li><a href="#lavori">Lavori</a></li>
-    <li><a href="#servizi">Servizi</a></li>
-    <li><a href="#chisono">Chi sono</a></li>
-    <li><a href="#contatti">Contatti</a></li>
-  </ul>
+<nav class="nav" id="mainNav">
+  <div class="nav__brand">Riccardo Raineri</div>
+  <div class="nav__links">
+    <a href="#intro">Info</a>
+    <a href="#lavori">Lavori</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#contatti">Contatti</a>
+  </div>
   <div class="nav__rec">
     <span class="rec-dot" aria-hidden="true"></span>
     <span>REC</span>
-    <span class="nav__tc" id="timecode">00:00:00:00</span>
+    <span id="timecode" class="nav__tc">00:00:00:00</span>
   </div>
   <button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
     <span></span>
@@ -41,11 +38,11 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu__close" id="closeMenu">CHIUDI ✕</button>
-  <a href="#lavori">Lavori</a>
-  <a href="#servizi">Servizi</a>
-  <a href="#chisono">Chi sono</a>
-  <a href="#contatti">Contatti</a>
+  <button class="mobile-menu__close" id="closeBtn">CHIUDI ×</button>
+  <a href="#intro" class="m-link">Info</a>
+  <a href="#lavori" class="m-link">Lavori</a>
+  <a href="#servizi" class="m-link">Servizi</a>
+  <a href="#contatti" class="m-link">Contatti</a>
 </div>
 
 <!-- ============ HERO PRINCIPALE (STILE MIRINO FOTOCAMERA) ============ -->
@@ -54,7 +51,7 @@
   <div class="hero__bars hero__bars--top"></div>
   <div class="hero__bars hero__bars--bottom">
     <span>F2.8 | ISO 400</span>
-    <span>4K 25 FPS | 16:9</span>
+    <span>4K 23.98 FPS</span>
   </div>
   
   <!-- Angoli del mirino -->
@@ -67,14 +64,14 @@
 
   <div class="hero__media">
     <!-- Sostituisci questo placeholder con un tuo fermo immagine o copertina del reel -->
-    <img src="IMG/Drone/macari.jpg" alt="Riccardo Raineri Cinematography">
+    <img src="https://riccardo-raineri.github.io/site/images/lost_in_bo.png" alt="Riccardo Raineri Cinematography">
     <div class="hero__scrim"></div>
   </div>
 
   <div class="hero__content">
-    <div class="hero__eyebrow" id="hEyebrow"><span class="dot">●</span> Drone · Camera · Montaggio · Fotografia — Bologna, Italia</div>
-    <h1 class="hero__title" id="hTitle">Riccardo<br>Raineri</h1>
-    <p class="hero__sub" id="hSub">Storie raccontate dall'alto e da vicino, fotogramma dopo fotogramma.</p>
+    <div class="hero__eyebrow" id="hEyebrow"><span class="dot">●</span> Showreel 2026</div>
+    <h1 class="hero__title" id="hTitle">Catturo visioni.<br>Plasmo storie.</h1>
+    <p class="hero__sub" id="hSub">Regista, Editor e Pilota FPV certificato. Trasformo concetti astratti in sequenze visive dal taglio cinematografico e moderno.</p>
     <div class="hero__cta" id="hCta">
       <a href="#lavori" class="btn btn--solid">Guarda i Progetti</a>
       <a href="#contatti" class="btn btn--ghost">Lavoriamo Insieme</a>
@@ -94,27 +91,20 @@
       <div class="eyebrow"><span class="dot">●</span> Profilo</div>
     </div>
     <div>
-      <h2 class="intro__heading">Con la camera, con il drone, al banco di montaggio — e con l'occhio fermo della fotografia.</h2>
+      <h2 class="intro__heading">Il montaggio non è solo tecnica. È ritmo, intenzione e manipolazione del tempo.</h2>
       <div class="intro__text" style="margin-top: 24px;">
-        <p>Sono un videomaker, operatore di camera e drone, video editor e fotografo con base a <strong>Bologna</strong>.
-        Lavoro tra documentario, spot, video musicali e riprese aeree.
-		  Il punto di partenza è sempre lo stesso: <strong>capire cosa deve restare
-        a chi guarda, prima ancora di accendere la camera.</strong></p>
+        <p>Mi occupo della catena produttiva video a 360 gradi: dalla <strong>direzione creativa sul set</strong> fino alla cura millimetrica del <strong>sound design</strong> e della <strong>color correction</strong> in post-produzione.</p>
+        <p style="margin-top: 16px;">Ogni inquadratura, che sia catturata a terra o sospesa in aria con un drone da corsa, ha un unico obiettivo: agganciare lo sguardo dello spettatore e non mollarlo più.</p>
       </div>
     </div>
   </div>
 
   <!-- Marquee Scorrevole Simulato -->
   <div class="marquee">
-    <div class="marquee__track" id="marqueeTrack">
-        <!-- contenuto duplicato via JS per loop infinito -->
-        <span class="marquee__item">Drone <span class="sep">/</span></span>
-        <span class="marquee__item">Camera operator <span class="sep">/</span></span>
-        <span class="marquee__item">Montaggio <span class="sep">/</span></span>
-        <span class="marquee__item">Fotografia <span class="sep">/</span></span>
-        <span class="marquee__item">Documentario <span class="sep">/</span></span>
-        <span class="marquee__item">Spot <span class="sep">/</span></span>
-      </div>
+    <div class="marquee__track">
+      <div class="marquee__item">DIRECTION <span class="sep">/</span> EDITING <span class="sep">/</span> DRONE CINEMATOGRAPHY <span class="sep">/</span> COLOR GRADING <span class="sep">/</span> FPV FLIGHT</div>
+      <div class="marquee__item">DIRECTION <span class="sep">/</span> EDITING <span class="sep">/</span> DRONE CINEMATOGRAPHY <span class="sep">/</span> COLOR GRADING <span class="sep">/</span> FPV FLIGHT</div>
+    </div>
   </div>
 </section>
 
@@ -127,19 +117,17 @@
         <h2>Lavori Recenti</h2>
       </div>
       <!-- Filtri di Categoria -->
-      <div class="filters" id="filters">
+      <div class="filters">
         <button class="filter-btn is-active" data-filter="all">Tutti</button>
+        <button class="filter-btn" data-filter="regia">Regia</button>
         <button class="filter-btn" data-filter="drone">Drone</button>
-        <button class="filter-btn" data-filter="doc">Documentario</button>
-        <button class="filter-btn" data-filter="spot">Spot</button>
-        <button class="filter-btn" data-filter="foto">Foto</button>
-        <button class="filter-btn" data-filter="altro">Altro</button>
+        <button class="filter-btn" data-filter="editing">Montaggio</button>
       </div>
     </div>
 
     <div class="works__grid">
-      <!-- LOST IN BO -->
-		<a href="lost-in-bo.html" class="work-card reveal reveal-d1" data-cat="spot">
+      <!-- Progetto 1 -->
+      <a href="lost-in-bo.html" class="work-card reveal reveal-d1" data-cat="regia drone">
         <div class="work-card__media">
           <img src="https://riccardo-raineri.github.io/site/images/lost_in_bo.png" alt="Lost in Bo" loading="lazy">
           <div class="work-card__scrim"></div>
@@ -147,48 +135,46 @@
         <div class="work-card__info">
           <h3 class="work-card__title">Lost in Bo</h3>
           <div class="work-card__meta">
-            <span class="tag">Spot</span>
+            <span class="tag">Spot / Drone</span>
             <span>2026</span>
           </div>
         </div>
       </a>
-	
-	<!-- FOREIGN AIR -->
-		<a href="foreign-air.html" class="work-card reveal reveal-d1" data-cat="altro">
+
+      <!-- Progetto 2 -->
+      <a href="sicilia-fpv.html" class="work-card reveal reveal-d2" data-cat="drone">
         <div class="work-card__media">
-          <img src="https://riccardo-raineri.github.io/site/images/foreignair.png" alt="Foreign Air" loading="lazy">
+          <img src="https://riccardo-raineri.github.io/site/images/drone/macari.jpg" alt="Sicilia FPV Fly" loading="lazy">
           <div class="work-card__scrim"></div>
         </div>
         <div class="work-card__info">
-          <h3 class="work-card__title">Foreign Air</h3>
+          <h3 class="work-card__title">Sicilia FPV Fly</h3>
           <div class="work-card__meta">
-            <span class="tag">Music</span>
+            <span class="tag">Drone Cinematography</span>
             <span>2025</span>
           </div>
         </div>
       </a>
 
-      <!-- MACARI -->
-      <a href="sicilia-fpv.html" class="work-card reveal reveal-d2" data-cat="drone">
+      <!-- Progetto 3 -->
+      <a href="urban-vibes.html" class="work-card reveal reveal-d3" data-cat="regia editing">
         <div class="work-card__media">
-          <img src="https://riccardo-raineri.github.io/site/images/drone/macari.jpg" alt="Macari" loading="lazy">
+          <!-- Sostituisci questo placeholder con una copertina reale -->
+          <img src="https://riccardo-raineri.github.io/site/images/lost_in_bo.png" alt="Urban Vibes Commercial" loading="lazy">
           <div class="work-card__scrim"></div>
         </div>
         <div class="work-card__info">
-          <h3 class="work-card__title">Macari</h3>
+          <h3 class="work-card__title">Urban Vibes</h3>
           <div class="work-card__meta">
-            <span class="tag">Drone</span>
-            <span>2023</span>
+            <span class="tag">Commercial / Editing</span>
+            <span>2025</span>
           </div>
         </div>
       </a>
-	
-	<!-- PROGETTO -->
-    
     </div>
 
     <div class="works__more reveal">
-      <a href="https://www.youtube.com" target="_blank" rel="noopener">Il mio canale YouTube ↗</a>
+      <a href="https://www.youtube.com" target="_blank" rel="noopener">Vedi Canale YouTube Completo ↗</a>
     </div>
   </div>
 </section>
@@ -198,32 +184,32 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="dot">●</span> Competenze</div>
-      <h2>Cosa faccio</h2>
+      <h2>Servizi Offerti</h2>
     </div>
 
     <div class="servizi__grid reveal">
       <div class="servizi__card">
-        <span class="servizi__tag">01 / AERIAL</span>
-        <h3 class="servizi__title">Riprese aeree</h3>
-        <p class="servizi__desc">Riprese cinematiche dall'alto e autorizzato al volo grazie alla certificazione ENAC nella categoria OPEN A1/A3.</p>
+        <span class="servizi__tag">01 / CREATIVE</span>
+        <h3 class="servizi__title">Regia &amp;<br>Direzione</h3>
+        <p class="servizi__desc">Sviluppo del concept creativo, stesura dello storyboard e gestione del set, convertendo le idee di brand in video narrativi d'impatto.</p>
       </div>
 
       <div class="servizi__card">
-        <span class="servizi__tag">02 / CAMERA</span>
-        <h3 class="servizi__title">Operatore diCamera</h3>
-        <p class="servizi__desc">Riprese camera a mano per documentari, eventi, set e produzioni.</p>
+        <span class="servizi__tag">02 / POST-PROD</span>
+        <h3 class="servizi__title">Montaggio &amp;<br>Color</h3>
+        <p class="servizi__desc">Editing video serrato e dinamico, sound design immersivo e color grading professionale per dare il giusto mood e look alla pellicola.</p>
       </div>
 
       <div class="servizi__card">
-        <span class="servizi__tag">03 / POST-PROD</span>
-        <h3 class="servizi__title">Montaggio<br>&amp; Color Correction</h3>
-        <p class="servizi__desc">Editing video e Color Correction tramite l'uso di programmi professionali come Da Vinci Resolve.</p>
+        <span class="servizi__tag">03 / AERIAL</span>
+        <h3 class="servizi__title">Riprese Aeree<br>FPV &amp; Drone</h3>
+        <p class="servizi__desc">Pilota certificato ENAC. Riprese aeree ad alta velocità con droni FPV o stabili per punti di vista spettacolari, acrobatici o istituzionali.</p>
       </div>
 
       <div class="servizi__card">
-        <span class="servizi__tag">04 / SOCIAL</span>
+        <span class="servizi__tag">04 / COMPACT</span>
         <h3 class="servizi__title">Social Content<br>Advertising</h3>
-        <p class="servizi__desc">Adattamento e ottimizzazione dei contenuti video per campagne adv nei formati verticali (9:16) per uso social.</p>
+        <p class="servizi__desc">Adattamento e ottimizzazione dei contenuti video per campagne adv nei formati verticali (9:16), mantenendo intatta la qualità cinematografica.</p>
       </div>
     </div>
   </div>
@@ -232,9 +218,9 @@
 <!-- ============ SEZIONE CONTATTI & CALL TO ACTION ============ -->
 <section id="contatti" class="contatti section-pad hairline">
   <div class="wrap contatti__inner reveal">
-    <div class="eyebrow"><span class="dot">●</span> Info</div>
+    <div class="eyebrow"><span class="dot">●</span> Booking / Info</div>
     <h2 class="contatti__heading">Hai un progetto in mente?</h2>
-    <p class="contatti__sub">Contattami!</p>
+    <p class="contatti__sub">Disponibile per produzioni in tutta Italia ed estero.</p>
     <a href="mailto:info@riccardoraineri.com" class="contatti__email">info@riccardoraineri.com</a>
   </div>
 </section>
@@ -242,14 +228,13 @@
 <!-- ============ FOOTER GLOBALE ============ -->
 <footer class="footer">
   <div class="wrap footer__inner">
-    <div class="footer__loc">Bologna, Italia</div>
+    <div class="footer__loc">Bologna, Italia — Disponibile ovunque</div>
     <div class="footer__social">
       <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
       <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
-		<a href="https://www.behance.net/riccardoraineri" target="_blank" rel="noopener">Behance</a>
-		<a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <div class="footer__copy">© 2026 Riccardo Raineri</div>
+    <div class="footer__copy">© 2026 Riccardo Raineri. P.IVA 01234567890</div>
   </div>
 </footer>
 
@@ -348,3 +333,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(index_content.strip())
+
+print("index.html generated successfully")

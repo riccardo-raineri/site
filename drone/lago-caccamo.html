@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Becoming / Editfest24 — Riccardo Raineri</title>
+<title>Lago di Caccamo — Riccardo Raineri</title>
 <meta name="description" content="Dettagli del progetto — Riccardo Raineri.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css"> 
+<link rel="stylesheet" href="../style.css"> 
 </head>
 <body class="project-page">
 
@@ -17,7 +17,6 @@
   <a href="index.html" class="nav__brand">Riccardo Raineri</a>
   <a href="index.html#lavori" class="nav__back translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
 	
-	<!-- Selettore Lingua + Timecode -->
 	<div style="display: flex; align-items: center; gap: 20px;">
     <div class="lang-switch">
       <button class="lang-btn is-active" data-lang="it">IT</button>
@@ -25,11 +24,11 @@
       <button class="lang-btn" data-lang="en">EN</button>
     </div>
 	
-    <div class="nav__rec">
-      <span class="rec-dot" aria-hidden="true"></span>
-      <span>REC</span>
-      <span id="timecode" class="nav__tc">00:00:00:00</span>
-    </div>
+  <div class="nav__rec">
+    <span class="rec-dot" aria-hidden="true"></span>
+    <span>REC</span>
+    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  </div>
 	</div>
 	
 	<button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
@@ -42,11 +41,10 @@
   <div class="wrap">
     <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Dettagli del progetto" data-en="Project Details">Dettagli del progetto</span></div>
     <div class="project-meta-grid">
-      <h1 class="project-title">Becoming / Editfest24</h1> 
-      <div class="project-details">
+      <h1 class="project-title">Lago di Caccamo</h1> <div class="project-details">
         <div>
           <span class="translate" data-it="Categoria" data-en="Category">Categoria</span>
-          <p class="tag">Editing</p>
+          <p class="tag translate" data-it="Drone" data-en="Drone">Drone</p>
         </div>
         <div>
           <span class="translate" data-it="Anno" data-en="Year">Anno</span>
@@ -54,11 +52,11 @@
         </div>
         <div>
           <span class="translate" data-it="Ruolo" data-en="Role">Ruolo</span>
-          <p>Edit</p>
+          <p class="translate" data-it="Drone / Edit" data-en="Drone / Edit">Drone / Edit</p>
         </div>
         <div>
           <span class="translate" data-it="Cliente" data-en="Client">Cliente</span>
-          <p>Editfest24</p>
+          <p class="translate" data-it="Personale" data-en="Personal">Personale</p>
         </div>
       </div>
     </div>
@@ -68,8 +66,7 @@
 <section class="project-media-main">
   <div class="wrap">
     <div class="video-wrapper">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/fjArEy9a4wQ?si=FtbxNpfrg1MBHMMQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    
-    </div>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/jiQLNOCvmkw?si=G69yoZ9NDJN2PKZw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    </div>
   </div>
 </section>
 
@@ -79,14 +76,11 @@
       <h3 class="translate" data-it="Il Progetto" data-en="The Project">Il Progetto</h3>
     </div>
     <div class="story-text">
-      <!-- Traduzione dettagliata della submission e provenienza dei materiali video/audio -->
       <p class="translate" 
-         data-it="Candidatura per <a href='filmsupply.com/editfest'><b>filmsupply.com/editfest</b></a><br /><br />Materiale video fornito da ‪@Filmsupply‬.<br />Musica fornita da ‪@themusicbed‬ FREE di MISSION<br />Suoni forniti da ‪@soundly" 
-         data-en="Submission for <a href='filmsupply.com/editfest'><b>filmsupply.com/editfest</b></a><br /><br />Video footage provided by ‪@Filmsupply‬.<br />Music provided by ‪@themusicbed‬ FREE by MISSION<br />Sounds provided by ‪@soundly">
-        Candidatura per <a href="filmsupply.com/editfest"><b>filmsupply.com/editfest</b></a><br /><br />
-        Materiale video fornito da ‪@Filmsupply‬.<br />
-        Musica fornita da ‪@themusicbed‬ FREE di MISSION<br />
-        Suoni forniti da ‪@soundly
+         data-it="<b>Musica: </b>Peaceful Garden di Harumachi<br /><b>Drone: </b>DJI AIR 2S" 
+         data-en="<b>Music: </b>Peaceful Garden by Harumachi<br /><b>Drone: </b>DJI AIR 2S">
+        <b>Musica: </b>Peaceful Garden di Harumachi<br />
+        <b>Drone: </b>DJI AIR 2S
       </p>
     </div>
   </div>
@@ -108,19 +102,12 @@
 
 <footer class="project-footer">
   <div class="wrap">
-    <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+  <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
     <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
   </div>
 </footer>
 
-<!-- ============ COMPORTAMENTI INTERATTIVI (JAVASCRIPT) ============ -->
-<script src="script.js"></script>
+
+	<script src="../script.js"></script>
 </body>
 </html>
-```[cite: 7]
-
----
-
-### Note sulle traduzioni applicate:
-* **Sezione Crediti (`.story-text`):** All'interno del tag `<p>` ho inserito gli attributi bilingue convertendo *"Submission"* in *"Candidatura per"*, *"Video footage provided by"* in *"Materiale video fornito da"*, *"Music provided by"* in *"Musica fornita da"* e *"Sounds provided by"* in *"Suoni forniti da"*. I tag di menzione `@` e i link interni rimangono attivi e corretti[cite: 7].
-* **Intestazioni e Footer:** I blocchi relativi ai metadati del progetto (*Categoria, Anno, Ruolo, Cliente, Il Progetto*) e i pulsanti di ritorno al portfolio seguono adesso le regole di internazionalizzazione definite nel file script globale[cite: 7].

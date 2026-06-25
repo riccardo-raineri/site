@@ -1,105 +1,123 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>PASSATOPRESENTE - Photo</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<!-- Sezioni condivise tra le pagine -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-		integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PASSATOPRESENTE — Riccardo Raineri</title>
+<meta name="description" content="Dettagli del progetto — Riccardo Raineri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<link rel="stylesheet" href="style.css"> 
+</head>
+<body class="project-page">
 
-				<!-- Header -->
-					<header id="header">
-						<a href="../index.html" class="logo">Riccardo Raineri</a>
-					</header>
+<nav class="nav is-scrolled">
+  <a href="index.html" class="nav__brand">Riccardo Raineri</a>
+  <a href="index.html#lavori" class="nav__back translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+	
+	<!-- Selettore Lingua + Timecode -->
+	<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
+  <div class="nav__rec">
+    <span class="rec-dot" aria-hidden="true"></span>
+    <span>REC</span>
+    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  </div>
+	</div>
+	
+	<button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="https://riccardo-raineri.github.io/site/index.html">ALL MY WORKS</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/drone.html">DRONE</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/docs.html">DOCS</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/spot.html">SPOT</a></li>
-							<li class="active"><a href="https://riccardo-raineri.github.io/site/more.html">MORE</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/contatti.html">CONTATTI</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.instagram.com/riccardo_raineri/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://www.youtube.com/channel/UCz3IhiVuvm8QqZdVxKuliXg" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
-							<li><a href="https://www.behance.net/riccardoraineri" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
-							<li><a href="https://www.linkedin.com/in/riccardoraineri/" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-							<li><a href="https://linktr.ee/riccardo_raineri" class="fas fa-tree"><span class="label"></span></a></li>
-						</ul>
-					</nav>
+<header class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Dettagli del progetto" data-en="Project Details">Dettagli del progetto</span></div>
+    <div class="project-meta-grid">
+      <h1 class="project-title">PASSATOPRESENTE</h1> <div class="project-details">
+        <div>
+          <span class="translate" data-it="Categoria" data-en="Category">Categoria</span>
+          <p class="tag translate" data-it="Fotografia" data-en="Photography">Fotografia</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Anno" data-en="Year">Anno</span>
+          <p>2023</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Ruolo" data-en="Role">Ruolo</span>
+          <p class="translate" data-it="Fotografo" data-en="Photographer">Fotografo</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Cliente" data-en="Client">Cliente</span>
+          <p class="translate" data-it="Accademia di Belle Arti" data-en="Academy of Fine Arts">Accademia di Belle Arti</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-				<!-- Main -->
-					<div id="main">
+<section class="project-media-main">
+  <div class="wrap">
+    <div class="video-wrapper">
+      <!-- Heyzine -->
+		<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/15f28ea3f0.html" style="border: 1px solid lightgray; width: 100%; height: 400px;"></iframe>
+    </div>
+  </div>
+</section>
 
-						<!-- Post -->
-							<section class="post">
-								<header class="major">
-							<span class="date">2023 - PHOTO</span>
-									<h2>PASSATOPRESENTE<br /></h2>
-								</header>
-								
-								<!-- Heyzine -->
-								<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/15f28ea3f0.html" style="border: 1px solid lightgray; width: 100%; height: 400px;"></iframe>
-								
-								
-								
-								
-								<div style="left: 0px; width: 100%; height: 0px; position: relative; padding-bottom: 75%;"><div data-url="https://issuu.com/riccardo_raineri/docs/passatopresente" style="top: 0px; left: 0px; width: 100%; height: 100%; position: absolute;" class="issuuembed"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script></div>
-								<br />
-								<h4 class="button">PHOTOGRAPHER</h4><br /><br />
-								<h3>PASSATOPRESENTE</h3>
-								<p>In questo progetto fotografico ho voluto rappresentare il tema <i>PASSATOPRESENTE</i> attraverso la natura che sta affrontando il suo ciclo di vita e morte. Nonostante ci troviamo davanti a foglie e rami secchi, con colori e consistenze che non sono più proprie di una natura viva, si riesce comunque a riconoscere in modo chiaro la pianta che ci troviamo davanti.
-									<br /><br />
-								Il <i>Presente</i> è rappresentato dalla natura al momento dello scatto, morente, secca, senza più la sua vividezza che la contraddistingue, mentre il <i>Passato</i> Ë rappresentato dall’estetica e dalle forme rinsecchite, che seppur mutate, mantengono la loro riconoscibilità e acquisiscono un nuovo fascino.
-									<br /><br />
-								Allo stesso modo, la natura che ho fotografato, ha lasciato spazio ad un nuovo corpo come Michelle Sank, nel progetto Wondrous, mostra come anche la vecchiaia possa essere considerata esteticamente bella, in aperta opposizione con quanto trasmesso della società contemporanea: viene fatta attenzione alla pelle, alle rughe e ai segni del tempo. Abbandonare l’immagine rassicurante del proprio corpo infantile, così bella e innocente, per appropriarsi di un corpo sconosciuto e spesso ritenuto brutto e sgradevole, è questione tutt’altro che semplice.
-									<br />
-									(Aliprandi M., <i>Oltre l’Immagine, inconscio e fotografia</i>, 2015: 46, 53)
+<section class="project-story reveal">
+  <div class="wrap story-grid">
+    <div class="story-sidebar">
+      <h3 class="translate" data-it="Il Progetto &amp;<br>la Visione" data-en="The Project &amp;<br>the Vision">Il Progetto &amp;<br>la Visione</h3>
+    </div>
+    <div class="story-text">
+      <p class="translate" 
+         data-it="In questo progetto fotografico ho voluto rappresentare il tema <strong><i>PASSATOPRESENTE</i></strong> attraverso la natura che sta affrontando il suo ciclo di vita e morte. Nonostante ci troviamo davanti a foglie e rami secchi, con colori e consistenze che non sono più proprie di una natura viva, si riesce comunque a riconoscere in modo chiaro la pianta che ci troviamo davanti." 
+         data-en="In this photographic project, I wanted to represent the theme <strong><i>PASTPRESENT</i></strong> through nature facing its cycle of life and death. Although we are looking at dry leaves and branches, with colors and textures that no longer belong to living nature, it is still possible to clearly recognize the plant in front of us.">In questo progetto fotografico ho voluto rappresentare il tema <strong><i>PASSATOPRESENTE</i></strong> attraverso la natura che sta affrontando il suo ciclo di vita e morte. Nonostante ci troviamo davanti a foglie e rami secchi, con colori e consistenze che non sono più proprie di una natura viva, si riesce comunque a riconoscere in modo chiaro la pianta che ci troviamo davanti.</p>
+         
+      <p class="translate" 
+         data-it="Il <i>Presente</i> è rappresentato dalla natura al momento dello scatto, morente, secca, senza più la sua vividezza che la contraddistingue, mentre il <i>Passato</i> è rappresentato dall’estetica e dalle forme rinsecchite, che seppur mutate, mantengono la loro riconoscibilità e acquisiscono un nuovo fascino." 
+         data-en="The <i>Present</i> is represented by nature at the time of the shot—dying, dry, stripped of the vividness that characterizes it—while the <i>Past</i> is represented by the withered aesthetics and shapes, which, although mutated, maintain their recognizability and acquire a new charm.">Il <i>Presente</i> è rappresentato dalla natura al momento dello scatto, morente, secca, senza più la sua vividezza che la contraddistingue, mentre il <i>Passato</i> è rappresentato dall’estetica e dalle forme rinsecchite, che seppur mutate, mantengono la loro riconoscibilità e acquisiscono un nuovo fascino.</p>
+         
+      <p class="translate" 
+         data-it="Allo allo stesso modo, la natura che ho fotografato ha lasciato spazio ad un nuovo corpo. Come Michelle Sank nel progetto Wondrous mostra come anche la vecchiaia possa essere considerata esteticamente bella, in aperta opposizione con quanto trasmesso dalla società contemporanea: viene fatta attenzione alla pelle, alle rughe e ai segni del tempo. Abbandonare l’immagine rassicurante del proprio corpo infantile, così bella e innocente, per appropriarsi di un corpo sconosciuto e spesso ritenuto brutto e sgradevole, è questione tutt’altro che semplice.<br /><br /><b>(Aliprandi M., <i>Oltre l’Immagine, inconscio e fotografia</i>, 2015: 46, 53)</b>" 
+         data-en="In the same way, the nature I photographed made room for a new body. Just as Michelle Sank in her project Wondrous shows how old age can also be considered aesthetically beautiful—in open opposition to what is conveyed by contemporary society—attention is paid to the skin, wrinkles, and the signs of time. Moving away from the reassuring image of one's childhood body, so beautiful and innocent, to take ownership of an unfamiliar and often deemed ugly or unpleasant body, is far from a simple matter.<br /><br /><b>(Aliprandi M., <i>Oltre l’Immagine, inconscio e fotografia</i>, 2015: 46, 53)</b>">Allo stesso modo, la natura che ho fotografato, ha lasciato spazio ad un nuovo corpo come Michelle Sank, nel progetto Wondrous, mostra come anche la vecchiaia possa essere considerata esteticamente bella, in aperta opposizione con quanto trasmesso della società contemporanea: viene fatta attenzione alla pelle, alle rughe e ai segni del tempo. Abbandonare l’immagine rassicurante del proprio corpo infantile, così bella e innocente, per appropriarsi di un corpo sconosciuto e spesso ritenuto brutto e sgradevole, è questione tutt’altro che semplice.<br /><br /><b>(Aliprandi M., <i>Oltre l’Immagine, inconscio e fotografia</i>, 2015: 46, 53)</p></b>
+    </div>
+  </div>
+</section>
+
+<section class="project-gallery reveal">
+  <div class="wrap">
+    <div class="eyebrow">Still Frame</div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="IMG/Foto/PASSATOPRESENTE_INT_1.jpg" alt="Still Frame 1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://riccardo-raineri.github.io/site/images/drone/macari.jpg" alt="Still Frame 2" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="project-footer">
+  <div class="wrap">
+  <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+    <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
+  </div>
+</footer>
 
 
-
-								</p>
-								<span class="image fit"><img src="../images/photo/PASSATOPRESENTE_EXT_1.jpg" alt="Mockup" /></span>
-								<span class="image fit"><img src="../images/photo/PASSATOPRESENTE_INT_1.jpg" alt="Mockup" /></span>
-                            </section>
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer"></footer>
-
-				<!-- Copyright -->
-					<div id="copyright"></div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
-<script type="text/javascript">
-	$('#footer').load('footer.html');
-	$('#copyright').load('copyright.html');
-</script>
-	</body>
+	<!-- ============ COMPORTAMENTI INTERATTIVI (JAVASCRIPT) ============ -->
+<script src="script.js"></script>
+</body>
 </html>
+```[cite: 10]

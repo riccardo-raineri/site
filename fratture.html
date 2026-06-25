@@ -1,105 +1,135 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>FRATTURE - Photo</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<!-- Sezioni condivise tra le pagine -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-		integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FRATTURE — Riccardo Raineri</title>
+<meta name="description" content="Dettagli del progetto — Riccardo Raineri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<link rel="stylesheet" href="style.css"> 
+</head>
+<body class="project-page">
 
-				<!-- Header -->
-					<header id="header">
-						<a href="../index.html" class="logo">Riccardo Raineri</a>
-					</header>
+<nav class="nav is-scrolled">
+  <a href="index.html" class="nav__brand">Riccardo Raineri</a>
+  <a href="index.html#lavori" class="nav__back translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+	
+	<!-- Selettore Lingua + Timecode -->
+	<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
+  <div class="nav__rec">
+    <span class="rec-dot" aria-hidden="true"></span>
+    <span>REC</span>
+    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  </div>
+	</div>
+	
+	<button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="https://riccardo-raineri.github.io/site/index.html">ALL MY WORKS</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/drone.html">DRONE</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/docs.html">DOCS</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/spot.html">SPOT</a></li>
-							<li class="active"><a href="https://riccardo-raineri.github.io/site/more.html">MORE</a></li>
-							<li><a href="https://riccardo-raineri.github.io/site/contatti.html">CONTATTI</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.instagram.com/riccardo_raineri/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://www.youtube.com/channel/UCz3IhiVuvm8QqZdVxKuliXg" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
-							<li><a href="https://www.behance.net/riccardoraineri" class="icon brands fa-behance"><span class="label">Behance</span></a></li>
-							<li><a href="https://www.linkedin.com/in/riccardoraineri/" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-							<li><a href="https://linktr.ee/riccardo_raineri" class="fas fa-tree"><span class="label"></span></a></li>
-						</ul>
-					</nav>
+<header class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Dettagli del progetto" data-en="Project Details">Dettagli del progetto</span></div>
+    <div class="project-meta-grid">
+      <h1 class="project-title">FRATTURE</h1> <div class="project-details">
+        <div>
+          <span class="translate" data-it="Categoria" data-en="Category">Categoria</span>
+          <p class="tag translate" data-it="Foto" data-en="Photo">Foto</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Anno" data-en="Year">Anno</span>
+          <p>2023</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Ruolo" data-en="Role">Ruolo</span>
+          <p class="translate" data-it="Fotografo" data-en="Photographer">Fotografo</p>
+        </div>
+        <div>
+          <span class="translate" data-it="Cliente" data-en="Client">Cliente</span>
+          <p class="translate" data-it="Accademia di Belle Arti" data-en="Academy of Fine Arts">Accademia di Belle Arti</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-				<!-- Main -->
-					<div id="main">
+<section class="project-media-main">
+  <div class="wrap">
+    <div class="video-wrapper">
+		<!-- Heyzine -->
+		<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/4885f926ec.html" style="border: 1px solid lightgray; width: 100%; height: 400px;"></iframe>    </div>
+  </div>
+</section>
 
-						<!-- Post -->
-							<section class="post">
-								<header class="major">
-							<span class="date">2023 - PHOTO</span>
-									<h2>FRATTURE<br /></h2>
-								</header>
-							
-								<!-- Heyzine -->
-								<iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/4885f926ec.html" style="border: 1px solid lightgray; width: 100%; height: 400px;"></iframe>
-							
-								
-								<br />
-								<h4 class="button">PHOTOGRAPHER</h4><br /><br />
-								<h4><i class="fas fa-map-marker-alt"></i>&nbsp Cretto di Burri • Gibellina e Poggioreale, Trapani</h4><br />
-								<h3>FRATTURE - Gibellina e Poggioreale</h3>
-								<p>Il progetto “Fratture” vuole raccontare quella che oggi è la Valle del Belice, in cui le città di Gibellina e Poggioreale sono state colpite da un forte terremoto nel 1968.
-									<br /><br />
-								La città di Gibellina è stata trasformata in opera Land Art da Alberto Burri (da qui il nome “Cretto di Burri” o, come viene comunemente chiamato “Cretto di Gibellina”) ricalcando con il cemento bianco quelle che erano le vie reali di Gibellina prima della catastrofe ed ingabbiandone le macerie. Il Cretto si presenta come un insieme di fratture sul terreno e congela la memoria storica della città.
-									<br /><br />
-								Poggioreale, invece, vede le sue strade ed edifici ancora oggi gravemente danneggiati e pericolanti. Si è deciso di ricostruire la città in un luogo limitrofo e lasciare i resti della “vecchia” città al 1968.
-								Il terremoto ha devastato la vita di questi paesi e ha causato numerose vittime, oggi rappresentate nelle fratture. Sono vie silenziose quelle che il visitatore percorre oggi, nel rispetto di chi prima viveva e percorreva quelle strade. Gibellina è stata “ingessata” di bianco, Poggioreale abbandonata con le sue fratture scomposte.
-									<br /><br />
-								“Fratture” sono quelle che questi due paesi hanno subito e continuano ad avere nonostante gli anni trascorsi.
-									<br /><br />
-								Frattura come rottura di vite che non ci sono più, la ferita lasciato alla terra, il trauma inflitto agli sfollati.
-									<br /><br />
-								Attraverso questa sequenza di immagini, ho voluto raccontare le fratture che ancora oggi sono presenti sul territorio, da un lato nel contrasto fra la grande area ricoperta di cemento bianco e la natura, dall’altro abitazioni distrutte che giacciono inermi.
-								</p>
-								<span class="image fit"><img src="../images/photo/FRATTURE_BOOK_EXT_1.jpg" alt="Mockup" /></span>
-								<span class="image fit"><img src="../images/photo/FRATTURE_BOOK_INT.jpg" alt="Mockup" /></span>
-                            </section>
-					</div>
+<section class="project-story reveal">
+  <div class="wrap story-grid">
+    <div class="story-sidebar">
+      <h3 class="translate" data-it="Il Progetto" data-en="The Project">Il Progetto</h3>
+    </div>
+    <div class="story-text">
+      <p class="translate" 
+         data-it="Il progetto <strong>“Fratture”</strong> vuole raccontare quella che oggi è la Valle del Belice, in cui le città di Gibellina e Poggioreale sono state colpite da un forte terremoto nel 1968." 
+         data-en="The <strong>“Fratture” (Fractures)</strong> project aims to recount what the Belice Valley is today, where the towns of Gibellina and Poggioreale were struck by a powerful earthquake in 1968.">Il progetto <strong>“Fratture”</strong> vuole raccontare quella che oggi è la Valle del Belice, in cui le città di Gibellina e Poggioreale sono state colpite da un forte terremoto nel 1968.</p>
+         
+      <p class="translate" 
+         data-it="La città di <b>Gibellina</b> è stata trasformata in opera Land Art da Alberto Burri (da qui il nome “Cretto di Burri” o, come viene comunemente chiamato “Cretto di Gibellina”) ricalcando con il cemento bianco quelle che erano le vie reali di Gibellina prima della catastrofe ed ingabbiandone le macerie. Il Cretto si presenta come un insieme di fratture sul terreno e congela la memoria storica della città." 
+         data-en="The town of <b>Gibellina</b> was transformed into a Land Art piece by Alberto Burri (hence the name “Cretto di Burri” or, as it is commonly known, “Cretto di Gibellina”), tracing with white concrete the actual streets of Gibellina before the catastrophe and encasing its ruins. The Cretto appears as a set of fractures on the ground, freezing the historical memory of the town.">La città di <b>Gibellina</b> è stata trasformata in opera Land Art da Alberto Burri (da qui il nome “Cretto di Burri” o, come viene comunemente chiamato “Cretto di Gibellina”) ricalcando con il cemento bianco quelle che erano le vie reali di Gibellina prima della catastrofe ed ingabbiandone le macerie. Il Cretto si presenta come un insieme di fratture sul terreno e congela la memoria storica della città.</p>
+         
+      <p class="translate" 
+         data-it="<b>Poggioreale</b>, invece, vede le sue strade ed edifici ancora oggi gravemente danneggiati e pericolanti. Si è deciso di ricostruire la città in un luogo limitrofo e lasciare i resti della “vecchia” città al 1968. Il terremoto ha devastato la vita di questi paesi e ha causato numerose vittime, oggi rappresentate nelle fratture. Sono vie silenziose quelle che il visitatore percorre oggi, nel rispetto di chi prima viveva e percorreva quelle strade. Gibellina è stata “ingessata” di bianco, Poggioreale abbandonata con le suas fratture scomposte." 
+         data-en="<b>Poggioreale</b>, on the other hand, still sees its streets and buildings severely damaged and unsafe today. It was decided to rebuild the town in a neighboring area and leave the remains of the “old” town frozen in 1968. The earthquake devastated the lives of these villages and caused numerous victims, represented today within the fractures. These are silent streets that visitors walk through today, out of respect for those who once lived and walked there. Gibellina was “placed in a white cast”, while Poggioreale was abandoned with its displaced fractures."><b>Poggioreale</b>, invece, vede le sue strade ed edifici ancora oggi gravemente danneggiati e pericolanti. Si è deciso di ricostruire la città in un luogo limitrofo e lasciare i resti della “vecchia” città al 1968. Il terremoto ha devastato la vita di questi paesi e ha causato numerose vittime, oggi rappresentate nelle fratture. Sono vie silenziose quelle che il visitatore percorre oggi, nel rispetto di chi prima viveva e percorreva quelle strade. Gibellina è stata “ingessata” di bianco, Poggioreale abbandonata con le sue fratture scomposte.</p>
+         
+      <p class="translate" 
+         data-it="“Fratture” sono quelle che questi due paesi hanno subito e continuano ad avere nonostante gli anni trascorsi." 
+         data-en="“Fractures” are what these two towns suffered and continue to bear despite the years that have passed.">“Fratture” sono quelle che questi due paesi hanno subito e continuano ad avere nonostante gli anni trascorsi.</p>
+         
+      <p class="translate" 
+         data-it="Frattura come rottura di vite che non ci sono più, la ferita lasciata alla terra, il trauma inflitto agli sfollati." 
+         data-en="Fractures as the breaking of lives that are no more, the wound left to the earth, the trauma inflicted upon the displaced.">Frattura come rottura di vite che non ci sono più, la ferita lasciato alla terra, il trauma inflitto agli sfollati.</p>
+         
+      <p class="translate" 
+         data-it="Attraverso questa sequenza di immagini, ho voluto raccontare le fratture che ancora oggi sono presenti sul territorio, da un lato nel contrasto fra la grande area ricoperta di cemento bianco e la natura, dall’altro abitazioni distrutte che giacciono inermi." 
+         data-en="Through this sequence of images, I wanted to capture the fractures that are still present across the territory today—on one hand, through the contrast between the vast area covered in white concrete and nature, and on the other, through the destroyed houses lying helpless.">Attraverso questa sequenza di immagini, ho voluto raccontare le fratture che ancora oggi sono presenti sul territorio, da un lato nel contrasto fra la grande area ricoperta di cemento bianco e la natura, dall’altro abitazioni distrutte che giacciono inermi.</p>
+    </div>
+  </div>
+</section>
 
-				<!-- Footer -->
-					<footer id="footer"></footer>
+<section class="project-gallery reveal">
+  <div class="wrap">
+    <div class="eyebrow">Still Frame</div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <!-- Corretto l'errore di sintassi aggiungendo alt= prima del testo alternativo -->
+        <img src="IMG/Foto/FRATTURE_BOOK_INT.jpg" alt="Still Frame 1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://riccardo-raineri.github.io/site/images/drone/macari.jpg" alt="Still Frame 2" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
 
-				<!-- Copyright -->
-					<div id="copyright"></div>
+<footer class="project-footer">
+  <div class="wrap">
+  <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+    <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
+  </div>
+</footer>
 
-			</div>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
-<script type="text/javascript">
-	$('#footer').load('footer.html');
-	$('#copyright').load('copyright.html');
-</script>
-	</body>
+	<!-- ============ COMPORTAMENTI INTERATTIVI (JAVASCRIPT) ============ -->
+<script src="script.js"></script>
+</body>
 </html>
+```[cite: 11]

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ficuzzao — Riccardo Raineri</title>
+<title>Ficuzza — Riccardo Raineri</title>
 <meta name="description" content="Dettagli del progetto — Riccardo Raineri.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,34 +15,44 @@
 
 <nav class="nav is-scrolled">
   <a href="index.html" class="nav__brand">Riccardo Raineri</a>
-  <a href="index.html#lavori" class="nav__back">← Torna al Portfolio</a>
-  <div class="nav__rec">
-    <span class="rec-dot" aria-hidden="true"></span>
-    <span>REC</span>
-    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  <a href="index.html#lavori" class="nav__back translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+  
+  <!-- Selettore Lingua + Timecode -->
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
+    <div class="nav__rec">
+      <span class="rec-dot" aria-hidden="true"></span>
+      <span>REC</span>
+      <span id="timecode" class="nav__tc">00:00:00:00</span>
+    </div>
   </div>
 </nav>
 
 <header class="project-hero">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot">●</span> Dettagli del progetto</div>
+    <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Dettagli del progetto" data-en="Project Details">Dettagli del progetto</span></div>
     <div class="project-meta-grid">
       <h1 class="project-title">Ficuzza</h1> <div class="project-details">
         <div>
-          <span>Categoria</span>
-          <p class="tag">DRONE</p>
+          <span class="translate" data-it="Categoria" data-en="Category">Categoria</span>
+          <p class="tag">Drone</p>
         </div>
         <div>
-          <span>Anno</span>
+          <span class="translate" data-it="Anno" data-en="Year">Anno</span>
           <p>2025</p>
         </div>
         <div>
-          <span>Ruolo</span>
+          <span class="translate" data-it="Ruolo" data-en="Role">Ruolo</span>
           <p>Drone / Edit</p>
         </div>
         <div>
-          <span>Cliente</span>
-          <p>Personale</p>
+          <span class="translate" data-it="Cliente" data-en="Client">Cliente</span>
+          <p class="translate" data-it="Personale" data-en="Personal">Personale</p>
         </div>
       </div>
     </div>
@@ -60,7 +70,7 @@
 <section class="project-story reveal">
   <div class="wrap story-grid">
     <div class="story-sidebar">
-      <h3>Il Progetto</h3>
+      <h3 class="translate" data-it="Il Progetto" data-en="The Project">Il Progetto</h3>
     </div>
     <div class="story-text">
       <p><b>Music: </b>Odyssey by Jeremiah Alves<br />
@@ -85,7 +95,7 @@
 	
 <footer class="project-footer">
   <div class="wrap">
-  <a href="index.html#lavori" class="next-btn">← Torna al Portfolio</a>
+  <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
     <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
   </div>
 </footer>

@@ -15,33 +15,43 @@
 
 <nav class="nav is-scrolled">
   <a href="index.html" class="nav__brand">Riccardo Raineri</a>
-  <a href="index.html#lavori" class="nav__back">← Torna al Portfolio</a>
-  <div class="nav__rec">
-    <span class="rec-dot" aria-hidden="true"></span>
-    <span>REC</span>
-    <span id="timecode" class="nav__tc">00:00:00:00</span>
+  <a href="index.html#lavori" class="nav__back translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
+  
+  <!-- Selettore Lingua + Timecode -->
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
+    <div class="nav__rec">
+      <span class="rec-dot" aria-hidden="true"></span>
+      <span>REC</span>
+      <span id="timecode" class="nav__tc">00:00:00:00</span>
+    </div>
   </div>
 </nav>
 
 <header class="project-hero">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot">●</span> Dettagli del progetto</div>
+    <div class="eyebrow"><span class="dot">●</span> <span class="translate" data-it="Dettagli del progetto" data-en="Project Details">Dettagli del progetto</span></div>
     <div class="project-meta-grid">
       <h1 class="project-title">Lost in Bo</h1> <div class="project-details">
         <div>
-          <span>Categoria</span>
-          <p class="tag">SPOTSpot</p>
+          <span class="translate" data-it="Categoria" data-en="Category">Categoria</span>
+          <p class="tag translate" data-it="Spot" data-en="Commercial">Spot</p>
         </div>
         <div>
-          <span>Anno</span>
+          <span class="translate" data-it="Anno" data-en="Year">Anno</span>
           <p>2026</p>
         </div>
         <div>
-          <span>Ruolo</span>
-          <p>Regia / Drone / Edit</p>
+          <span class="translate" data-it="Ruolo" data-en="Role">Ruolo</span>
+          <p class="translate" data-it="Regia / Drone / Edit" data-en="Direction / Drone / Edit">Regia / Drone / Edit</p>
         </div>
         <div>
-          <span>Cliente</span>
+          <span class="translate" data-it="Cliente" data-en="Client">Cliente</span>
           <p>COM2 x Museo Civico Medievale</p>
         </div>
       </div>
@@ -52,7 +62,7 @@
 <section class="project-media-main">
   <div class="wrap">
     <div class="video-wrapper">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/as4c4PIsFJ8?si=AU0Zf-IaTM-6EXTL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/as4c4PIsFJ8?si=AU0Zf-IaTM-6EXTL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 	  </div>
   </div>
 </section>
@@ -60,10 +70,13 @@
 <section class="project-story reveal">
   <div class="wrap story-grid">
     <div class="story-sidebar">
-      <h3>Il Progetto</h3>
+      <h3 class="translate" data-it="Il Progetto" data-en="The Project">Il Progetto</h3>
     </div>
     <div class="story-text">
-      <p>Prodotto audiovisivo realizzato nell’ambito del laboratorio didattico del progetto <strong>“HERITAGE VIDEOMAKING 4.0: A.I.”</strong>, approvato con DGR 2195 del 18/12/2023 – Rif. PA 2023-20282/RER e cofinanziato dal Fondo Sociale Europeo.</p>
+      <p class="translate" 
+         data-it="Prodotto audiovisivo realizzato nell’ambito del laboratorio didattico del progetto &lt;strong&gt;“HERITAGE VIDEOMAKING 4.0: A.I.”&lt;/strong&gt;, approvato con DGR 2195 del 18/12/2023 – Rif. PA 2023-20282/RER e cofinanziato dal Fondo Sociale Europeo." 
+         data-en="Audiovisual product created as part of the educational workshop for the project &lt;strong&gt;“HERITAGE VIDEOMAKING 4.0: A.I.”&lt;/strong&gt;, approved by DGR 2195 on 12/18/2023 – Ref. PA 2023-20282/RER and co-funded by the European Social Fund.">Prodotto audiovisivo realizzato nell’ambito del laboratorio didattico del progetto <strong>“HERITAGE VIDEOMAKING 4.0: A.I.”</strong>, approvato con DGR 2195 del 18/12/2023 – Rif. PA 2023-20282/RER e cofinanziato dal Fondo Sociale Europeo.</p>
+      
       <p><b>Written and directed by</b> Emmanuele Castanò<br />
 									<b>Main character (Leonardo)</b>: Francesco Maria Rebecchi<br />
 									<b>Camera operator</b>: Eva Fiorini, Mansura Hazmi<br />
@@ -99,7 +112,7 @@
 
 <footer class="project-footer">
   <div class="wrap">
-  <a href="index.html#lavori" class="next-btn">← Torna al Portfolio</a>
+  <a href="index.html#lavori" class="next-btn translate" data-it="← Torna al Portfolio" data-en="← Back to Portfolio">← Torna al Portfolio</a>
     <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
   </div>
 </footer>

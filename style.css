@@ -253,18 +253,53 @@ section { position: relative; }
 .intro__text strong { color: var(--bone); font-weight: 500; }
 @media (max-width: 860px) { .intro__grid { grid-template-columns: 1fr; gap: 28px; } }
 
-.marquee{
-  margin-top:80px; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  padding:20px 0; overflow:hidden; white-space:nowrap;
+.marquee {
+  margin-top: 80px; 
+  border-top: 1px solid var(--hairline); 
+  border-bottom: 1px solid var(--hairline);
+  padding: 18px 0; 
+  overflow: hidden; 
+  white-space: nowrap;
+  position: relative;
+  /* Effetto sfumatura cinematografica ai bordi destro e sinistro */
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
-.marquee__track{ display:inline-flex; animation:marquee 32s linear infinite; }
-@media (prefers-reduced-motion: reduce){ .marquee__track{ animation:none; } .marquee{ overflow-x:auto; } }
-.marquee__item{
-  font-family:var(--font-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--steel); padding:0 28px; display:flex; align-items:center; gap:28px;
+
+.marquee__track { 
+  display: inline-flex; 
+  /* Velocità calibrata sul nuovo numero di parole */
+  animation: marquee 25s linear infinite; 
 }
-.marquee__item span.sep{ color:var(--tally); }
-@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* Ottimizzazione per chi riduce i movimenti nel sistema operativo */
+@media (prefers-reduced-motion: reduce) { 
+  .marquee__track { animation: none; } 
+  .marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; } 
+}
+
+.marquee__item {
+  font-family: var(--font-mono); 
+  font-size: 11px; /* Leggermente più piccolo = più elegante */
+  letter-spacing: .2em; /* Più respiro tra le lettere in pieno stile "Timecode/Rec" */
+  text-transform: uppercase;
+  color: var(--steel); 
+  padding: 0 30px; 
+  display: flex; 
+  align-items: center; 
+  gap: 30px;
+}
+
+.marquee__item span.sep { 
+  color: var(--tally); 
+  font-weight: 300;
+}
+
+/* L'animazione ora si sposta fluidamente sfruttando il raddoppio del JS */
+@keyframes marquee { 
+  0% { transform: translate3d(0, 0, 0); } 
+  100% { transform: translate3d(-50%, 0, 0); } 
+}
 
 /* ============ WORKS ============ */
 .works { background: var(--carbon-2); }

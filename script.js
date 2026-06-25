@@ -145,7 +145,10 @@ window.addEventListener('DOMContentLoaded', function() {
 })();
 
 // ============ MARQUEE DUPLICATE ============
-(function(){
-  var track = document.getElementById('marqueeTrack');
-  track.innerHTML += track.innerHTML;
+(function() {
+  const track = document.getElementById('marqueeTrack');
+  if (track) {
+    // Clona il contenuto interno per garantire il loop infinito senza scatti
+    track.innerHTML += track.innerHTML;
+  }
 })();

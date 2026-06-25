@@ -149,4 +149,3 @@ window.addEventListener('DOMContentLoaded', function() {
   var track = document.getElementById('marqueeTrack');
   track.innerHTML += track.innerHTML;
 })();
-</script>

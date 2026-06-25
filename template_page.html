@@ -16,11 +16,26 @@
 <nav class="nav is-scrolled">
   <a href="index.html" class="nav__brand">Riccardo Raineri</a>
   <a href="index.html#lavori" class="nav__back">← Torna al Portfolio</a>
+	
+	<!-- Selettore Lingua + Timecode -->
+	<div style="display: flex; align-items: center; gap: 20px;">
+    <div class="lang-switch">
+      <button class="lang-btn is-active" data-lang="it">IT</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+	
   <div class="nav__rec">
     <span class="rec-dot" aria-hidden="true"></span>
     <span>REC</span>
     <span id="timecode" class="nav__tc">00:00:00:00</span>
   </div>
+	</div>
+	
+	<button class="nav__burger" id="burgerBtn" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <header class="project-hero">
@@ -85,43 +100,13 @@
 
 <footer class="project-footer">
   <div class="wrap">
-    <a href="prossimo-progetto.html" class="next-btn">Prossimo Progetto →</a>
+  <a href="index.html#lavori" class="next-btn">← Torna al Portfolio</a>
     <p class="footer-sub">© 2026 Riccardo Raineri — All rights reserved.</p>
   </div>
 </footer>
 
-<script>
-// Timecode a 24fps
-(function(){
-  var el = document.getElementById('timecode');
-  var start = performance.now();
-  function pad(n){ return n.toString().padStart(2,'0'); }
-  function tick(){
-    var elapsed = performance.now() - start;
-    var totalFrames = Math.floor(elapsed / 1000 * 24);
-    var ff = totalFrames % 24;
-    var totalSec = Math.floor(totalFrames / 24);
-    var ss = totalSec % 60;
-    var mm = Math.floor(totalSec / 60) % 60;
-    var hh = Math.floor(totalSec / 3600);
-    el.textContent = pad(hh)+':'+pad(mm)+':'+pad(ss)+':'+pad(ff);
-  }
-  setInterval(tick, 1000/24);
-})();
-
-// Scroll Reveal animazioni ad apparizione
-(function(){
-  var items = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold:0.12 });
-  items.forEach(function(item){ observer.observe(item); });
-})();
-</script>
+	
+<!-- ============ COMPORTAMENTI INTERATTIVI (JAVASCRIPT) ============ -->
+<script src="script.js"></script>
 </body>
 </html>

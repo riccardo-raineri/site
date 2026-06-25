@@ -253,18 +253,18 @@ section { position: relative; }
 .intro__text strong { color: var(--bone); font-weight: 500; }
 @media (max-width: 860px) { .intro__grid { grid-template-columns: 1fr; gap: 28px; } }
 
-.marquee {
-  margin-top: 80px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-  padding: 20px 0; overflow: hidden; white-space: nowrap;
+.marquee{
+  margin-top:80px; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
+  padding:20px 0; overflow:hidden; white-space:nowrap;
 }
-.marquee__track { display: inline-flex; animation: marquee 32s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } .marquee { overflow-x: auto; } }
-.marquee__item {
-  font-family: var(--font-mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--steel); padding: 0 28px; display: flex; align-items: center; gap: 28px;
+.marquee__track{ display:inline-flex; animation:marquee 32s linear infinite; }
+@media (prefers-reduced-motion: reduce){ .marquee__track{ animation:none; } .marquee{ overflow-x:auto; } }
+.marquee__item{
+  font-family:var(--font-mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--steel); padding:0 28px; display:flex; align-items:center; gap:28px;
 }
-.marquee__item span.sep { color: var(--tally); }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee__item span.sep{ color:var(--tally); }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
 /* ============ WORKS ============ */
 .works { background: var(--carbon-2); }
@@ -439,3 +439,29 @@ body.project-page {
 .next-btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 600; font-size: 2rem; text-transform: uppercase; color: var(--bone-dim); transition: all .35s var(--ease); border-bottom: 2px solid transparent; padding-bottom: 4px; }
 .next-btn:hover { color: var(--tally); border-color: var(--tally); }
 .footer-sub { margin-top: 40px; font-family: var(--font-mono); font-size: 11px; color: var(--steel); }
+
+/* ============ SELETTORE LINGUA ============ */
+.lang-switch {
+  display: inline-flex;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--bone-dim);
+}
+.lang-btn {
+  padding: 2px 4px;
+  transition: color .3s var(--ease);
+  opacity: 0.5;
+}
+.lang-btn:hover {
+  color: var(--bone);
+}
+.lang-btn.is-active {
+  color: var(--tally);
+  font-weight: 500;
+  opacity: 1;
+}
+.lang-divider {
+  color: var(--hairline);
+}

@@ -132,18 +132,38 @@ window.addEventListener('DOMContentLoaded', function() {
 })();
 
 // Mobile Menu Burger (Solo Home)
-(function(){
-  var burger = document.getElementById('burgerBtn');
-  var menu = document.getElementById('mobileMenu');
-  var close = document.getElementById('closeBtn');
-  var links = document.querySelectorAll('.m-link');
-  if (!burger || !menu) return;
+// ============ GESTIONE MOBILE MENU ============
+document.addEventListener("DOMContentLoaded", () => {
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
   
-  burger.addEventListener('click', function() { menu.classList.add('is-open'); });
-  if(close) close.addEventListener('click', function() { menu.classList.remove('is-open'); });
-  links.forEach(function(l) { l.addEventListener('click', function() { menu.classList.remove('is-open'); }); });
-})();
+  // Verifica che gli elementi esistano nella pagina corrente
+  if (burgerBtn && mobileMenu) {
+    
+    // Apri il menu al click sull'hamburger
+    burgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('is-open'); // Assicurati che nel CSS usi 'is-active' o cambia la classe con quella che usi per mostrarlo
+    });
 
+    // Chiudi il menu al click sul tasto CHIUDI
+    if (closeMenu) {
+      closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+      });
+    }
+
+    // CHIUDI IL MENU QUANDO SI CLICCA UN LINK
+    // Questo risolve il blocco su smartphone una volta selezionata la voce
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+      });
+    });
+    
+  }
+});
 // ============ MARQUEE DUPLICATE ============
 (function() {
   const track = document.getElementById('marqueeTrack');

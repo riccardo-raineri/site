@@ -164,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
   }
 });
+
 // ============ MARQUEE DUPLICATE ============
 (function() {
   const track = document.getElementById('marqueeTrack');
@@ -172,3 +173,56 @@ document.addEventListener("DOMContentLoaded", () => {
     track.innerHTML += track.innerHTML;
   }
 })();
+
+
+// ============ GESTIONE LIGHTBOX (ZOOM IMMAGINI) ============
+document.addEventListener("DOMContentLoaded", () => {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  if (lightbox && lightboxImg) {
+    galleryItems.forEach(item => {
+      const img = item.querySelector('img');
+      const btn = item.querySelector('.zoom-btn');
+
+      // Funzione per aprire la modale
+      const openLightbox = (e) => {
+        e.stopPropagation(); // Evita conflitti di click
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-active');
+        document.body.style.overflow = 'hidden'; // Blocca lo scroll del sito sotto
+      };
+
+      // Apri sia cliccando sul tastino sia cliccando direttamente sull'immagine (ottimo per smartphone)
+      if(btn) btn.addEventListener('click', openLightbox);
+      img.addEventListener('click', openLightbox);
+    });
+
+    // Chiudi cliccando sulla "✕"
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = ''; // Riattiva lo scroll
+      });
+    }
+
+    // Chiudi cliccando in un punto qualsiasi dello sfondo nero fuori dall'immagine
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg && e.target !== lightboxClose) {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Chiudi premendo il tasto ESC sulla tastiera
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-active')) {
+        lightbox.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+});

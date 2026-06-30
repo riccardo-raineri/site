@@ -115,20 +115,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
   buttons.forEach(function(btn) {
     btn.addEventListener('click', function() {
-      // Imposta stato attivo sui bottoni
       buttons.forEach(function(b) { b.classList.remove('is-active'); });
       btn.classList.add('is-active');
       
       var filter = btn.getAttribute('data-filter');
 
-      // [FLIP] Fase 1: Salva la posizione iniziale (First)
+      // [FLIP] Fase 1: Salva la posizione iniziale (First) solo se l'elemento è visibile
       var firstPositions = [];
       cards.forEach(function(card) {
         var rect = card.getBoundingClientRect();
         firstPositions.push({
           element: card,
           top: rect.top,
-          left: rect.left
+          left: rect.left,
+          // Condizione fondamentale: memorizza se l'elemento aveva dimensioni reali ed era visibile
+          wasVisible: rect.width > 0 && rect.height > 0
         });
       });
 
@@ -140,24 +141,25 @@ window.addEventListener('DOMContentLoaded', function() {
           card.style.display = 'block';
         } else {
           card.classList.add('is-hidden');
-          card.style.display = 'none'; // Rimosso il vecchio setTimeout scattoso
+          card.style.display = 'none'; 
         }
       });
 
-      // [FLIP] Fase 3: Calcola il movimento e applica l'animazione fluida (Last, Invert, Play)
+      // [FLIP] Fase 3: Calcola il movimento ed evita scatti dalle coordinate 0,0
       firstPositions.forEach(function(item) {
-        if (item.element.classList.contains('is-hidden')) return;
+        // Se la card adesso è nascosta, o prima era totalmente invisibile, non deve subire transizioni di spostamento
+        if (item.element.classList.contains('is-hidden') || !item.wasVisible) return;
 
         var rect = item.element.getBoundingClientRect();
         var deltaX = item.left - rect.left;
         var deltaY = item.top - rect.top;
 
         if (deltaX !== 0 || deltaY !== 0) {
-          // Invert: riporta temporaneamente e istantaneamente l'elemento alla vecchia posizione
+          // Invert: annulla istantaneamente lo spostamento del layout
           item.element.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
           item.element.style.transition = 'none';
 
-          // Play: fai scivolare fluidamente l'elemento alla sua posizione finale reale
+          // Play: rilascia l'elemento facendolo scivolare fluidamente nella nuova posizione di destinazione
           requestAnimationFrame(function() {
             item.element.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
             item.element.style.transform = 'none';

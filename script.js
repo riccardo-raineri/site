@@ -29,7 +29,7 @@ const playAnalogClick = (function() {
 
   return function() {
     try {
-      // Inizializzazione lazy al primo click (richiesta dalle policy dei browser)
+      // Inizializzazione lazy al primo click
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
@@ -40,39 +40,41 @@ const playAnalogClick = (function() {
 
       const now = audioCtx.currentTime;
       
-      // Componente transiente (lo "snap" metallico iniziale)
+      // 1. CHICCA/SNAP METALLICO ACUTO (Il contatto iniziale del pulsante)
       const snapOsc = audioCtx.createOscillator();
       const snapGain = audioCtx.createGain();
       snapOsc.type = 'triangle';
-      snapOsc.frequency.setValueAtTime(1600, now);
-      snapOsc.frequency.exponentialRampToValueAtTime(400, now + 0.005);
+      // Frequenza di partenza molto alta (da 3200Hz a 1200Hz) per l'effetto "click" cristallino
+      snapOsc.frequency.setValueAtTime(3200, now);
+      snapOsc.frequency.exponentialRampToValueAtTime(1200, now + 0.003);
       
-      snapGain.gain.setValueAtTime(0.04, now); // Volume controllato per non disturbare
-      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.005);
+      snapGain.gain.setValueAtTime(0.05, now); 
+      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.003);
       
       snapOsc.connect(snapGain);
       snapGain.connect(audioCtx.destination);
       
-      // Componente corpo del click (il rilascio meccanico)
+      // 2. CORPO DELLO SCATTO (Il rilascio della molla della fotocamera)
       const clickOsc = audioCtx.createOscillator();
       const clickGain = audioCtx.createGain();
       clickOsc.type = 'sine';
-      clickOsc.frequency.setValueAtTime(220, now);
-      clickOsc.frequency.exponentialRampToValueAtTime(80, now + 0.015);
+      // Frequenze medio-alte (800Hz) per dare consistenza al selettore meccanico senza cupi rimbombi
+      clickOsc.frequency.setValueAtTime(800, now);
+      clickOsc.frequency.exponentialRampToValueAtTime(350, now + 0.012);
       
-      clickGain.gain.setValueAtTime(0.08, now);
-      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+      clickGain.gain.setValueAtTime(0.07, now);
+      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
       
       clickOsc.connect(clickGain);
       clickGain.connect(audioCtx.destination);
       
-      // Avvio e stop rapidissimi
+      // Esecuzione istantanea e troncamento secco (decadimento ultra-rapido)
       snapOsc.start(now);
-      snapOsc.stop(now + 0.005);
+      snapOsc.stop(now + 0.003);
       clickOsc.start(now);
-      clickOsc.stop(now + 0.015);
+      clickOsc.stop(now + 0.012);
     } catch (e) {
-      // Silenzioso in caso di mancato supporto audio
+      // Silenzioso in caso di restrizioni o mancato supporto audio del browser
     }
   };
 })();

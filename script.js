@@ -22,6 +22,87 @@
 
 
 /* ==========================================
+   INTERFACCIA AUDIO SINTETIZZATA (ANALOG CLICK)
+   ========================================== */
+const playAnalogClick = (function() {
+  let audioCtx = null;
+
+  return function() {
+    try {
+      // Inizializzazione lazy al primo click (richiesta dalle policy dei browser)
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const now = audioCtx.currentTime;
+      
+      // Componente transiente (lo "snap" metallico iniziale)
+      const snapOsc = audioCtx.createOscillator();
+      const snapGain = audioCtx.createGain();
+      snapOsc.type = 'triangle';
+      snapOsc.frequency.setValueAtTime(1600, now);
+      snapOsc.frequency.exponentialRampToValueAtTime(400, now + 0.005);
+      
+      snapGain.gain.setValueAtTime(0.04, now); // Volume controllato per non disturbare
+      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.005);
+      
+      snapOsc.connect(snapGain);
+      snapGain.connect(audioCtx.destination);
+      
+      // Componente corpo del click (il rilascio meccanico)
+      const clickOsc = audioCtx.createOscillator();
+      const clickGain = audioCtx.createGain();
+      clickOsc.type = 'sine';
+      clickOsc.frequency.setValueAtTime(220, now);
+      clickOsc.frequency.exponentialRampToValueAtTime(80, now + 0.015);
+      
+      clickGain.gain.setValueAtTime(0.08, now);
+      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+      
+      clickOsc.connect(clickGain);
+      clickGain.connect(audioCtx.destination);
+      
+      // Avvio e stop rapidissimi
+      snapOsc.start(now);
+      snapOsc.stop(now + 0.005);
+      clickOsc.start(now);
+      clickOsc.stop(now + 0.015);
+    } catch (e) {
+      // Silenzioso in caso di mancato supporto audio
+    }
+  };
+})();
+
+// Iniezione globale dei click sugli elementi interattivi
+document.addEventListener("DOMContentLoaded", () => {
+  const setupAudioClicks = () => {
+    // Seleziona tutto ciò che è cliccabile sul sito
+    const clickables = document.querySelectorAll(
+      'a, button, .work-card, .gallery-item, .lang-btn, .filter-btn, #timecode'
+    );
+    
+    clickables.forEach(el => {
+      // Evitiamo duplicazioni di listener se la funzione viene ricaricata
+      if (!el.dataset.hasClickAudio) {
+        el.addEventListener('click', playAnalogClick);
+        el.dataset.hasClickAudio = "true";
+      }
+    });
+  };
+
+  setupAudioClicks();
+
+  // Monitoriamo modifiche al DOM (es. filtri portfolio) per applicarlo anche ai nuovi elementi
+  const observer = new MutationObserver(setupAudioClicks);
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+
+
+/* ==========================================
    GESTIONE MULTILINGUA (IT / EN) CON MEMORIA
    ========================================== */
 (function(){

@@ -50,7 +50,7 @@ ul { list-style: none; }
 }
 .eyebrow .dot { color: var(--tally); }
 
-/* MODIFICA 1: EFFETTO NOISE / GRANA DA PELLICOLA */
+/* EFFETTO NOISE / GRANA DA PELLICOLA */
 body::before {
   content: "";
   position: fixed;
@@ -158,7 +158,6 @@ body::before {
   background: var(--carbon);
 }
 .hero__bars { position: absolute; left: 0; right: 0; height: 18px; background: var(--carbon); z-index: 5; }
-/* .hero__bars--top { top: 0; } */ /* Bordino rimosso per riempimento totale */
 .hero__bars--bottom { bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 30px; }
 .hero__bars--bottom span { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: var(--bone-faint); }
 
@@ -341,7 +340,7 @@ section { position: relative; }
 }
 .work-card:hover .work-card__media img { transform: scale(1.12); filter: saturate(1.05) contrast(1.05); }
 
-/* MODIFICA 3: DISTORSIONE GLITCH / CHROMATIC ANAMORPHIC HOVER */
+/* DISTORSIONE GLITCH / CHROMATIC ANAMORPHIC HOVER SULLE CARD */
 .work-card__title { 
   font-family: var(--font-display); 
   font-weight: 600; 
@@ -405,43 +404,21 @@ section { position: relative; }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
 .footer__loc { font-family: var(--font-mono); font-size: 12px; color: var(--steel); letter-spacing: .06em; }
 
-.footer__social {
-  display: flex;
-  flex-wrap: wrap;    
-  justify-content: center; 
-  gap: 15px 40px; 
-}
-
+.footer__social { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px 40px; }
 .footer__social a {
-  display: inline-flex;
-  flex-direction: column; 
-  align-items: center;    
-  justify-content: center;
-  gap: 8px;              
-  text-decoration: none;
-  text-align: center;
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--bone-dim); text-transform: uppercase;
-  position: relative; padding-bottom: 3px;
-  transition: color 0.3s var(--ease);
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;              
+  text-decoration: none; text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--bone-dim); text-transform: uppercase;
+  position: relative; padding-bottom: 3px; transition: color 0.3s var(--ease);
 }
-.footer__social a::after {
-  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--tally); transition: width .3s var(--ease);
-}
+.footer__social a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--tally); transition: width .3s var(--ease); }
 .footer__social a:hover::after { width: 100%; }
 .footer__social a:hover { color: var(--bone); }
 .footer__copy { font-family: var(--font-mono); font-size: 11px; color: var(--steel); }
 
 @media (max-width: 700px) { .footer__inner { flex-direction: column; align-items: flex-start; } }
 
-.footer-icon {
-  width: 18px;            
-  height: 18px;
-  stroke-width: 2px;
-  transition: transform 0.2s ease;
-}
-.footer__social a:hover .footer-icon {
-  transform: translateY(-2px);
-}
+.footer-icon { width: 18px; height: 18px; stroke-width: 2px; transition: transform 0.2s ease; }
+.footer__social a:hover .footer-icon { transform: translateY(-2px); }
 
 /* ============ PAGINE INTERNE / CASE STUDY ============ */
 body.project-page { padding-top: 100px; }
@@ -531,236 +508,90 @@ body.project-page { padding-top: 100px; }
 .lightbox__close { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 30px; background: none; border: none; cursor: pointer; font-family: var(--font-mono); transition: color 0.2s; }
 .lightbox__close:hover { color: var(--tally); }
 
-/* ============ EMAIL BANNER (IMPATTO EDITORIALE) ============ */
+/* ============ EMAIL BANNER ============ */
 .email-cta-container { margin: 40px 0; overflow: hidden; }
 .email-cta-link {
-  display: inline-block;
-  font-family: var(--font-display), sans-serif;
-  font-size: 42px; 
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #ffffff;
-  text-decoration: none;
-  letter-spacing: -0.5px;
+  display: inline-block; font-family: var(--font-display), sans-serif; font-size: 42px; text-transform: uppercase; font-weight: 600; color: #ffffff; text-decoration: none; letter-spacing: -0.5px;
   transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.email-cta-link:hover {
-  color: #FF3B30; 
-  transform: translateY(-10px); 
-}
+.email-cta-link:hover { color: #FF3B30; transform: translateY(-10px); }
 
 @media (max-width: 768px) { .email-cta-link { font-size: 32px; } }
 
-
 /* ===================================================
-   STRUTTURE CSS PER LE MODIFICHE INTERATTIVE
+   MODIFICHE INTERATTIVE E EASTER EGGS
    =================================================== */
 
-/* STRUTTURA OTTURATORE PAGINE (SHUTTER) */
+/* STRUTTURA OTTURATORE PAGINE (SHUTTER) UNIFICATA CON FIXED FILM BURN EFFECT */
 .page-shutter {
-  position: fixed; inset: 0; background: #000000; z-index: 99999;
+  position: fixed; inset: 0; background: #0a0a0a; z-index: 99999;
   transform: scaleY(1); transform-origin: top;
   transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
 }
 body.shutter-ready .page-shutter {
-  transform: scaleY(0);
-  transform-origin: bottom;
+  transform: scaleY(0); transform-origin: bottom;
 }
 
-/* ELIMINATO CURSORE CUSTOM GENERALE, CREATA SOLO L'ETICHETTA FLOATING PER I PROGETTI */
+/* Quando l'otturatore scatta (la pagina perde .shutter-ready), il background simula un flash di bruciatura */
+body:not(.shutter-ready) .page-shutter::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle, rgba(255,90,0,1) 0%, rgba(230,0,36,0.8) 60%, rgba(10,11,13,1) 100%);
+  opacity: 0; animation: filmBurnFlash 0.45s forwards var(--ease);
+}
+@keyframes filmBurnFlash {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ETICHETTA FLOATING PER I PROGETTI */
 .custom-cursor-label {
-  position: fixed; top: 0; left: 0;
-  pointer-events: none;
-  z-index: 100000;
-  transform: translate3d(-50%, -50%, 0);
-  will-change: transform;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s var(--ease);
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100000; transform: translate3d(-50%, -50%, 0); will-change: transform; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s var(--ease);
 }
-.custom-cursor-label.is-visible {
-  opacity: 1;
-}
+.custom-cursor-label.is-visible { opacity: 1; }
 .cursor-label {
-  font-family: var(--font-mono); 
-  font-size: 9px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  color: var(--carbon); 
-  background-color: var(--bone);
-  padding: 5px 11px;
-  border-radius: 1px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-  /* Sposta leggermente la targhetta in basso a destra rispetto alla freccia reale del mouse per non coprirla */
-  transform: translate(16px, 16px); 
+  font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; color: var(--carbon); background-color: var(--bone); padding: 5px 11px; border-radius: 1px; box-shadow: 0 4px 14px rgba(0,0,0,0.4); transform: translate(16px, 16px); 
 }
 
-/* STILIZZAZIONE INTERRUTTORE E EFFETTI CINEMA MODE */
+/* INTERRUTTORE E EFFETTI CINEMA MODE */
 .cinema-toggle-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
-  color: var(--steel); margin-bottom: 14px; text-transform: uppercase;
-  padding: 6px 12px; border: 1px solid var(--hairline-2);
-  transition: all 0.3s var(--ease);
+  display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--steel); margin-bottom: 14px; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--hairline-2); transition: all 0.3s var(--ease);
 }
 .cinema-toggle-btn svg { width: 12px; height: 12px; transition: transform 0.4s var(--ease); }
 .cinema-toggle-btn:hover { color: var(--bone); border-color: var(--bone-dim); }
 .cinema-toggle-btn:hover svg { transform: rotate(45deg); }
 
-/* Stato di oscuramento globale quando la modalità cinema è ON */
 body.cinema-mode-active .nav,
 body.cinema-mode-active .project-hero,
 body.cinema-mode-active .project-story,
 body.cinema-mode-active .project-gallery,
 body.cinema-mode-active .project-footer,
 body.cinema-mode-active .footer {
-  opacity: 0.04;
-  pointer-events: none;
-  transition: opacity 0.6s var(--ease);
+  opacity: 0.04; pointer-events: none; transition: opacity 0.6s var(--ease);
 }
-body.cinema-mode-active .project-media-main {
-  background: #000000;
-  padding-top: 60px; /* Isola il video al centro */
-}
-body.cinema-mode-active .cinema-toggle-btn {
-  color: var(--tally);
-  border-color: rgba(255, 59, 48, 0.3);
-}
+body.cinema-mode-active .project-media-main { background: #000000; padding-top: 60px; }
+body.cinema-mode-active .cinema-toggle-btn { color: var(--tally); border-color: rgba(255, 59, 48, 0.3); }
 
-
-
-/* ==========================================
-   STILI EASTER EGGS & CHICCHE
-   ========================================== */
-
-/* --- IDEA 3: AGGIORNAMENTO SHUTTER (FILM BURN EFFECT) --- */
-/* Modifichiamo l'otturatore standard aggiungendo una bruciatura di luce arancione/rossa */
-.page-shutter {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0a0a0a;
-  z-index: 99999;
-  pointer-events: none;
-  transform: scaleY(1);
-  transform-origin: top;
-  transition: transform 0.45s cubic-bezier(0.85, 0, 0.15, 1);
-}
-
-/* Quando l'otturatore si apre o si chiude, crea un flash flash color pellicola bruciata */
-body:not(.shutter-ready) .page-shutter::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,102,0,0.9) 0%, rgba(230,0,36,0.6) 50%, transparent 100%);
-  opacity: 1;
-  animation: filmBurnOut 0.45s forwards;
-}
-
-@keyframes filmBurnOut {
-  0% { opacity: 1; transform: scale(1); filter: blur(0px); }
-  100% { opacity: 0; transform: scale(1.5); filter: blur(20px); }
-}
-
-/* --- IDEA 1: OVERLAY VHS (EASTER EGG "REC") --- */
+/* OVERLAY VHS (EASTER EGG "REC") */
 .vhs-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-  font-family: 'Courier New', Courier, monospace;
-  color: #fff;
-  padding: 30px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  text-shadow: 2px 2px 0px #000;
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.6);
+  position: fixed; inset: 0; z-index: 999999; background: rgba(0, 0, 0, 0.3); pointer-events: none; font-family: 'Courier New', Courier, monospace; color: #fff; padding: 30px; opacity: 0; transition: opacity 0.3s ease; text-shadow: 2px 2px 0px #000; box-shadow: inset 0 0 100px rgba(0,0,0,0.6);
 }
-
-.vhs-overlay.is-active {
-  opacity: 1;
-}
-
-/* Linee di scansione TV vintage */
+.vhs-overlay.is-active { opacity: 1; }
 .vhs-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  background-size: 100% 4px, 6px 100%;
+  content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); background-size: 100% 4px, 6px 100%;
 }
-
-.vhs-rec {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: 2px;
-}
-
-.vhs-rec .dot {
-  width: 14px;
-  height: 14px;
-  background-color: #ff003c;
-  border-radius: 50%;
-  animation: vhsBlink 1s infinite;
-}
-
-.vhs-format { position: absolute; bottom: 40px; left: 40px; font-size: 18px; letter-spacing: 1px;}
-.vhs-play { position: absolute; top: 40px; right: 40px; font-size: 18px; letter-spacing: 1px;}
+.vhs-rec { position: absolute; top: 40px; left: 40px; font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; letter-spacing: 2px; }
+.vhs-rec .dot { width: 14px; height: 14px; background-color: #ff003c; border-radius: 50%; animation: vhsBlink 1s infinite; }
+.vhs-format { position: absolute; bottom: 40px; left: 40px; font-size: 18px; letter-spacing: 1px; }
+.vhs-play { position: absolute; top: 40px; right: 40px; font-size: 18px; letter-spacing: 1px; }
 
 @keyframes vhsBlink {
   0%, 49% { background-color: #ff003c; }
   50%, 100% { background-color: transparent; }
 }
 
-/* --- IDEA 4: TALLY ROSSO SUL TIMECODE --- */
+/* TALLY ROSSO SUL TIMECODE */
 #timecode.tally-active {
-  color: #ff003c !important;
-  text-shadow: 0 0 10px rgba(255, 0, 60, 0.6);
-  animation: vhsBlink 0.5s infinite;
-}
-
-/* --- IDEA 6: EFFETTO GLITCH SUI TITOLI --- */
-.glitch-triggered {
-  position: relative;
-  animation: glitchTxt 0.3s linear infinite;
-}
-
-.glitch-triggered::before,
-.glitch-triggered::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background: transparent;
-}
-
-.glitch-triggered::before {
-  text-shadow: -2px 0 #00ffff;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitchTop 0.3s linear infinite;
-}
-
-.glitch-triggered::after {
-  text-shadow: 2px 0 #ff003c;
-  clip: rect(85px, 450px, 140px, 0);
-  animation: glitchBottom 0.3s linear infinite;
-}
-
-@keyframes glitchTxt {
-  0% { transform: skewX(0deg); }
-  20% { transform: skewX(-3deg); }
-  40% { transform: skewX(4deg); }
-  60% { transform: skewX(0deg); }
-  100% { transform: skewX(0deg); }
+  color: #ff003c !important; text-shadow: 0 0 10px rgba(255, 0, 60, 0.6); animation: vhsBlink 0.5s infinite;
 }

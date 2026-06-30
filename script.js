@@ -270,10 +270,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================
-   TRANSIZIONE PAGINE (SHUTTER)
+   TRANSIZIONE PAGINE (SHUTTER + FILM BURN)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // Crea l'otturatore cinematico nel DOM se non esiste già
   if (!document.getElementById('pageShutter')) {
     const shutter = document.createElement('div');
     shutter.id = 'pageShutter';
@@ -281,31 +280,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(shutter);
   }
 
-  // Riapre l'otturatore all'avvio della pagina
   setTimeout(() => {
     document.body.classList.add('shutter-ready');
   }, 50);
 
-  // Intercetta i click sui link interni per fare il fade-out cinematico
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
 
     const href = link.getAttribute('href');
     const target = link.getAttribute('target');
-
-	// Verifica se il link si trova all'interno del menu burger mobile
     const isInsideMobileMenu = link.closest('#mobileMenu') !== null;
 
-    // Se il link è cliccato dentro il menu burger, escludiamo l'animazione della tendina
-    if (isInsideMobileMenu) {
-      return;
-    }
+    if (isInsideMobileMenu) return;
 
-    // Verifica se il link punta a un'ancora interna della stessa pagina corrente
     const isSamePageAnchor = href && href.includes('#') && link.pathname === window.location.pathname;
 
-    // Salta i link esterni, le ancore interne (#), i mailto e i target blank
     if (!href || href.startsWith('#') || isSamePageAnchor || href.startsWith('mailto:') || href.startsWith('tel:') || target === '_blank' || link.id === 'contactEmail') {
       return;
     }
@@ -315,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       window.location.href = href;
-    }, 450); // Tempo allineato alla transizione CSS
+    }, 450); 
   });
 });
 
@@ -329,11 +319,9 @@ window.addEventListener('pageshow', (e) => {
    CUSTOM FLOATING LABEL SUI PROGETTI (VIEW)
    ========================================== */
 (function(){
-  // Disattiva il tracciamento del mouse su interfacce touch/mobile
   if (window.matchMedia("(pointer: coarse)").matches) return;
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Genera la struttura contenitore per il testo fluttuante
     const floatingLabel = document.createElement('div');
     floatingLabel.id = 'projectFloatingLabel';
     floatingLabel.className = 'custom-cursor-label';
@@ -350,7 +338,6 @@ window.addEventListener('pageshow', (e) => {
       mouseY = e.clientY;
     });
 
-    // Effetto Lerp (ammortizzamento) per rendere lo scorrimento del testo felpato e cinematico
     function animateLabel() {
       const lerpFactor = 0.18;
       labelX += (mouseX - labelX) * lerpFactor;
@@ -361,7 +348,6 @@ window.addEventListener('pageshow', (e) => {
     }
     requestAnimationFrame(animateLabel);
 
-    // Attiva la comparsa della targhetta ESCLUSIVAMENTE sulle card dei progetti o elementi della galleria
     const targets = document.querySelectorAll('.work-card, .gallery-item');
     
     targets.forEach(el => {
@@ -387,7 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoWrapper = document.querySelector('.video-wrapper');
   if (!videoWrapper) return;
 
-  // Crea l'interruttore e lo posiziona sopra il video box
   const cinemaBtn = document.createElement('button');
   cinemaBtn.className = 'cinema-toggle-btn';
   cinemaBtn.innerHTML = `
@@ -402,7 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
   cinemaBtn.addEventListener('click', () => {
     document.body.classList.toggle('cinema-mode-active');
     
-    // Aggiorna lo stato del testo
     const isCinema = document.body.classList.contains('cinema-mode-active');
     const currentLang = document.documentElement.getAttribute('lang') || 'it';
     
@@ -417,36 +401,31 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================
    EASTER EGGS & CHICCHE CINEMATOGRAFICHE
    ========================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
   
-  // --- IDEA 5: MESSAGGIO SEGRETO IN CONSOLE ---
+  // MESSAGGIO SEGRETO IN CONSOLE
   console.log(
     `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nOttima mossa dare un'occhiata al "dietro le quinte"! \nSe stai cercando un Filmmaker / Editor orientato ai dettagli, parliamone.\n📬 Contatti sul sito live!`,
     "background: #111; color: #ff003c; font-size: 14px; font-weight: bold; padding: 4px 8px; border: 1px solid #ff003c;",
     "color: #888; font-size: 12px;"
   );
 
-  // --- IDEA 1: EASTER EGG "REC" (MIRINO VHS) ---
+  // EASTER EGG "REC" (MIRINO VHS)
   let inputBuffer = "";
   const secretCode = "rec";
 
   document.addEventListener("keydown", (e) => {
-    // Registra solo lettere minuscole nel buffer
     inputBuffer += e.key.toLowerCase();
-    // Mantiene il buffer lungo quanto la parola chiave
     if (inputBuffer.length > secretCode.length) {
       inputBuffer = inputBuffer.substring(inputBuffer.length - secretCode.length);
     }
-
     if (inputBuffer === secretCode) {
       triggerVhsOverlay();
-      inputBuffer = ""; // Resetta il buffer
+      inputBuffer = ""; 
     }
   });
 
   function triggerVhsOverlay() {
-    // Crea l'overlay al volo nel DOM se non esiste
     let vhs = document.getElementById("vhsOverlay");
     if (!vhs) {
       vhs = document.createElement("div");
@@ -461,28 +440,21 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(vhs);
     }
 
-    // Attiva l'effetto
     vhs.classList.add("is-active");
-
-    // Lo rimuove automaticamente dopo 3 secondi
-    setTimeout(() => {
-      vhs.classList.remove("is-active");
-    }, 3000);
+    setTimeout(() => { vhs.classList.remove("is-active"); }, 3000);
   }
 
-// --- IDEA 4: INTERAZIONE SUL TIMECODE (RESET, TALLY & SUONO CIAK) ---
+  // INTERAZIONE SUL TIMECODE (TALLY & CIAK SOUND)
   const timecodeEl = document.getElementById("timecode");
   if (timecodeEl) {
     timecodeEl.style.cursor = "pointer";
     timecodeEl.title = "Doppio clic per il Ciak!";
     
-    // Funzione che sintetizza il suono secco del "Ciak" (meccanico + risonanza)
     function playCiakSound() {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (!AudioContext) return;
       const ctx = new AudioContext();
       
-      // 1. Il colpo secco principale (il "clack" del legno)
       const strokeOsc = ctx.createOscillator();
       const strokeGain = ctx.createGain();
       strokeOsc.type = 'triangle';
@@ -495,7 +467,6 @@ document.addEventListener("DOMContentLoaded", () => {
       strokeOsc.connect(strokeGain);
       strokeGain.connect(ctx.destination);
       
-      // 2. La risonanza metallica/acustica subito dopo il colpo
       const echoOsc = ctx.createOscillator();
       const echoGain = ctx.createGain();
       echoOsc.type = 'sine';
@@ -508,38 +479,16 @@ document.addEventListener("DOMContentLoaded", () => {
       echoOsc.connect(echoGain);
       echoGain.connect(ctx.destination);
       
-      // Avvia e stoppa i generatori di onde sonore
       strokeOsc.start();
       strokeOsc.stop(ctx.currentTime + 0.04);
-      
       echoOsc.start();
       echoOsc.stop(ctx.currentTime + 0.08);
     }
 
     timecodeEl.addEventListener("dblclick", () => {
-      // Avvia il suono del ciak
       playCiakSound();
-      
-      // Attiva l'effetto visivo Tally rosso
       timecodeEl.classList.add('tally-active');
-      
-      setTimeout(() => {
-        timecodeEl.classList.remove('tally-active');
-      }, 1500);
+      setTimeout(() => { timecodeEl.classList.remove('tally-active'); }, 1500);
     });
   }
-
-  // --- IDEA 6: EFFETTO GLITCH DUST SUI TITOLI ---
-  // Trova i titoli principali e applica la classe glitch al passaggio del mouse
-  const glitchTitles = document.querySelectorAll("#hTitle, .section-title");
-  glitchTitles.forEach(title => {
-    title.addEventListener("mouseenter", () => {
-      title.classList.add("glitch-triggered");
-      // Rimuove l'effetto dopo pochissimo (300ms) per mantenerlo impercettibile e secco
-      setTimeout(() => {
-        title.classList.remove("glitch-triggered");
-      }, 300);
-    });
-  });
-
 });

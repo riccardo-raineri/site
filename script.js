@@ -226,3 +226,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+// ============ PROTEZIONE SPAM EMAIL ============
+document.addEventListener("DOMContentLoaded", () => {
+  const emailLink = document.getElementById('contactEmail');
+  
+  if (emailLink) {
+    emailLink.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita il comportamento di default del link (#)
+      
+      // Recupera i pezzi della mail nascosti negli attributi
+      const user = emailLink.getAttribute('data-u');
+      const domain = emailLink.getAttribute('data-d');
+      
+      if (user && domain) {
+        // Ricompone la mail: utente + @ + dominio
+        const fullEmail = `${user}@${domain}`;
+        
+        // Apre direttamente il client di posta dell'utente
+        window.location.href = `mailto:${fullEmail}`;
+      }
+    });
+  }
+});

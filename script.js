@@ -1,5 +1,5 @@
 /* ==========================================
-   1. TIMECODE DIGITALE CINEMATOGRAFICO (24fps)
+   TIMECODE DIGITALE (24fps)
    ========================================== */
 (function(){
   var timecodeEl = document.getElementById('timecode');
@@ -20,8 +20,9 @@
   setInterval(updateTimecode, 1000 / 24);
 })();
 
+
 /* ==========================================
-   2. GESTIONE MULTILINGUA (IT / EN) CON MEMORIA
+   GESTIONE MULTILINGUA (IT / EN) CON MEMORIA
    ========================================== */
 (function(){
   var buttons = document.querySelectorAll('.lang-btn');
@@ -57,8 +58,9 @@
   setLanguage(savedLang);
 })();
 
+
 /* ==========================================
-   3. ANIMAZIONI ALLA COMPARSA (SCROLL REVEAL)
+   ANIMAZIONI ALLA COMPARSA (SCROLL REVEAL)
    ========================================== */
 (function(){
   var revealElements = document.querySelectorAll('.reveal');
@@ -75,8 +77,9 @@
   revealElements.forEach(function(el) { observer.observe(el); });
 })();
 
+
 /* ==========================================
-   4. NAVBAR & MIRINO HERO INTERFACCIA
+   NAVBAR & MIRINO HERO INTERFACCIA
    ========================================== */
 window.addEventListener('scroll', function() {
   var nav = document.getElementById('mainNav');
@@ -103,8 +106,9 @@ window.addEventListener('DOMContentLoaded', function() {
   setTimeout(function(){ document.getElementById('hCta').classList.add('is-on'); }, 1100);
 });
 
+
 /* ==========================================
-   5. FILTRI PORTFOLIO FLUIDI (FLIP ANIMATION)
+   FILTRI PORTFOLIO FLUIDI (FLIP ANIMATION)
    ========================================== */
 (function(){
   var buttons = document.querySelectorAll('.filter-btn');
@@ -161,8 +165,9 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 })();
 
+
 /* ==========================================
-   6. INTERFACCIA UTENTE MOBILE (MENU BURGER)
+   INTERFACCIA UTENTE MOBILE (MENU BURGER)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const burgerBtn = document.getElementById('burgerBtn');
@@ -189,8 +194,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 /* ==========================================
-   7. CREATIVE ELEMENTS (MARQUEE INFINITO)
+   MARQUEE INFINITO
    ========================================== */
 (function() {
   const track = document.getElementById('marqueeTrack');
@@ -199,8 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })();
 
+
 /* ==========================================
-   8. GESTIONE LIGHTBOX (ZOOM STILL FRAMES)
+   GESTIONE LIGHTBOX (ZOOM STILL FRAMES)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById('lightbox');
@@ -248,8 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 /* ==========================================
-   9. SICUREZZA & PRIVACY (EMAIL BOT-PROTECTION)
+   SICUREZZA & PRIVACY (EMAIL BOT-PROTECTION)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const contactEmail = document.getElementById('contactEmail');
@@ -269,8 +277,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 /* ==========================================
-   TRANSIZIONE PAGINE (SHUTTER + FILM BURN)
+   TRANSIZIONE PAGINE (SHUTTER)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!document.getElementById('pageShutter')) {
@@ -292,7 +301,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = link.getAttribute('target');
     const isInsideMobileMenu = link.closest('#mobileMenu') !== null;
 
-    if (isInsideMobileMenu) return;
+    if (isInsideMobileMenu) {
+      return;
+    }
 
     const isSamePageAnchor = href && href.includes('#') && link.pathname === window.location.pathname;
 
@@ -314,6 +325,7 @@ window.addEventListener('pageshow', (e) => {
     document.body.classList.add('shutter-ready');
   }
 });
+
 
 /* ==========================================
    CUSTOM FLOATING LABEL SUI PROGETTI (VIEW)
@@ -366,6 +378,7 @@ window.addEventListener('pageshow', (e) => {
   });
 })();
 
+
 /* ==========================================
    CINEMA MODE (LIGHTS OFF)
    ========================================== */
@@ -398,19 +411,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 /* ==========================================
-   EASTER EGGS & CHICCHE CINEMATOGRAFICHE
+   EASTER EGGS
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   
   // MESSAGGIO SEGRETO IN CONSOLE
   console.log(
-    `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nOttima mossa dare un'occhiata al "dietro le quinte"! \nSe stai cercando un Filmmaker / Editor orientato ai dettagli, parliamone.\n📬 Contatti sul sito live!`,
+    `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nCiao!!`,
     "background: #111; color: #ff003c; font-size: 14px; font-weight: bold; padding: 4px 8px; border: 1px solid #ff003c;",
     "color: #888; font-size: 12px;"
   );
 
-  // EASTER EGG "REC" (MIRINO VHS)
+  // MIRINO VHS
   let inputBuffer = "";
   const secretCode = "rec";
 
@@ -444,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { vhs.classList.remove("is-active"); }, 3000);
   }
 
-  // INTERAZIONE SUL TIMECODE (TALLY & CIAK SOUND)
+  // INTERAZIONE SUL TIMECODE (TALLY & SUONO CIAK)
   const timecodeEl = document.getElementById("timecode");
   if (timecodeEl) {
     timecodeEl.style.cursor = "pointer";

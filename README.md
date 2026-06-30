@@ -26,6 +26,21 @@ Benvenuto nella repository del mio portfolio personale. Questo sito è stato pro
 
 ---
 
+## 🥚 Easter Eggs
+
+### 1. Messaggio Segreto in Console
+Apri i *Developer Tools* (F12 o Cmd+Option+I) per trovare una schermata dei crediti firmata.
+
+### 2. Modalità VHS overlay (Codice Segreto "REC")
+Premendo in sequenza i tasti **`R`** **`E`** **`C`** sulla tastiera in qualsiasi punto del sito, si attiverà un overlay in stile VHS con linee di scansione e indicatori di formato per 3 secondi.
+
+### 3. Doppio Clic sul Timecode (Ciak & Tally)
+Facendo doppio clic sul timecode digitale in alto a destra:
+*   Verrà generato (tramite le API *Web Audio*) il classico **suono acuto di un Ciak cinematografico**.
+*   Il contatore si illuminerà di rosso attivando una modalità **Tally lampo** (segnalatore di registrazione attiva).
+
+---
+
 ## 📂 Struttura del Progetto
 
 ```text

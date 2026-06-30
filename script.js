@@ -308,7 +308,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// MODIFICA FIX 2: Risolve lo schermo nero quando si torna indietro con le frecce del browser (riapre il mascherino)
 window.addEventListener('pageshow', (e) => {
   if (e.persisted) {
     document.body.classList.add('shutter-ready');

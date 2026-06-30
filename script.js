@@ -29,7 +29,6 @@ const playAnalogClick = (function() {
 
   return function() {
     try {
-      // Inizializzazione lazy al primo click
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
@@ -39,42 +38,50 @@ const playAnalogClick = (function() {
       }
 
       const now = audioCtx.currentTime;
+
+      // Un compressore nativo per "gonfiare" il volume percepito senza distorcere
+      const compressor = audioCtx.createDynamicsCompressor();
+      compressor.threshold.setValueAtTime(-10, now);
+      compressor.knee.setValueAtTime(0, now);
+      compressor.ratio.setValueAtTime(12, now);
+      compressor.attack.setValueAtTime(0, now);
+      compressor.release.setValueAtTime(0.01, now);
       
-      // 1. CHICCA/SNAP METALLICO ACUTO (Il contatto iniziale del pulsante)
+      compressor.connect(audioCtx.destination);
+      
+      // 1. SNAP METALLICO ACUTO
       const snapOsc = audioCtx.createOscillator();
       const snapGain = audioCtx.createGain();
       snapOsc.type = 'triangle';
-      // Frequenza di partenza molto alta (da 3200Hz a 1200Hz) per l'effetto "click" cristallino
-      snapOsc.frequency.setValueAtTime(3200, now);
-      snapOsc.frequency.exponentialRampToValueAtTime(1200, now + 0.003);
+      snapOsc.frequency.setValueAtTime(3400, now);
+      snapOsc.frequency.exponentialRampToValueAtTime(1400, now + 0.004);
       
-      snapGain.gain.setValueAtTime(0.05, now); 
-      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.003);
+      snapGain.gain.setValueAtTime(0.45, now); // Volume principale dello snap
+      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.004);
       
       snapOsc.connect(snapGain);
-      snapGain.connect(audioCtx.destination);
+      snapGain.connect(compressor);
       
-      // 2. CORPO DELLO SCATTO (Il rilascio della molla della fotocamera)
+      // 2. CORPO DELLO SCATTO
       const clickOsc = audioCtx.createOscillator();
       const clickGain = audioCtx.createGain();
       clickOsc.type = 'sine';
-      // Frequenze medio-alte (800Hz) per dare consistenza al selettore meccanico senza cupi rimbombi
-      clickOsc.frequency.setValueAtTime(800, now);
-      clickOsc.frequency.exponentialRampToValueAtTime(350, now + 0.012);
+      clickOsc.frequency.setValueAtTime(850, now);
+      clickOsc.frequency.exponentialRampToValueAtTime(400, now + 0.014);
       
-      clickGain.gain.setValueAtTime(0.07, now);
-      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
+      clickGain.gain.setValueAtTime(0.55, now); // Volume principale del corpo
+      clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.014);
       
       clickOsc.connect(clickGain);
-      clickGain.connect(audioCtx.destination);
+      clickGain.connect(compressor);
       
-      // Esecuzione istantanea e troncamento secco (decadimento ultra-rapido)
+      // Esecuzione rapida
       snapOsc.start(now);
-      snapOsc.stop(now + 0.003);
+      snapOsc.stop(now + 0.004);
       clickOsc.start(now);
-      clickOsc.stop(now + 0.012);
+      clickOsc.stop(now + 0.014);
     } catch (e) {
-      // Silenzioso in caso di restrizioni o mancato supporto audio del browser
+      // Fallback silenzioso
     }
   };
 })();

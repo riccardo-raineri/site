@@ -294,6 +294,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const href = link.getAttribute('href');
     const target = link.getAttribute('target');
 
+	// Verifica se il link si trova all'interno del menu burger mobile
+    const isInsideMobileMenu = link.closest('#mobileMenu') !== null;
+
+    // Se il link è cliccato dentro il menu burger, escludiamo l'animazione della tendina
+    if (isInsideMobileMenu) {
+      return;
+    }
+
     // Verifica se il link punta a un'ancora interna della stessa pagina corrente
     const isSamePageAnchor = href && href.includes('#') && link.pathname === window.location.pathname;
 

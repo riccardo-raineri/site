@@ -413,3 +413,90 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* ==========================================
+   EASTER EGGS & CHICCHE CINEMATOGRAFICHE
+   ========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // --- IDEA 5: MESSAGGIO SEGRETO IN CONSOLE ---
+  console.log(
+    `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nOttima mossa dare un'occhiata al "dietro le quinte"! \nSe stai cercando un Filmmaker / Editor orientato ai dettagli, parliamone.\n📬 Contatti sul sito live!`,
+    "background: #111; color: #ff003c; font-size: 14px; font-weight: bold; padding: 4px 8px; border: 1px solid #ff003c;",
+    "color: #888; font-size: 12px;"
+  );
+
+  // --- IDEA 1: EASTER EGG "REC" (MIRINO VHS) ---
+  let inputBuffer = "";
+  const secretCode = "rec";
+
+  document.addEventListener("keydown", (e) => {
+    // Registra solo lettere minuscole nel buffer
+    inputBuffer += e.key.toLowerCase();
+    // Mantiene il buffer lungo quanto la parola chiave
+    if (inputBuffer.length > secretCode.length) {
+      inputBuffer = inputBuffer.substring(inputBuffer.length - secretCode.length);
+    }
+
+    if (inputBuffer === secretCode) {
+      triggerVhsOverlay();
+      inputBuffer = ""; // Resetta il buffer
+    }
+  });
+
+  function triggerVhsOverlay() {
+    // Crea l'overlay al volo nel DOM se non esiste
+    let vhs = document.getElementById("vhsOverlay");
+    if (!vhs) {
+      vhs = document.createElement("div");
+      vhs.id = "vhsOverlay";
+      vhs.className = "vhs-overlay";
+      vhs.innerHTML = `
+        <div class="vhs-rec"><span class="dot"></span>REC</div>
+        <div class="vhs-corners"></div>
+        <div class="vhs-format">16:9</div>
+        <div class="vhs-play">PLAY ▶</div>
+      `;
+      document.body.appendChild(vhs);
+    }
+
+    // Attiva l'effetto
+    vhs.classList.add("is-active");
+
+    // Lo rimuove automaticamente dopo 3 secondi
+    setTimeout(() => {
+      vhs.classList.remove("is-active");
+    }, 3000);
+  }
+
+  // --- IDEA 4: INTERAZIONE SUL TIMECODE (RESET & TALLY) ---
+  const timecodeEl = document.getElementById("timecode");
+  if (timecodeEl) {
+    timecodeEl.style.cursor = "pointer";
+    timecodeEl.title = "Doppio clic per simulare il Tally REC";
+    
+    timecodeEl.addEventListener("dblclick", () => {
+      timecodeEl.classList.add("tally-active");
+      
+      // L'effetto rosso dura 1.5 secondi
+      setTimeout(() => {
+        timecodeEl.classList.remove("tally-active");
+      }, 1500);
+    });
+  }
+
+  // --- IDEA 6: EFFETTO GLITCH DUST SUI TITOLI ---
+  // Trova i titoli principali e applica la classe glitch al passaggio del mouse
+  const glitchTitles = document.querySelectorAll("#hTitle, .section-title");
+  glitchTitles.forEach(title => {
+    title.addEventListener("mouseenter", () => {
+      title.classList.add("glitch-triggered");
+      // Rimuove l'effetto dopo pochissimo (300ms) per mantenerlo impercettibile e secco
+      setTimeout(() => {
+        title.classList.remove("glitch-triggered");
+      }, 300);
+    });
+  });
+
+});

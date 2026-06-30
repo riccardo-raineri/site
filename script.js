@@ -286,15 +286,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================
-   MARQUEE INFINITO
+   MARQUEE INFINITO (TESTI ORIGINALI CON TACCHETTE FOTOGRAFICHE)
    ========================================== */
+(function() {
+  const track = document.getElementById('marqueeTrack');
+  if (track) {
+    // Solo i tuoi testi originali intervallati dalle tacchette di misurazione
+    track.innerHTML = `
+      <div class="marquee__item">
+        <span class="tack">||</span>
+        <span>DIRECTED BY RICCARDO RAINERI</span> 
+        <span class="tack">|</span> <span class="tack">•</span> <span class="tack">|</span>
+        <span>CINEMATIC PORTFOLIO</span> 
+        <span class="tack">||</span> <span class="tack">•</span>
+        <span>STILL FRAMES</span> 
+        <span class="tack">|</span> <span class="tack">|</span>
+        <span>DIGITAL TIMECODE</span>
+        <span class="tack">•</span> <span class="tack">||</span> <span class="tack">•</span>
+      </div>
+    `;
+    // Duplichiamo per l'effetto loop infinito
+    track.innerHTML += track.innerHTML;
+  }
+})();
+/* ==========================================
+   MARQUEE INFINITO
+   ========================================== 
 (function() {
   const track = document.getElementById('marqueeTrack');
   if (track) {
     track.innerHTML += track.innerHTML;
   }
 })();
-
+*/
 
 /* ==========================================
    GESTIONE LIGHTBOX (ZOOM STILL FRAMES)

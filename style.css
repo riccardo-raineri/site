@@ -272,7 +272,53 @@ section { position: relative; }
 @media (max-width: 860px) { .intro__grid { grid-template-columns: 1fr; gap: 28px; } }
 
 
-/* ============ TESTO A SCORRIMENTO INFINITO ============ */
+/* ============ MARQUEE STILE OBIETTIVO FOTOGRAFICO ============ */
+.marquee {
+  margin-top: 80px; 
+  border-top: 1px solid var(--hairline); 
+  border-bottom: 1px solid var(--hairline);
+  padding: 16px 0; 
+  overflow: hidden; 
+  white-space: nowrap;
+  position: relative;
+  background: var(--carbon-2); /* Sfondo scuro stile ghiera lenti */
+  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+}
+
+.marquee__track { 
+  display: inline-flex; 
+  animation: marquee 28s linear infinite; 
+}
+
+.marquee__item {
+  font-family: var(--font-mono); 
+  font-size: 11px; 
+  letter-spacing: .18em; 
+  text-transform: uppercase;
+  color: var(--steel); /* Colore neutro per i testi principali */
+  padding: 0 20px; 
+  display: flex; 
+  align-items: center; 
+  gap: 24px;
+}
+
+/* Stile per le tacche di misurazione dell'ottica */
+.marquee__item .tack { 
+  color: var(--bone-faint); 
+  font-weight: 300;
+  opacity: 0.6;
+  letter-spacing: 0;
+}
+
+/* Evidenzia i punti elenco della ghiera nel rosso tally del brand */
+.marquee__item .tack:nth-child(even) {
+  color: var(--tally);
+  opacity: 0.8;
+}
+
+
+/* ============ TESTO A SCORRIMENTO INFINITO ============ 
 
 .marquee {
   margin-top: 80px; 
@@ -310,7 +356,7 @@ section { position: relative; }
   0% { transform: translate3d(0, 0, 0); } 
   100% { transform: translate3d(-50%, 0, 0); } 
 }
-
+*/
 
 /* ============ WORKS (PORTFOLIO GRID) ============ */
 .works { background: var(--carbon-2); }

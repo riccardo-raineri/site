@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // MESSAGGIO SEGRETO IN CONSOLE
   console.log(
-    `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nCiao!!`,
+    `%c 🎬 DIRECTED BY RICCARDO RAINERI %c\n\nCiao!`,
     "background: #111; color: #ff003c; font-size: 14px; font-weight: bold; padding: 4px 8px; border: 1px solid #ff003c;",
     "color: #888; font-size: 12px;"
   );
@@ -599,7 +599,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================
-   15. 3D TILT SULLE WORK CARD
+   3D TILT SULLE WORK CARD
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll('.work-card');
@@ -629,61 +629,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ==========================================
-   16. FILM STRIP PROGRESS BAR (PAGINE PROGETTO)
-   ========================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.body.classList.contains('project-page')) {
-    const strip = document.createElement('div');
-    strip.className = 'film-strip-progress';
-    strip.innerHTML = '<div class="film-strip-fill"></div>';
-    document.body.appendChild(strip);
-
-    const fill = strip.querySelector('.film-strip-fill');
-
-    window.addEventListener('scroll', () => {
-      const scrollPx = document.documentElement.scrollTop;
-      const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (scrollPx / winHeightPx) * 100;
-      fill.style.height = `${scrolled}%`;
-    });
-  }
-});
 
 /* ==========================================
-   17. LOCATION MAP TOOLTIP
-   ========================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const triggers = document.querySelectorAll('.location-trigger');
-  
-  if (triggers.length > 0) {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'map-tooltip';
-    document.body.appendChild(tooltip);
-
-    triggers.forEach(trigger => {
-      trigger.addEventListener('mouseenter', (e) => {
-        const mapUrl = trigger.getAttribute('data-map');
-        if (mapUrl) {
-          tooltip.innerHTML = `<img src="${mapUrl}" alt="Map location">`;
-          tooltip.classList.add('is-visible');
-        }
-      });
-
-      trigger.addEventListener('mousemove', (e) => {
-        // Muove il tooltip seguendo il mouse
-        tooltip.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`;
-      });
-
-      trigger.addEventListener('mouseleave', () => {
-        tooltip.classList.remove('is-visible');
-      });
-    });
-  }
-});
-
-/* ==========================================
-   18. AMBIENT COLOR GLOW (HERO)
+   AMBIENT COLOR GLOW (HERO)
    ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   if (document.body.classList.contains('project-page')) {

@@ -603,7 +603,7 @@ body.cinema-mode-active .cinema-toggle-btn { color: var(--tally); border-color: 
 
 
 /* ==========================================
-   15. 3D TILT SULLE WORK CARD
+   3D TILT SULLE WORK CARD
    ========================================== */
 .work-card {
   /* Assicurati che l'elemento supporti il 3D */
@@ -612,77 +612,9 @@ body.cinema-mode-active .cinema-toggle-btn { color: var(--tally); border-color: 
   /* La transizione di base ora viene gestita dinamicamente da JS per non laggare */
 }
 
-/* ==========================================
-   16. FILM STRIP PROGRESS BAR
-   ========================================== */
-.film-strip-progress {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 14px;
-  height: 100vh;
-  background: var(--carbon-3);
-  z-index: 100;
-  pointer-events: none;
-  border-left: 1px solid var(--hairline);
-  /* Perforazioni della pellicola simulate con i bordi tratteggiati CSS */
-  background-image: linear-gradient(to bottom, transparent 50%, var(--carbon) 50%);
-  background-size: 100% 12px;
-}
-
-.film-strip-fill {
-  width: 100%;
-  height: 0%;
-  background: var(--tally); /* Si illumina di rosso Tally */
-  mix-blend-mode: screen;
-  transition: height 0.1s linear;
-}
 
 /* ==========================================
-   17. LOCATION MAP TOOLTIP
-   ========================================== */
-.location-trigger {
-  cursor: crosshair;
-  text-decoration: underline;
-  text-decoration-color: var(--tally);
-  text-underline-offset: 4px;
-  transition: color 0.3s;
-}
-
-.location-trigger:hover {
-  color: var(--bone);
-}
-
-.map-tooltip {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 240px;
-  height: 160px;
-  background: var(--carbon);
-  border: 1px solid var(--hairline);
-  border-radius: 4px;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 99999;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-  will-change: transform, opacity;
-  transition: opacity 0.2s var(--ease);
-}
-
-.map-tooltip.is-visible {
-  opacity: 1;
-}
-
-.map-tooltip img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ==========================================
-   18. AMBIENT COLOR GLOW (HERO)
+   AMBIENT COLOR GLOW (HERO)
    ========================================== */
 .project-hero {
   position: relative;

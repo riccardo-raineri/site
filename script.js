@@ -294,8 +294,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const href = link.getAttribute('href');
     const target = link.getAttribute('target');
 
+    // Verifica se il link punta a un'ancora interna della stessa pagina corrente
+    const isSamePageAnchor = href && href.includes('#') && link.pathname === window.location.pathname;
+
     // Salta i link esterni, le ancore interne (#), i mailto e i target blank
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || target === '_blank' || link.id === 'contactEmail') {
+    if (!href || href.startsWith('#') || isSamePageAnchor || href.startsWith('mailto:') || href.startsWith('tel:') || target === '_blank' || link.id === 'contactEmail') {
       return;
     }
 

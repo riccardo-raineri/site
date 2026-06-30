@@ -627,3 +627,37 @@ body.project-page {
 .lightbox__close:hover {
   color: var(--tally);
 }
+
+/* Tasto Invia Mail */
+.email-cta-container {
+  margin: 40px 0;
+  overflow: hidden;
+}
+
+.email-cta-link {
+  display: inline-block;
+  font-family: var(--font-display), sans-serif;
+  font-size: 42px; /* Grande come i link del menu */
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  
+  /* Prepariamo i componenti per l'animazione */
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- EFFETTO HOVER --- */
+.email-cta-link:hover {
+  color: #FF3B30; /* Diventa rosso vivo (colore REC) */
+  transform: translateX(10px); /* Piccola animazione di spostamento verso destra */
+}
+
+/* Adattamento per schermi più piccoli (smartphone) */
+@media (max-width: 768px) {
+  .email-cta-link {
+    font-size: 32px;
+  }
+}

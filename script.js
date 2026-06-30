@@ -3,7 +3,7 @@
    ========================================== */
 (function(){
   var timecodeEl = document.getElementById('timecode');
-  if (!timecodeEl) return; // Se l'elemento non c'è nella pagina, lo script non va in errore
+  if (!timecodeEl) return; 
   
   var startTime = performance.now();
   function pad(n) { return n.toString().padStart(2, '0'); }
@@ -53,7 +53,6 @@
     });
   });
 
-  // Recupera la lingua salvata, altrimenti usa l'italiano
   var savedLang = localStorage.getItem('selectedLanguage') || 'it';
   setLanguage(savedLang);
 })();
@@ -77,7 +76,7 @@
 })();
 
 /* ==========================================
-   4. COMPORTAMENTI SPECIFICI DELLA HOME PAGE
+   4. NAVBAR & MIRINO HERO INTERFACCIA
    ========================================== */
 // Cambio stile Navbar allo Scroll
 window.addEventListener('scroll', function() {
@@ -90,10 +89,10 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Accensione Mirino Hero (solo se gli elementi esistono)
+// Accensione Sequenziale del Mirino (Solo Home)
 window.addEventListener('DOMContentLoaded', function() {
   var c1 = document.getElementById('c1');
-  if (!c1) return; // Se non siamo nella Home, si ferma qui
+  if (!c1) return; 
   
   setTimeout(function(){ document.getElementById('c1').classList.add('is-on'); }, 200);
   setTimeout(function(){ document.getElementById('c2').classList.add('is-on'); }, 350);
@@ -106,7 +105,9 @@ window.addEventListener('DOMContentLoaded', function() {
   setTimeout(function(){ document.getElementById('hCta').classList.add('is-on'); }, 1100);
 });
 
-// Gestione Filtri Portfolio (Solo Home)
+/* ==========================================
+   5. FILTRI PORTFOLIO FLUIDI (FLIP ANIMATION)
+   ========================================== */
 (function(){
   var buttons = document.querySelectorAll('.filter-btn');
   var cards = document.querySelectorAll('.work-card');
@@ -114,9 +115,24 @@ window.addEventListener('DOMContentLoaded', function() {
 
   buttons.forEach(function(btn) {
     btn.addEventListener('click', function() {
+      // Imposta stato attivo sui bottoni
       buttons.forEach(function(b) { b.classList.remove('is-active'); });
       btn.classList.add('is-active');
+      
       var filter = btn.getAttribute('data-filter');
+
+      // [FLIP] Fase 1: Salva la posizione iniziale (First)
+      var firstPositions = [];
+      cards.forEach(function(card) {
+        var rect = card.getBoundingClientRect();
+        firstPositions.push({
+          element: card,
+          top: rect.top,
+          left: rect.left
+        });
+      });
+
+      // [FLIP] Fase 2: Cambia gli stati di visibilità dell'HTML
       cards.forEach(function(card) {
         var cats = card.getAttribute('data-cat') ? card.getAttribute('data-cat').split(' ') : [];
         if (filter === 'all' || cats.includes(filter)) {
@@ -124,58 +140,75 @@ window.addEventListener('DOMContentLoaded', function() {
           card.style.display = 'block';
         } else {
           card.classList.add('is-hidden');
-          setTimeout(function(){ if(card.classList.contains('is-hidden')) card.style.display = 'none'; }, 350);
+          card.style.display = 'none'; // Rimosso il vecchio setTimeout scattoso
+        }
+      });
+
+      // [FLIP] Fase 3: Calcola il movimento e applica l'animazione fluida (Last, Invert, Play)
+      firstPositions.forEach(function(item) {
+        if (item.element.classList.contains('is-hidden')) return;
+
+        var rect = item.element.getBoundingClientRect();
+        var deltaX = item.left - rect.left;
+        var deltaY = item.top - rect.top;
+
+        if (deltaX !== 0 || deltaY !== 0) {
+          // Invert: riporta temporaneamente e istantaneamente l'elemento alla vecchia posizione
+          item.element.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
+          item.element.style.transition = 'none';
+
+          // Play: fai scivolare fluidamente l'elemento alla sua posizione finale reale
+          requestAnimationFrame(function() {
+            item.element.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            item.element.style.transform = 'none';
+          });
         }
       });
     });
   });
 })();
 
-// Mobile Menu Burger (Solo Home)
-// ============ GESTIONE MOBILE MENU ============
+/* ==========================================
+   6. INTERFACCIA UTENTE MOBILE (MENU BURGER)
+   ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenu = document.getElementById('closeMenu');
   
-  // Verifica che gli elementi esistano nella pagina corrente
   if (burgerBtn && mobileMenu) {
-    
-    // Apri il menu al click sull'hamburger
     burgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.add('is-open'); // Assicurati che nel CSS usi 'is-active' o cambia la classe con quella che usi per mostrarlo
+      mobileMenu.classList.add('is-open'); 
     });
 
-    // Chiudi il menu al click sul tasto CHIUDI
     if (closeMenu) {
       closeMenu.addEventListener('click', () => {
         mobileMenu.classList.remove('is-open');
       });
     }
 
-    // CHIUDI IL MENU QUANDO SI CLICCA UN LINK
-    // Questo risolve il blocco su smartphone una volta selezionata la voce
     const menuLinks = mobileMenu.querySelectorAll('a');
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('is-open');
       });
     });
-    
   }
 });
 
-// ============ MARQUEE DUPLICATE ============
+/* ==========================================
+   7. CREATIVE ELEMENTS (MARQUEE INFINITO)
+   ========================================== */
 (function() {
   const track = document.getElementById('marqueeTrack');
   if (track) {
-    // Clona il contenuto interno per garantire il loop infinito senza scatti
     track.innerHTML += track.innerHTML;
   }
 })();
 
-
-// ============ GESTIONE LIGHTBOX (ZOOM IMMAGINI) ============
+/* ==========================================
+   8. GESTIONE LIGHTBOX (ZOOM STILL FRAMES)
+   ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -187,29 +220,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = item.querySelector('img');
       const btn = item.querySelector('.zoom-btn');
 
-      // Funzione per aprire la modale
       const openLightbox = (e) => {
-        e.stopPropagation(); // Evita conflitti di click
+        e.stopPropagation(); 
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.add('is-active');
-        document.body.style.overflow = 'hidden'; // Blocca lo scroll del sito sotto
+        document.body.style.overflow = 'hidden'; 
       };
 
-      // Apri sia cliccando sul tastino sia cliccando direttamente sull'immagine (ottimo per smartphone)
       if(btn) btn.addEventListener('click', openLightbox);
       img.addEventListener('click', openLightbox);
     });
 
-    // Chiudi cliccando sulla "✕"
     if (lightboxClose) {
       lightboxClose.addEventListener('click', () => {
         lightbox.classList.remove('is-active');
-        document.body.style.overflow = ''; // Riattiva lo scroll
+        document.body.style.overflow = ''; 
       });
     }
 
-    // Chiudi cliccando in un punto qualsiasi dello sfondo nero fuori dall'immagine
     lightbox.addEventListener('click', (e) => {
       if (e.target !== lightboxImg && e.target !== lightboxClose) {
         lightbox.classList.remove('is-active');
@@ -217,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Chiudi premendo il tasto ESC sulla tastiera
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('is-active')) {
         lightbox.classList.remove('is-active');
@@ -227,8 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-// ============ GESTIONE EMAIL PROTETTA DA SPAM ============
+/* ==========================================
+   9. SICUREZZA & PRIVACY (EMAIL BOT-PROTECTION)
+   ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const contactEmail = document.getElementById('contactEmail');
   

@@ -22,7 +22,9 @@ Benvenuto nella repository del mio portfolio personale. Questo sito è stato pro
 
 - **Bot-Protection per Email:** Protezione contro gli scraper di spam tramite l'offuscamento dell'indirizzo email nel DOM con attributi di dati dinamici.
 
-- **Analytics:** Cloudflare Web Analytics (Privacy-first, conforme al GDPR, senza l'uso di cookie traccianti)
+-   **Click:** Implementato un click tramite le API *Web Audio* quando l'utente clicca su pulsanti ed immagini.
+
+- **Analytics:** Cloudflare Web Analytics (Privacy-first, conforme al GDPR, senza l'uso di cookie traccianti).
 
 ---
 

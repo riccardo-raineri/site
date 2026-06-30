@@ -50,6 +50,18 @@ ul { list-style: none; }
 }
 .eyebrow .dot { color: var(--tally); }
 
+ /*  Effetto Noise/Grana da Pellicola (Film Grain Overlay) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  /* Immagine di grana finissima in loop o un pattern SVG */
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.015"/%3E%3C/svg%3E');
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 9999; /* Sopra a tutto */
+}
+
 /* Animazioni comparsa */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .reveal.is-visible { opacity: 1; transform: none; }

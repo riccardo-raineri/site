@@ -272,53 +272,7 @@ section { position: relative; }
 @media (max-width: 860px) { .intro__grid { grid-template-columns: 1fr; gap: 28px; } }
 
 
-/* ============ MARQUEE STILE OBIETTIVO FOTOGRAFICO ============ */
-.marquee {
-  margin-top: 80px; 
-  border-top: 1px solid var(--hairline); 
-  border-bottom: 1px solid var(--hairline);
-  padding: 16px 0; 
-  overflow: hidden; 
-  white-space: nowrap;
-  position: relative;
-  background: var(--carbon-2); /* Sfondo scuro stile ghiera lenti */
-  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
-}
-
-.marquee__track { 
-  display: inline-flex; 
-  animation: marquee 28s linear infinite; 
-}
-
-.marquee__item {
-  font-family: var(--font-mono); 
-  font-size: 11px; 
-  letter-spacing: .18em; 
-  text-transform: uppercase;
-  color: var(--steel); /* Colore neutro per i testi principali */
-  padding: 0 20px; 
-  display: flex; 
-  align-items: center; 
-  gap: 24px;
-}
-
-/* Stile per le tacche di misurazione dell'ottica */
-.marquee__item .tack { 
-  color: var(--bone-faint); 
-  font-weight: 300;
-  opacity: 0.6;
-  letter-spacing: 0;
-}
-
-/* Evidenzia i punti elenco della ghiera nel rosso tally del brand */
-.marquee__item .tack:nth-child(even) {
-  color: var(--tally);
-  opacity: 0.8;
-}
-
-
-/* ============ TESTO A SCORRIMENTO INFINITO ============ 
+/* ============ TESTO A SCORRIMENTO INFINITO ============ */
 
 .marquee {
   margin-top: 80px; 
@@ -356,7 +310,7 @@ section { position: relative; }
   0% { transform: translate3d(0, 0, 0); } 
   100% { transform: translate3d(-50%, 0, 0); } 
 }
-*/
+
 
 /* ============ WORKS (PORTFOLIO GRID) ============ */
 .works { background: var(--carbon-2); }
@@ -645,4 +599,109 @@ body.cinema-mode-active .cinema-toggle-btn { color: var(--tally); border-color: 
 /* TALLY ROSSO SUL TIMECODE */
 #timecode.tally-active {
   color: #ff003c !important; text-shadow: 0 0 10px rgba(255, 0, 60, 0.6); animation: vhsBlink 0.5s infinite;
+}
+
+
+/* ==========================================
+   15. 3D TILT SULLE WORK CARD
+   ========================================== */
+.work-card {
+  /* Assicurati che l'elemento supporti il 3D */
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* La transizione di base ora viene gestita dinamicamente da JS per non laggare */
+}
+
+/* ==========================================
+   16. FILM STRIP PROGRESS BAR
+   ========================================== */
+.film-strip-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 100vh;
+  background: var(--carbon-3);
+  z-index: 100;
+  pointer-events: none;
+  border-left: 1px solid var(--hairline);
+  /* Perforazioni della pellicola simulate con i bordi tratteggiati CSS */
+  background-image: linear-gradient(to bottom, transparent 50%, var(--carbon) 50%);
+  background-size: 100% 12px;
+}
+
+.film-strip-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--tally); /* Si illumina di rosso Tally */
+  mix-blend-mode: screen;
+  transition: height 0.1s linear;
+}
+
+/* ==========================================
+   17. LOCATION MAP TOOLTIP
+   ========================================== */
+.location-trigger {
+  cursor: crosshair;
+  text-decoration: underline;
+  text-decoration-color: var(--tally);
+  text-underline-offset: 4px;
+  transition: color 0.3s;
+}
+
+.location-trigger:hover {
+  color: var(--bone);
+}
+
+.map-tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 160px;
+  background: var(--carbon);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 99999;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  will-change: transform, opacity;
+  transition: opacity 0.2s var(--ease);
+}
+
+.map-tooltip.is-visible {
+  opacity: 1;
+}
+
+.map-tooltip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================
+   18. AMBIENT COLOR GLOW (HERO)
+   ========================================== */
+.project-hero {
+  position: relative;
+  /* Imposta un colore neutro di fallback */
+  --ambient-glow: transparent; 
+}
+
+.project-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, var(--ambient-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 1s ease-in;
+}
+
+/* Assicuriamoci che il testo della Hero resti in primo piano sopra il bagliore */
+.project-hero .wrap {
+  position: relative;
+  z-index: 2;
 }

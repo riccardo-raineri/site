@@ -286,39 +286,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ==========================================
-   MARQUEE INFINITO (TESTI ORIGINALI CON TACCHETTE FOTOGRAFICHE)
+   MARQUEE INFINITO
    ========================================== */
 (function() {
   const track = document.getElementById('marqueeTrack');
   if (track) {
-    // Solo i tuoi testi originali intervallati dalle tacchette di misurazione
-    track.innerHTML = `
-      <div class="marquee__item">
-        <span class="tack">||</span>
-        <span>DIRECTED BY RICCARDO RAINERI</span> 
-        <span class="tack">|</span> <span class="tack">•</span> <span class="tack">|</span>
-        <span>CINEMATIC PORTFOLIO</span> 
-        <span class="tack">||</span> <span class="tack">•</span>
-        <span>STILL FRAMES</span> 
-        <span class="tack">|</span> <span class="tack">|</span>
-        <span>DIGITAL TIMECODE</span>
-        <span class="tack">•</span> <span class="tack">||</span> <span class="tack">•</span>
-      </div>
-    `;
-    // Duplichiamo per l'effetto loop infinito
     track.innerHTML += track.innerHTML;
   }
 })();
-/* ==========================================
-   MARQUEE INFINITO
-   ========================================== 
-(function() {
-  const track = document.getElementById('marqueeTrack');
-  if (track) {
-    track.innerHTML += track.innerHTML;
-  }
-})();
-*/
+
 
 /* ==========================================
    GESTIONE LIGHTBOX (ZOOM STILL FRAMES)
@@ -618,5 +594,125 @@ document.addEventListener("DOMContentLoaded", () => {
       timecodeEl.classList.add('tally-active');
       setTimeout(() => { timecodeEl.classList.remove('tally-active'); }, 1500);
     });
+  }
+});
+
+
+/* ==========================================
+   15. 3D TILT SULLE WORK CARD
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll('.work-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Calcola la percentuale di posizione (da -0.5 a 0.5)
+      const xPct = (x / rect.width) - 0.5;
+      const yPct = (y / rect.height) - 0.5;
+      
+      // Moltiplicatore max gradi (8°)
+      const rotateX = yPct * -16; 
+      const rotateY = xPct * 16;
+      
+      card.style.transition = 'none'; // Rimuove il lag durante il movimento
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  });
+});
+
+/* ==========================================
+   16. FILM STRIP PROGRESS BAR (PAGINE PROGETTO)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.classList.contains('project-page')) {
+    const strip = document.createElement('div');
+    strip.className = 'film-strip-progress';
+    strip.innerHTML = '<div class="film-strip-fill"></div>';
+    document.body.appendChild(strip);
+
+    const fill = strip.querySelector('.film-strip-fill');
+
+    window.addEventListener('scroll', () => {
+      const scrollPx = document.documentElement.scrollTop;
+      const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollPx / winHeightPx) * 100;
+      fill.style.height = `${scrolled}%`;
+    });
+  }
+});
+
+/* ==========================================
+   17. LOCATION MAP TOOLTIP
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const triggers = document.querySelectorAll('.location-trigger');
+  
+  if (triggers.length > 0) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'map-tooltip';
+    document.body.appendChild(tooltip);
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('mouseenter', (e) => {
+        const mapUrl = trigger.getAttribute('data-map');
+        if (mapUrl) {
+          tooltip.innerHTML = `<img src="${mapUrl}" alt="Map location">`;
+          tooltip.classList.add('is-visible');
+        }
+      });
+
+      trigger.addEventListener('mousemove', (e) => {
+        // Muove il tooltip seguendo il mouse
+        tooltip.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`;
+      });
+
+      trigger.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('is-visible');
+      });
+    });
+  }
+});
+
+/* ==========================================
+   18. AMBIENT COLOR GLOW (HERO)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.classList.contains('project-page')) {
+    // Cerchiamo la prima immagine locale disponibile da campionare (escludiamo iframe CORS)
+    const sourceImg = document.querySelector('.gallery-item img'); 
+    
+    if (sourceImg) {
+      const applyGlow = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 1; 
+        canvas.height = 1;
+        
+        // Disegna l'immagine ridotta a 1x1 pixel per ottenere il colore medio
+        ctx.drawImage(sourceImg, 0, 0, 1, 1);
+        const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+        
+        // Imposta il colore dominare come variabile CSS sulla Hero
+        const hero = document.querySelector('.project-hero');
+        if (hero) {
+          hero.style.setProperty('--ambient-glow', `rgba(${r}, ${g}, ${b}, 0.18)`);
+        }
+      };
+
+      if (sourceImg.complete) {
+        applyGlow();
+      } else {
+        sourceImg.addEventListener('load', applyGlow);
+      }
+    }
   }
 });

@@ -470,18 +470,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 
-  // --- IDEA 4: INTERAZIONE SUL TIMECODE (RESET & TALLY) ---
+// --- IDEA 4: INTERAZIONE SUL TIMECODE (RESET, TALLY & SUONO CIAK) ---
   const timecodeEl = document.getElementById("timecode");
   if (timecodeEl) {
     timecodeEl.style.cursor = "pointer";
-    timecodeEl.title = "Doppio clic per simulare il Tally REC";
+    timecodeEl.title = "Doppio clic per il Ciak!";
     
-    timecodeEl.addEventListener("dblclick", () => {
-      timecodeEl.classList.add("tally-active");
+    // Funzione che sintetizza il suono secco del "Ciak" (meccanico + risonanza)
+    function playCiakSound() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
       
-      // L'effetto rosso dura 1.5 secondi
+      // 1. Il colpo secco principale (il "clack" del legno)
+      const strokeOsc = ctx.createOscillator();
+      const strokeGain = ctx.createGain();
+      strokeOsc.type = 'triangle';
+      strokeOsc.frequency.setValueAtTime(120, ctx.currentTime);
+      strokeOsc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.04);
+      
+      strokeGain.gain.setValueAtTime(0.8, ctx.currentTime);
+      strokeGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.04);
+      
+      strokeOsc.connect(strokeGain);
+      strokeGain.connect(ctx.destination);
+      
+      // 2. La risonanza metallica/acustica subito dopo il colpo
+      const echoOsc = ctx.createOscillator();
+      const echoGain = ctx.createGain();
+      echoOsc.type = 'sine';
+      echoOsc.frequency.setValueAtTime(400, ctx.currentTime);
+      echoOsc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.08);
+      
+      echoGain.gain.setValueAtTime(0.2, ctx.currentTime);
+      echoGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+      
+      echoOsc.connect(echoGain);
+      echoGain.connect(ctx.destination);
+      
+      // Avvia e stoppa i generatori di onde sonore
+      strokeOsc.start();
+      strokeOsc.stop(ctx.currentTime + 0.04);
+      
+      echoOsc.start();
+      echoOsc.stop(ctx.currentTime + 0.08);
+    }
+
+    timecodeEl.addEventListener("dblclick", () => {
+      // Avvia il suono del ciak
+      playCiakSound();
+      
+      // Attiva l'effetto visivo Tally rosso
+      timecodeEl.classList.add('tally-active');
+      
       setTimeout(() => {
-        timecodeEl.classList.remove("tally-active");
+        timecodeEl.classList.remove('tally-active');
       }, 1500);
     });
   }

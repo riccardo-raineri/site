@@ -308,71 +308,65 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// MODIFICA FIX 2: Risolve lo schermo nero quando si torna indietro con le frecce del browser (riapre il mascherino)
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    document.body.classList.add('shutter-ready');
+  }
+});
+
 /* ==========================================
-   CUSTOM CURSOR INTERATTIVO (MIRINO)
+   CUSTOM FLOATING LABEL SUI PROGETTI (VIEW)
    ========================================== */
 (function(){
-  // Non attivare su dispositivi touch
+  // Disattiva il tracciamento del mouse su interfacce touch/mobile
   if (window.matchMedia("(pointer: coarse)").matches) return;
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Crea il mirino nel DOM
-    const cursor = document.createElement('div');
-    cursor.id = 'customCursor';
-    cursor.className = 'custom-cursor';
-    cursor.innerHTML = '<span class="cursor-label"></span>';
-    document.body.appendChild(cursor);
+    // Genera la struttura contenitore per il testo fluttuante
+    const floatingLabel = document.createElement('div');
+    floatingLabel.id = 'projectFloatingLabel';
+    floatingLabel.className = 'custom-cursor-label';
+    floatingLabel.innerHTML = '<span class="cursor-label"></span>';
+    document.body.appendChild(floatingLabel);
 
-    const label = cursor.querySelector('.cursor-label');
+    const textInner = floatingLabel.querySelector('.cursor-label');
 
     let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
+    let labelX = 0, labelY = 0;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     });
 
-    // Effetto elasticità (Lerp) per rendere i movimenti fluidi e felpati
-    function animateCursor() {
-      const lerpFactor = 0.15;
-      cursorX += (mouseX - cursorX) * lerpFactor;
-      cursorY += (mouseY - cursorY) * lerpFactor;
+    // Effetto Lerp (ammortizzamento) per rendere lo scorrimento del testo felpato e cinematico
+    function animateLabel() {
+      const lerpFactor = 0.18;
+      labelX += (mouseX - labelX) * lerpFactor;
+      labelY += (mouseY - labelY) * lerpFactor;
       
-      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-      requestAnimationFrame(animateCursor);
+      floatingLabel.style.transform = `translate3d(${labelX}px, ${labelY}px, 0)`;
+      requestAnimationFrame(animateLabel);
     }
-    requestAnimationFrame(animateCursor);
+    requestAnimationFrame(animateLabel);
 
-    // Gestione degli stati del cursore (Hover)
-    const interactiveElements = document.querySelectorAll('a, button, .filter-btn, .work-card, .gallery-item');
+    // Attiva la comparsa della targhetta ESCLUSIVAMENTE sulle card dei progetti o elementi della galleria
+    const targets = document.querySelectorAll('.work-card, .gallery-item');
     
-    interactiveElements.forEach(el => {
+    targets.forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursor.classList.add('is-hovered');
-        
-        // Assegna scritte contestuali personalizzate in base a dove si trova il cursore
-        if (el.classList.contains('work-card') || el.classList.contains('gallery-item')) {
-          label.textContent = "VIEW";
-          cursor.classList.add('has-label');
-        } else if (el.classList.contains('filter-btn')) {
-          label.textContent = "SORT";
-          cursor.classList.add('has-label');
-        } else {
-          label.textContent = "";
-          cursor.classList.remove('has-label');
-        }
+        textInner.textContent = "VIEW";
+        floatingLabel.classList.add('is-visible');
       });
 
       el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('is-hovered', 'has-label');
-        label.textContent = "";
+        floatingLabel.classList.remove('is-visible');
+        textInner.textContent = "";
       });
     });
 
-    // Nascondi/Mostra il cursore se esce o entra nella finestra del browser
-    document.addEventListener('mouseleave', () => cursor.classList.add('is-hidden'));
-    document.addEventListener('mouseenter', () => cursor.classList.remove('is-hidden'));
+    document.addEventListener('mouseleave', () => floatingLabel.classList.remove('is-visible'));
   });
 })();
 

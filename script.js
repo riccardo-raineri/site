@@ -78,7 +78,6 @@
 /* ==========================================
    4. NAVBAR & MIRINO HERO INTERFACCIA
    ========================================== */
-// Cambio stile Navbar allo Scroll
 window.addEventListener('scroll', function() {
   var nav = document.getElementById('mainNav');
   if (!nav) return;
@@ -89,7 +88,6 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// Accensione Sequenziale del Mirino (Solo Home)
 window.addEventListener('DOMContentLoaded', function() {
   var c1 = document.getElementById('c1');
   if (!c1) return; 
@@ -120,7 +118,6 @@ window.addEventListener('DOMContentLoaded', function() {
       
       var filter = btn.getAttribute('data-filter');
 
-      // [FLIP] Fase 1: Salva la posizione iniziale (First) solo se l'elemento è visibile
       var firstPositions = [];
       cards.forEach(function(card) {
         var rect = card.getBoundingClientRect();
@@ -128,12 +125,10 @@ window.addEventListener('DOMContentLoaded', function() {
           element: card,
           top: rect.top,
           left: rect.left,
-          // Condizione fondamentale: memorizza se l'elemento aveva dimensioni reali ed era visibile
           wasVisible: rect.width > 0 && rect.height > 0
         });
       });
 
-      // [FLIP] Fase 2: Cambia gli stati di visibilità dell'HTML
       cards.forEach(function(card) {
         var cats = card.getAttribute('data-cat') ? card.getAttribute('data-cat').split(' ') : [];
         if (filter === 'all' || cats.includes(filter)) {
@@ -145,9 +140,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
       });
 
-      // [FLIP] Fase 3: Calcola il movimento ed evita scatti dalle coordinate 0,0
       firstPositions.forEach(function(item) {
-        // Se la card adesso è nascosta, o prima era totalmente invisibile, non deve subire transizioni di spostamento
         if (item.element.classList.contains('is-hidden') || !item.wasVisible) return;
 
         var rect = item.element.getBoundingClientRect();
@@ -155,11 +148,9 @@ window.addEventListener('DOMContentLoaded', function() {
         var deltaY = item.top - rect.top;
 
         if (deltaX !== 0 || deltaY !== 0) {
-          // Invert: annulla istantaneamente lo spostamento del layout
           item.element.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
           item.element.style.transition = 'none';
 
-          // Play: rilascia l'elemento facendolo scivolare fluidamente nella nuova posizione di destinazione
           requestAnimationFrame(function() {
             item.element.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
             item.element.style.transform = 'none';
@@ -276,4 +267,145 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+});
+
+/* ==========================================
+   TRANSIZIONE PAGINE (SHUTTER)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  // Crea l'otturatore cinematico nel DOM se non esiste già
+  if (!document.getElementById('pageShutter')) {
+    const shutter = document.createElement('div');
+    shutter.id = 'pageShutter';
+    shutter.className = 'page-shutter';
+    document.body.appendChild(shutter);
+  }
+
+  // Riapre l'otturatore all'avvio della pagina
+  setTimeout(() => {
+    document.body.classList.add('shutter-ready');
+  }, 50);
+
+  // Intercetta i click sui link interni per fare il fade-out cinematico
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    const target = link.getAttribute('target');
+
+    // Salta i link esterni, le ancore interne (#), i mailto e i target blank
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || target === '_blank' || link.id === 'contactEmail') {
+      return;
+    }
+
+    e.preventDefault();
+    document.body.classList.remove('shutter-ready');
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 450); // Tempo allineato alla transizione CSS
+  });
+});
+
+/* ==========================================
+   CUSTOM CURSOR INTERATTIVO (MIRINO)
+   ========================================== */
+(function(){
+  // Non attivare su dispositivi touch
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Crea il mirino nel DOM
+    const cursor = document.createElement('div');
+    cursor.id = 'customCursor';
+    cursor.className = 'custom-cursor';
+    cursor.innerHTML = '<span class="cursor-label"></span>';
+    document.body.appendChild(cursor);
+
+    const label = cursor.querySelector('.cursor-label');
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Effetto elasticità (Lerp) per rendere i movimenti fluidi e felpati
+    function animateCursor() {
+      const lerpFactor = 0.15;
+      cursorX += (mouseX - cursorX) * lerpFactor;
+      cursorY += (mouseY - cursorY) * lerpFactor;
+      
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+      requestAnimationFrame(animateCursor);
+    }
+    requestAnimationFrame(animateCursor);
+
+    // Gestione degli stati del cursore (Hover)
+    const interactiveElements = document.querySelectorAll('a, button, .filter-btn, .work-card, .gallery-item');
+    
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('is-hovered');
+        
+        // Assegna scritte contestuali personalizzate in base a dove si trova il cursore
+        if (el.classList.contains('work-card') || el.classList.contains('gallery-item')) {
+          label.textContent = "VIEW";
+          cursor.classList.add('has-label');
+        } else if (el.classList.contains('filter-btn')) {
+          label.textContent = "SORT";
+          cursor.classList.add('has-label');
+        } else {
+          label.textContent = "";
+          cursor.classList.remove('has-label');
+        }
+      });
+
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-hovered', 'has-label');
+        label.textContent = "";
+      });
+    });
+
+    // Nascondi/Mostra il cursore se esce o entra nella finestra del browser
+    document.addEventListener('mouseleave', () => cursor.classList.add('is-hidden'));
+    document.addEventListener('mouseenter', () => cursor.classList.remove('is-hidden'));
+  });
+})();
+
+/* ==========================================
+   CINEMA MODE (LIGHTS OFF)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const videoWrapper = document.querySelector('.video-wrapper');
+  if (!videoWrapper) return;
+
+  // Crea l'interruttore e lo posiziona sopra il video box
+  const cinemaBtn = document.createElement('button');
+  cinemaBtn.className = 'cinema-toggle-btn';
+  cinemaBtn.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+    <span class="translate" data-it="MODALITÀ CINEMA" data-en="CINEMA MODE">MODALITÀ CINEMA</span>
+  `;
+  
+  videoWrapper.parentNode.insertBefore(cinemaBtn, videoWrapper);
+
+  cinemaBtn.addEventListener('click', () => {
+    document.body.classList.toggle('cinema-mode-active');
+    
+    // Aggiorna lo stato del testo
+    const isCinema = document.body.classList.contains('cinema-mode-active');
+    const currentLang = document.documentElement.getAttribute('lang') || 'it';
+    
+    if (isCinema) {
+      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'LIGHTS ON' : 'ACCENDI LUCI';
+    } else {
+      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'CINEMA MODE' : 'MODALITÀ CINEMA';
+    }
+  });
 });

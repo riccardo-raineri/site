@@ -50,16 +50,15 @@ ul { list-style: none; }
 }
 .eyebrow .dot { color: var(--tally); }
 
- /*  Effetto Noise/Grana da Pellicola (Film Grain Overlay) */
+/* MODIFICA 1: EFFETTO NOISE / GRANA DA PELLICOLA */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
-  /* Immagine di grana finissima in loop o un pattern SVG */
   background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.015"/%3E%3C/svg%3E');
   opacity: 0.25;
   pointer-events: none;
-  z-index: 9999; /* Sopra a tutto */
+  z-index: 9999; 
 }
 
 /* Animazioni comparsa */
@@ -73,6 +72,7 @@ body::before {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   * { animation-duration: .001s !important; animation-iteration-count: 1 !important; }
+  body::before, .page-shutter, .custom-cursor { display: none !important; }
 }
 
 /* ============ NAV (SHARED) ============ */
@@ -158,7 +158,7 @@ body::before {
   background: var(--carbon);
 }
 .hero__bars { position: absolute; left: 0; right: 0; height: 18px; background: var(--carbon); z-index: 5; }
-/* .hero__bars--top { top: 0; }  */ /* Barra superiore nera */
+/* .hero__bars--top { top: 0; } */ /* Bordino rimosso per riempimento totale */
 .hero__bars--bottom { bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 30px; }
 .hero__bars--bottom span { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: var(--bone-faint); }
 
@@ -326,7 +326,6 @@ section { position: relative; }
 @media (max-width: 980px) { .works__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .works__grid { grid-template-columns: 1fr; } }
 
-/* Ottimizzazione transizioni della card per evitare lo scatto FLIP */
 .work-card {
   position: relative; display: block; overflow: hidden; background: var(--carbon);
   will-change: transform, opacity;
@@ -342,7 +341,20 @@ section { position: relative; }
 }
 .work-card:hover .work-card__media img { transform: scale(1.12); filter: saturate(1.05) contrast(1.05); }
 
-/* Framing guides interni alle card */
+/* MODIFICA 3: DISTORSIONE GLITCH / CHROMATIC ANAMORPHIC HOVER */
+.work-card__title { 
+  font-family: var(--font-display); 
+  font-weight: 600; 
+  font-size: 1.15rem; 
+  text-transform: uppercase; 
+  line-height: 1.15;
+  transition: text-shadow 0.3s var(--ease), color 0.3s var(--ease);
+}
+.work-card:hover .work-card__title {
+  color: #fff;
+  text-shadow: 1.5px 0 0 rgba(255, 59, 48, 0.6), -1.5px 0 0 rgba(0, 240, 255, 0.5);
+}
+
 .work-card__media::after {
   content: ""; position: absolute; inset: 14px; opacity: 0; pointer-events: none;
   background:
@@ -364,7 +376,6 @@ section { position: relative; }
   position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 3;
   display: flex; justify-content: space-between; align-items: flex-end; gap: 10px;
 }
-.work-card__title { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; text-transform: uppercase; line-height: 1.15; }
 .work-card__meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: var(--bone-dim); text-transform: uppercase; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; }
 .work-card__meta .tag { color: var(--tally); }
 
@@ -394,15 +405,13 @@ section { position: relative; }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
 .footer__loc { font-family: var(--font-mono); font-size: 12px; color: var(--steel); letter-spacing: .06em; }
 
-/* Contenitore Social con spaziatura calibrata a 40px */
 .footer__social {
   display: flex;
   flex-wrap: wrap;    
   justify-content: center; 
-  gap: 15px 40px; /* 15px verticale per a capo mobile, 40px orizzontale di separazione */
+  gap: 15px 40px; 
 }
 
-/* Modificata la disposizione interna per impilare l'icona verticalmente sopra la scritta */
 .footer__social a {
   display: inline-flex;
   flex-direction: column; 
@@ -424,7 +433,6 @@ section { position: relative; }
 
 @media (max-width: 700px) { .footer__inner { flex-direction: column; align-items: flex-start; } }
 
-/* Dimensioni icone allineate sopra ai testi */
 .footer-icon {
   width: 18px;            
   height: 18px;
@@ -450,11 +458,11 @@ body.project-page { padding-top: 100px; }
   .project-details { padding-left: 0; border-left: none; border-top: 1px solid var(--hairline); padding-top: 24px; }
 }
 
-.project-media-main { background: var(--carbon-2); padding: 20px 0 80px; }
-.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--hairline); }
+.project-media-main { background: var(--carbon-2); padding: 20px 0 80px; transition: opacity .6s var(--ease), background .6s var(--ease); }
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border: 1px solid var(--hairline); z-index: 10; }
 .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-.project-story { background: var(--carbon); padding: 80px 0; border-top: 1px solid var(--hairline); }
+.project-story { background: var(--carbon); padding: 80px 0; border-top: 1px solid var(--hairline); transition: opacity .6s var(--ease); }
 .story-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; }
 .story-sidebar h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 2rem; line-height: 1.1; }
 .story-text { color: var(--bone-dim); font-size: 1.05rem; }
@@ -464,7 +472,7 @@ body.project-page { padding-top: 100px; }
 
 @media (max-width: 768px) { .story-grid { grid-template-columns: 1fr; gap: 24px; } }
 
-.project-gallery { background: var(--carbon-2); padding: 80px 0; border-top: 1px solid var(--hairline); }
+.project-gallery { background: var(--carbon-2); padding: 80px 0; border-top: 1px solid var(--hairline); transition: opacity .6s var(--ease); }
 .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
 .gallery-item { position: relative; overflow: hidden; aspect-ratio: 16/9; border: 1px solid var(--hairline-2); }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
@@ -472,7 +480,7 @@ body.project-page { padding-top: 100px; }
 
 @media (max-width: 560px) { .gallery-grid { grid-template-columns: 1fr; } }
 
-.project-footer { background: var(--carbon); border-top: 1px solid var(--hairline); padding: 60px 0; text-align: center; }
+.project-footer { background: var(--carbon); border-top: 1px solid var(--hairline); padding: 60px 0; text-align: center; transition: opacity .6s var(--ease); }
 .next-btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 600; font-size: 2rem; text-transform: uppercase; color: var(--bone-dim); transition: all .35s var(--ease); border-bottom: 2px solid transparent; padding-bottom: 4px; }
 .next-btn:hover { color: var(--tally); border-color: var(--tally); }
 .footer-sub { margin-top: 40px; font-family: var(--font-mono); font-size: 11px; color: var(--steel); }
@@ -538,7 +546,99 @@ body.project-page { padding-top: 100px; }
 }
 .email-cta-link:hover {
   color: #FF3B30; 
-  transform: translateY(-10px); /* Ripristinato lo scatto verso l'alto super reattivo */
+  transform: translateY(-10px); 
 }
 
 @media (max-width: 768px) { .email-cta-link { font-size: 32px; } }
+
+
+/* ===================================================
+   [NUOVO] STRUTTURE CSS PER LE MODIFICHE INTERATTIVE
+   =================================================== */
+
+/* STRUTTURA OTTURATORE PAGINE (SHUTTER) */
+.page-shutter {
+  position: fixed; inset: 0; background: #000000; z-index: 99999;
+  transform: scaleY(1); transform-origin: top;
+  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+body.shutter-ready .page-shutter {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+/* STILIZZAZIONE DEL CURSORE A MIRINO */
+.custom-cursor {
+  position: fixed; top: 0; left: 0;
+  width: 10px; height: 10px;
+  background-color: var(--bone);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), background-color 0.3s var(--ease);
+  display: flex; align-items: center; justify-content: center;
+}
+/* Stato nascosto fuori dallo schermo */
+.custom-cursor.is-hidden { opacity: 0; }
+/* Reazione al passaggio sopra elementi cliccabili */
+.custom-cursor.is-hovered {
+  width: 50px; height: 50px;
+  background-color: rgba(237, 234, 226, 0.08);
+  border: 1px solid var(--bone-dim);
+}
+/* Mostra l'etichetta tecnica microscopica monospazio (es: VIEW, SORT) */
+.cursor-label {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 600;
+  letter-spacing: 0.1em; color: var(--bone); opacity: 0; transform: scale(0.7);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+.custom-cursor.has-label .cursor-label { opacity: 1; transform: scale(1); }
+/* Se l'utente si muove su elementi specifici il mirino diventa rosso tally */
+.custom-cursor.is-hovered:has(.cursor-label:empty) {
+  background-color: transparent;
+  border-color: var(--tally);
+  width: 22px; height: 22px;
+}
+
+/* Nasconde il cursore nativo di sistema laddove quello custom è attivo */
+@media (pointer: fine) {
+  body, a, button, .filter-btn, .work-card, .gallery-item {
+    cursor: none !important;
+  }
+}
+
+/* STILIZZAZIONE INTERRUTTORE E EFFETTI CINEMA MODE */
+.cinema-toggle-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
+  color: var(--steel); margin-bottom: 14px; text-transform: uppercase;
+  padding: 6px 12px; border: 1px solid var(--hairline-2);
+  transition: all 0.3s var(--ease);
+}
+.cinema-toggle-btn svg { width: 12px; height: 12px; transition: transform 0.4s var(--ease); }
+.cinema-toggle-btn:hover { color: var(--bone); border-color: var(--bone-dim); }
+.cinema-toggle-btn:hover svg { transform: rotate(45deg); }
+
+/* Stato di oscuramento globale quando la modalità cinema è ON */
+body.cinema-mode-active .nav,
+body.cinema-mode-active .project-hero,
+body.cinema-mode-active .project-story,
+body.cinema-mode-active .project-gallery,
+body.cinema-mode-active .project-footer,
+body.cinema-mode-active .footer {
+  opacity: 0.04;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+body.cinema-mode-active .project-media-main {
+  background: #000000;
+  padding-top: 60px; /* Isola il video al centro */
+}
+body.cinema-mode-active .cinema-toggle-btn {
+  color: var(--tally);
+  border-color: rgba(255, 59, 48, 0.3);
+}

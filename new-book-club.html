@@ -79,31 +79,33 @@
     <div class="video-grid" style="display: flex; justify-content: center; width: 100%;">
       
       <!-- Box con proporzioni bloccate a 9:16 (Rapporto d'aspetto nativo dei Reel) -->
-      <div class="iframe-container" style="
-        position: relative; 
-        width: 100%; 
-        max-width: 420px; 
-        padding-bottom: 177.78%; /* Forza il rapporto 9:16 perfetto (16 / 9 * 100) */
-        height: 0; 
-        overflow: hidden;
-        border-radius: 12px;
-      ">
-        <iframe 
-          src="https://www.instagram.com/reel/CmZDfWHqQMm/embed" 
-          frameborder="0" 
-          scrolling="no" 
-          allowtransparency="true" 
-          allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          style="
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: 1px solid rgba(0,0,0,0.1);
-          ">
-        </iframe>
-      </div>
+      <div class="video-wrapper" style="
+  position: relative; 
+  width: 100%; 
+  max-width: 340px; /* Misura perfetta e compatta per i Reel */
+  aspect-ratio: 9 / 16;
+  padding-bottom: 0; /* Annulla il padding 16:9 del CSS globale */
+  height: auto;      /* Annulla l'altezza 0 del CSS globale */
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 0 auto;
+">
+  <iframe 
+    src="https://www.instagram.com/reel/CmZDfWHqQMm/embed" 
+    frameborder="0" 
+    scrolling="no" 
+    allowtransparency="true" 
+    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    style="
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      border: 1px solid rgba(0,0,0,0.1);
+    ">
+  </iframe>
+</div>
       
     </div>
 

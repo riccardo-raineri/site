@@ -484,6 +484,9 @@ document.addEventListener("DOMContentLoaded", () => {
     </svg>
     <span class="translate" data-it="MODALITÀ CINEMA" data-en="CINEMA MODE">MODALITÀ CINEMA</span>
   `;
+	
+	const container = videoWrapper.closest('.video-grid') || videoWrapper;
+	container.parentNode.insertBefore(cinemaBtn, container);
   
   videoWrapper.parentNode.insertBefore(cinemaBtn, videoWrapper);
 

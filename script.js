@@ -482,14 +482,16 @@ document.addEventListener("DOMContentLoaded", () => {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
     </svg>
-    <span class="translate" data-it="MODALITÃ€ CINEMA" data-en="CINEMA MODE">MODALITÃ€ CINEMA</span>
+    <span class="translate" data-it="MODALITÀ CINEMA" data-en="CINEMA MODE">MODALITÀ CINEMA</span>
   `;
 	
-	const container = videoWrapper.closest('.video-grid') || videoWrapper;
-	container.parentNode.insertBefore(cinemaBtn, container);
+  // Trova il contenitore padre corretto (la griglia o il video stesso)
+  const container = videoWrapper.closest('.video-grid') || videoWrapper;
   
-  videoWrapper.parentNode.insertBefore(cinemaBtn, videoWrapper);
+  // Inserisce il bottone UNA SOLA VOLTA, prima del contenitore
+  container.parentNode.insertBefore(cinemaBtn, container);
 
+  // Gestione del click
   cinemaBtn.addEventListener('click', () => {
     document.body.classList.toggle('cinema-mode-active');
     
@@ -499,11 +501,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isCinema) {
       cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'LIGHTS ON' : 'ACCENDI LUCI';
     } else {
-      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'CINEMA MODE' : 'MODALITÃ€ CINEMA';
+      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'CINEMA MODE' : 'MODALITÀ CINEMA';
     }
   });
 });
-
 
 /* ==========================================
    EASTER EGGS

@@ -89,7 +89,7 @@ const playAnalogClick = (function() {
 // Iniezione globale dei click sugli elementi interattivi
 document.addEventListener("DOMContentLoaded", () => {
   const setupAudioClicks = () => {
-    // Seleziona tutto ciò che è cliccabile sul sito
+    // Seleziona tutto ciï¿½ che ï¿½ cliccabile sul sito
     const clickables = document.querySelectorAll(
       'a, button, .work-card, .gallery-item, .lang-btn, .filter-btn, #timecode'
     );
@@ -501,7 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isCinema) {
       cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'LIGHTS ON' : 'ACCENDI LUCI';
     } else {
-      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'CINEMA MODE' : 'MODALITÀ CINEMA';
+      cinemaBtn.querySelector('span').textContent = currentLang === 'en' ? 'CINEMA MODE' : 'MODALITï¿½ CINEMA';
     }
   });
 });
@@ -618,7 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const xPct = (x / rect.width) - 0.5;
       const yPct = (y / rect.height) - 0.5;
       
-      // Moltiplicatore max gradi (8°)
+      // Moltiplicatore max gradi (8ï¿½)
       const rotateX = yPct * -16; 
       const rotateY = xPct * 16;
       

@@ -637,3 +637,47 @@ body.cinema-mode-active .cinema-toggle-btn { color: var(--tally); border-color: 
   position: relative;
   z-index: 2;
 }
+
+/* ============ LANYARD ANIMATION CONTAINER ============ */
+.lanyard-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Altezza variabile per l'animazione */
+  margin-top: 30px;
+  cursor: grab;
+  touch-action: none;
+  overflow: hidden;
+  /* Per evitare che il container interferisca con il click sugli elementi sottostanti */
+  pointer-events: auto;
+}
+
+.lanyard-container:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 860px) {
+  .lanyard-container {
+    height: 300px; /* Più piccolo su mobile */
+  }
+}
+
+/* Assicuriamoci che l'animazione non copra il testo */
+.intro__text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Per permettere al contenitore di stare nel layout a griglia */
+.intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: center; /* Allineamento centrale per l'animazione */
+}
+
+@media (max-width: 860px) {
+  .intro__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

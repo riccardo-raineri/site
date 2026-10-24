@@ -1,0 +1,116 @@
+import * as THREE from 'https://cdn.skypack.dev/three@0.150.0';
+
+/**
+ * LanyardAnimation (Vanilla Three.js implementation)
+ * Creates a 3D floating badge on a string (lanyard) effect.
+ */
+
+class LanyardAnimation {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) {
+      console.error("LanyardAnimation: Container not found.");
+      return;
+    }
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(75, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+    this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.container.appendChild(this.renderer.domElement);
+
+    this.init();
+  }
+
+  init() {
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    this.scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5, 5, 5);
+    this.scene.add(pointLight);
+
+    // Create the "Badge" (a plane)
+    const geometry = new THREE.PlaneGeometry(2, 3);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xeaeae2,
+      side: THREE.DoubleSide,
+      roughness: 0.3,
+      metalness: 0.2
+    });
+    this.badge = new THREE.Mesh(geometry, material);
+    this.scene.add(this.badge);
+
+    // Create the "Lanyard" (a line/string)
+    const linePoints = [
+      new THREE.Vector3(0, 5, 0),    // Top attachment point
+      new THREE.Vector3(0, 1.5, 0)   // Bottom attachment point (at badge)
+    ];
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x717a86 });
+    this.lanyardLine = new THREE.Line(lineGeometry, lineMaterial);
+    this.scene.add(this.lanyardLine);
+
+    // Setup Camera
+    this.camera.position.z = 6;
+
+    // Animation variables
+    this.time = 0;
+    this.mouse = { x: 0, y: 0 };
+
+    // Event Listeners
+    this.container.addEventListener('mousemove', (e) => {
+      const rect = this.container.getBoundingClientRect();
+      this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    });
+
+    window.addEventListener('resize', () => this.onWindowResize());
+
+    this.animate();
+  }
+
+  onWindowResize() {
+    this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+  }
+
+  animate() {
+    requestAnimationFrame(() => this.animate());
+    this.time += 0.01;
+
+    // Gentle floating motion (sine waves)
+    const floatX = Math.sin(this.time * 0.5) * 0.2;
+    const floatY = Math.cos(this.time * 0.7) * 0.15;
+
+    // Mouse interaction (subtle tilt)
+    const tiltX = this.mouse.y * 0.3;
+    const tiltY = -this.mouse.x * 0.3;
+
+    // Apply transformations to Badge
+    this.badge.position.set(floatX, floatY, 0);
+    this.badge.rotation.x = tiltX;
+    this.badge.rotation.y = tiltY;
+
+    // Update Line position to follow badge
+    const positions = this.lanyardLine.geometry.attributes.position.array;
+    positions[2] = floatX; // x of end point
+    positions[3] = floatY + 1.5; // y of end point
+    positions[4] = 0; // z of end point
+    this.lanyardLine.geometry.attributes.position.needsUpdate = true;
+
+    this.renderer.render(this.scene, this.camera);
+  }
+}
+
+// Initialize when the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('lanyard-canvas');
+  if (container) {
+    new LanyardAnimation('lanyard-canvas');
+  }
+});

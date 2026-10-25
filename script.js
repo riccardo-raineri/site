@@ -668,3 +668,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+if (document.getElementById('contact-card')) {
+  new Lanyard(document.getElementById('contact-card'), {
+    frontImage : Lanyard.createBusinessCard(),
+    backImage  : Lanyard.createBusinessCard({ side: 'back' }),
+    finish     : 'glossy',
+    metal      : 'graphite',
+    size       : 0.52,
+    breeze     : 0.35
+  });
+}

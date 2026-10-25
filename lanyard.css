@@ -1,0 +1,67 @@
+/* lanyard.css
+   Minimal styles for the Lanyard component.
+   The only requirement: give the container a defined width AND height.
+   Example: width:100%; height:500px  (or use the .lanyard-wrap helper below)
+*/
+
+/* ── root container ──────────────────────────────────────────────────── */
+.lanyard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lanyard-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── ready-made wrapper helpers ──────────────────────────────────────── */
+
+/* Drop this div anywhere and the card fills 500px of height, auto width */
+.lanyard-wrap {
+  width: 100%;
+  height: 500px;
+}
+
+/* Taller version for full-section hero use */
+.lanyard-wrap--tall {
+  width: 100%;
+  height: 680px;
+}
+
+/* Centred column that feels like a spotlight */
+.lanyard-wrap--centered {
+  max-width: 640px;
+  height: 560px;
+  margin: 0 auto;
+}
+
+/* ── integration inside the site's contact section ───────────────────
+   Add class="contatti__lanyard" to a new div inside .contatti__inner
+   and the card floats next to the CTA text.
+   ──────────────────────────────────────────────────────────────────── */
+.contatti__lanyard {
+  width: 100%;
+  max-width: 360px;
+  height: 520px;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+/* Responsive: stack vertically on narrow screens */
+@media (max-width: 860px) {
+  .contatti__lanyard {
+    max-width: 100%;
+    height: 420px;
+  }
+}
+
+/* ── reduce-motion: disable the intro drop animation ────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .lanyard-canvas {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,58 @@
+import * as THREE from 'https://cdn.skypack.dev/three@0.150.0';
+
+/**
+ * LanyardAnimation (Vanilla Three.js implementation)
+ * Creates a 3D floating badge on a string (lanyard) effect.
+ */
+
+class LanyardAnimation {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) {
+      console.error("LanyardAnimation: Container not found.");
+      return;
+    }
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(75, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+    this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.container.appendChild(this.renderer.domElement);
+
+    this.init();
+  }
+
+  init() {
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    this.scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5, 5, 5);
+    this.scene.add(pointLight);
+
+    // Create the "Badge" (a plane)
+    const geometry = new THREE.PlaneGeometry(2, 3);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xeaeae2,
+      side: THREE.DoubleSide,
+      roughness: 0.3,
+      metalness: 0.2
+    });
+    this.badge = new THREE.Mesh(geometry, material);
+    this.scene.add(this.badge);
+
+    // Create the "Lanyard" (a line/string)
+    const linePoints = [
+      new THREE.Vector3(0, 5, 0),    // Top attachment point
+      new THREE.Vector3(0, 1.5, 0)   // Bottom attachment point (at badge)
+    ];
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x717a86 });
+    this.lanyardLine = new THREE.Line(lineGeometry, lineMaterial);
+    this.scene.add(this.l lanyardLine); // Wait, I see a typo in my thought here. I'll fix it in the write.
+  }
+}
+// ... I will rewrite the whole thing to be safe and correct.

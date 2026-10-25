@@ -668,7 +668,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
 if (document.getElementById('contact-card')) {
   new Lanyard(document.getElementById('contact-card'), {
     frontImage : Lanyard.createBusinessCard(),
